@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
@@ -10,7 +9,7 @@ class Hazard(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
@@ -25,6 +24,8 @@ class Hazard(models.Model):
 
     class Meta:
         ordering = ['status', 'created_on']
+        verbose_name_plural = 'Hazards'
+
 
 class Category(models.Model):
     name = models.CharField(max_length=80, null=True, blank=True)
@@ -32,15 +33,25 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+
 class Risk(models.Model):
-    level = models.CharField(max_length=5, unique=True, default=0)
+    level = models.CharField(max_length=6, unique=True, default='Low')
 
     def __str__(self):
         return self.level
 
+    class Meta:
+        verbose_name_plural = 'Risks'
+
+
 class Status(models.Model):
-    name = models.CharField(max_length=8, unique=True, default=0)
+    name = models.CharField(max_length=8, unique=True, default='Open')
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Statuses'

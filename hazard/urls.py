@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import HazardList
+
 
 urlpatterns = [
-    path('', views.testView, name='views'),
+    path('', HazardList.as_view(), name='hazards'),
 ]

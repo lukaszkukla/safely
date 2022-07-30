@@ -1,6 +1,7 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.list import ListView
+from .models import Hazard
 
-def testView(request):
-    return HttpResponse('random text')
+
+class HazardList(ListView):
+    model = Hazard
