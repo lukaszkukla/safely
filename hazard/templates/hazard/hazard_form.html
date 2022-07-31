@@ -1,0 +1,10 @@
+<h1>Create hazard</h1>
+
+<a href="{% url 'hazards' %}">Go Back</a>
+
+<form action="" method="POST">    
+    {{ form.as_p }}    
+    <input type="submit" value="Save">
+
+    {% csrf_token %}
+</form>
