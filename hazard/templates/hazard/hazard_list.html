@@ -10,11 +10,13 @@
     <h1>List of Hazards</h1>
     <table>
         <tr>
-            <th>Hazard</th>
+            <th>Title</th>            
+            <th>Detail View</th>            
         </tr>
-        {% for hazard in object_list %}
+        {% for hazard in hazards %}
         <tr>
-            <td>{{ hazard.title }}</td>
+            <td>{{ hazard.title }}</td>          
+            <td><a href="{% url 'hazard' hazard.id %}">Open</a></td>          
         </tr>
         {% empty %}
         <h3>No hazards recorded</h3>
