@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Hazard
 
 
@@ -18,26 +20,26 @@ class CustomLoginView(LoginView):
         return reverse_lazy('hazards')
 
 
-class HazardList(ListView):
+class HazardList(LoginRequiredMixin, ListView):
     model = Hazard
     context_object_name = 'hazards'
 
-class HazardDetail(DetailView):
+class HazardDetail(LoginRequiredMixin, DetailView):
     model = Hazard
     context_object_name = 'hazard'
     template_name = 'hazard/hazard.html'
 
-class HazardCreate(CreateView):
+class HazardCreate(LoginRequiredMixin, CreateView):
     model = Hazard
     fields = '__all__'
     success_url = reverse_lazy('hazards')
 
-class HazardUpdate(UpdateView):
+class HazardUpdate(LoginRequiredMixin, UpdateView):
     model = Hazard
     fields = '__all__'
     success_url = reverse_lazy('hazards')
 
-class HazardDelete(DeleteView):
+class HazardDelete(LoginRequiredMixin, DeleteView):
     model = Hazard
     context_object_name = 'hazard'
     success_url = reverse_lazy('hazards')
