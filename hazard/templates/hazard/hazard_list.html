@@ -21,6 +21,7 @@
             <td>{{ hazard.title }}</td>          
             <td><a href="{% url 'hazard' hazard.id %}">Open</a></td>          
             <td><a href="{% url 'hazard-update' hazard.id %}">Edit</a></td>          
+            <td><a href="{% url 'hazard-delete' hazard.id %}">Delete</a></td>          
         </tr>
         {% empty %}
         <h3>No hazards recorded</h3>

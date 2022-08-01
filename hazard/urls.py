@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HazardList, HazardDetail, HazardCreate, HazardUpdate
+from .views import HazardList, HazardDetail, HazardCreate, HazardUpdate, HazardDelete
 
 
 urlpatterns = [
@@ -7,4 +7,5 @@ urlpatterns = [
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard-create/', HazardCreate.as_view(), name='hazard-create'),
     path('hazard-update/<int:pk>/', HazardUpdate.as_view(), name='hazard-update'),
+    path('hazard-delete/<int:pk>/', HazardDelete.as_view(), name='hazard-delete'),
 ]

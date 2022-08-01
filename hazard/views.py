@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Hazard
 
@@ -23,4 +23,9 @@ class HazardCreate(CreateView):
 class HazardUpdate(UpdateView):
     model = Hazard
     fields = '__all__'
+    success_url = reverse_lazy('hazards')
+
+class HazardDelete(DeleteView):
+    model = Hazard
+    context_object_name = 'hazard'
     success_url = reverse_lazy('hazards')

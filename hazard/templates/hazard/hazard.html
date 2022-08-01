@@ -22,7 +22,12 @@
         </tr>        
         <tr>            
             <td>{{ hazard.slug }}</td>
-            <td>{{ hazard.image }}</td>
+            <td>
+                {% if 'placeholder' in hazard.image.url %}                
+                {% else %}
+                <img src="{{ hazard.image.url }}" alt="">
+                {% endif %}
+            </td>
             <td>{{ hazard.description }}</td>
             <td>{{ hazard.updated_on }}</td>
             <td>{{ hazard.created_on }}</td>
