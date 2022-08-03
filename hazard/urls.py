@@ -1,4 +1,7 @@
 from django.urls import path
+
+from django.contrib.auth.views import LogoutView
+
 from .views import (
     HazardList,
     HazardDetail,
@@ -6,9 +9,10 @@ from .views import (
     HazardUpdate,
     HazardDelete,
     CustomLoginView,
-    Register
+    Register,
+    profileView,
+    profileEdit
 )
-from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
@@ -20,4 +24,6 @@ urlpatterns = [
     path('hazard-create/', HazardCreate.as_view(), name='hazard-create'),
     path('hazard-update/<int:pk>/', HazardUpdate.as_view(), name='hazard-update'),
     path('hazard-delete/<int:pk>/', HazardDelete.as_view(), name='hazard-delete'),
+    path('profile/', profileView, name='profile-view'),
+    path('profile/edit', profileEdit, name='profile-edit'),
 ]

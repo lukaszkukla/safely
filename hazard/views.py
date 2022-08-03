@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.urls import reverse_lazy
+from django.urls import is_valid_path, reverse_lazy
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,6 +10,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from .models import Hazard
+
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+
+from django.db import models
 
 
 class CustomLoginView(LoginView):
@@ -92,3 +97,29 @@ class HazardDelete(LoginRequiredMixin, DeleteView):
     model = Hazard
     context_object_name = 'hazard'
     success_url = reverse_lazy('hazards')
+
+def profileView(request):
+    args = {'user', request.user}
+    return render(request, 'hazard/profile.html')
+
+def profileEdit(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/profile')
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'hazard/edit_profile.html', args)
+
+class EditProfileForm(UserChangeForm):
+    
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'email'
+        ]
