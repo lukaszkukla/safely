@@ -5,7 +5,8 @@ from .views import (
     HazardCreate,
     HazardUpdate,
     HazardDelete,
-    CustomLoginView
+    CustomLoginView,
+    Register
 )
 from django.contrib.auth.views import LogoutView
 
@@ -13,6 +14,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='hazards'), name='logout'),
+    path('register/', Register.as_view(), name='register'),
     path('', HazardList.as_view(), name='hazards'),
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard-create/', HazardCreate.as_view(), name='hazard-create'),
