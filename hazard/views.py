@@ -100,19 +100,23 @@ class HazardDelete(LoginRequiredMixin, DeleteView):
 
 def profileView(request):
     args = {'user', request.user}
-    return render(request, 'hazard/profile.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'hazard/profile.html')
+    return redirect('login')
+    
 def profileEdit(request):
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = EditProfileForm(request.POST, instance=request.user)
 
-        if form.is_valid():
-            form.save()
-            return redirect('/profile')
-    else:
-        form = EditProfileForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'hazard/edit_profile.html', args)
+            if form.is_valid():
+                form.save()
+                return redirect('/profile')
+        else:
+            form = EditProfileForm(instance=request.user)
+            args = {'form': form}
+            return render(request, 'hazard/edit_profile.html', args)
+    return redirect('login')
 
 class EditProfileForm(UserChangeForm):
     
