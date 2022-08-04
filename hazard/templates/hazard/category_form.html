@@ -1,0 +1,10 @@
+<h1>Create category</h1>
+
+<a href="{% url 'categories' %}">Go Back</a>
+
+<form action="" method="POST" enctype="multipart/form-data">    
+    {{ form.as_p }}    
+    <input type="submit" value="Save">
+
+    {% csrf_token %}
+</form>

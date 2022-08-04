@@ -1,0 +1,12 @@
+<h1>Category hazard</h1>
+
+<a href="{% url 'categories' %}">Go Back</a>
+
+<form action="" method="POST">
+    <p>Are you sure? The <strong>'{{ category.name }}'</strong> hazard record will be <strong>permanently deleted!</strong></p>
+    
+    {{ form.as_p }}    
+    <input type="submit" value="Delete">
+
+    {% csrf_token %}
+</form>

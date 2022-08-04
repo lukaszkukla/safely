@@ -11,7 +11,11 @@ from .views import (
     CustomLoginView,
     Register,
     profileView,
-    profileEdit
+    profileEdit,
+    CategoryList,
+    CategoryUpdate,
+    CategoryCreate,
+    CategoryDelete
 )
 
 
@@ -26,4 +30,8 @@ urlpatterns = [
     path('hazard-delete/<int:pk>/', HazardDelete.as_view(), name='hazard-delete'),
     path('profile/', profileView, name='profile-view'),
     path('profile/edit', profileEdit, name='profile-edit'),
+    path('categories', CategoryList.as_view(), name='categories'),    
+    path('categories-create/', CategoryCreate.as_view(), name='categories-create'),
+    path('categories-update/<int:pk>/', CategoryUpdate.as_view(), name='categories-update'),
+    path('categories-delete/<int:pk>/', CategoryDelete.as_view(), name='categories-delete'),
 ]

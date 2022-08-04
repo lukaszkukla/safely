@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Hazard
+from .models import Hazard, Category
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
@@ -68,7 +68,6 @@ class HazardCreate(LoginRequiredMixin, CreateView):
     fields = [
         'category',
         'title',
-        'slug',
         'image',
         'description',
         'level',
@@ -85,7 +84,6 @@ class HazardUpdate(LoginRequiredMixin, UpdateView):
     fields = [
         'category',
         'title',
-        'slug',
         'image',
         'description',
         'level',
@@ -127,3 +125,23 @@ class EditProfileForm(UserChangeForm):
             'last_name',
             'email'
         ]
+
+class CategoryList(LoginRequiredMixin, ListView):
+    model = Category
+    context_object_name = 'categories'
+    template_name = 'hazard/category_list.html'
+
+class CategoryUpdate(LoginRequiredMixin, UpdateView):
+    model = Category
+    template_name = 'hazard/update_category.html'
+    fields = '__all__'
+    success_url = reverse_lazy('categories')
+
+class CategoryCreate(LoginRequiredMixin, CreateView):
+    model = Category
+    fields = '__all__'   
+    success_url = reverse_lazy('categories')
+
+class CategoryDelete(LoginRequiredMixin, DeleteView):
+    model = Category
+    success_url = reverse_lazy('categories')
