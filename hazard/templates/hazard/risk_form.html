@@ -1,0 +1,10 @@
+<h1>Create Risk</h1>
+
+<a href="{% url 'risks' %}">Go Back</a>
+
+<form action="" method="POST" enctype="multipart/form-data">    
+    {{ form.as_p }}    
+    <input type="submit" value="Save">
+
+    {% csrf_token %}
+</form>

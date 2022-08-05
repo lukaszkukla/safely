@@ -5,16 +5,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.urls import is_valid_path, reverse_lazy
 
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Hazard, Category
+from .models import Hazard, Category, Risk
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
-
-from django.db import models
 
 
 class CustomLoginView(LoginView):
@@ -145,3 +143,25 @@ class CategoryCreate(LoginRequiredMixin, CreateView):
 class CategoryDelete(LoginRequiredMixin, DeleteView):
     model = Category
     success_url = reverse_lazy('categories')
+
+class RiskList(LoginRequiredMixin, ListView):
+    model = Risk
+    context_object_name = 'risks'
+    template_name = 'hazard/risk_list.html'
+
+class RiskUpdate(LoginRequiredMixin, UpdateView):
+    model = Risk
+    template_name = 'hazard/update_risk.html'
+    fields = '__all__'
+    success_url = reverse_lazy('risks')
+
+class RiskCreate(LoginRequiredMixin, CreateView):
+    model = Risk
+    fields = '__all__'   
+    success_url = reverse_lazy('risks')
+
+class RiskDelete(LoginRequiredMixin, DeleteView):
+    model = Risk
+    success_url = reverse_lazy('risks')
+
+

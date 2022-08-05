@@ -1,0 +1,11 @@
+<h1>Risk List</h1>
+
+<a href="{% url 'risks-create' %}">Add Risk</a>
+
+{% for risk in risks %}
+<p>Name: {{ risk.level }}</p>
+<p>ID: {{ risk.id }}</p>
+<a href="{% url 'risks-update' risk.pk %}">Edit</a>
+<a href="{% url 'risks-delete' risk.pk %}">Delete</a>
+
+{% endfor %}
