@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Hazard, Category, Risk
+from .models import Hazard, Category, Risk, Status
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
@@ -163,5 +163,25 @@ class RiskCreate(LoginRequiredMixin, CreateView):
 class RiskDelete(LoginRequiredMixin, DeleteView):
     model = Risk
     success_url = reverse_lazy('risks')
+
+class StatusList(LoginRequiredMixin, ListView):
+    model = Status
+    context_object_name = 'statuses'
+    template_name = 'hazard/status_list.html'
+
+class StatusUpdate(LoginRequiredMixin, UpdateView):
+    model = Status
+    template_name = 'hazard/update_status.html'
+    fields = '__all__'
+    success_url = reverse_lazy('statuses')
+
+class StatusCreate(LoginRequiredMixin, CreateView):
+    model = Status
+    fields = '__all__'   
+    success_url = reverse_lazy('statuses')
+
+class StatusDelete(LoginRequiredMixin, DeleteView):
+    model = Status
+    success_url = reverse_lazy('statuses')
 
 

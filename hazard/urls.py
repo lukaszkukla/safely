@@ -19,7 +19,11 @@ from .views import (
     RiskList,
     RiskUpdate,
     RiskCreate,
-    RiskDelete
+    RiskDelete,
+    StatusList,
+    StatusUpdate,
+    StatusCreate,
+    StatusDelete
 )
 
 
@@ -42,4 +46,8 @@ urlpatterns = [
     path('risks-create/', RiskCreate.as_view(), name='risks-create'),
     path('risks-update/<int:pk>/', RiskUpdate.as_view(), name='risks-update'),
     path('risks-delete/<int:pk>/', RiskDelete.as_view(), name='risks-delete'),
+    path('statuses', StatusList.as_view(), name='statuses'),    
+    path('statuses-create/', StatusCreate.as_view(), name='statuses-create'),
+    path('statuses-update/<int:pk>/', StatusUpdate.as_view(), name='statuses-update'),
+    path('statuses-delete/<int:pk>/', StatusDelete.as_view(), name='statuses-delete'),
 ]

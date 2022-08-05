@@ -1,0 +1,11 @@
+<h1>Status List</h1>
+
+<a href="{% url 'statuses-create' %}">Add Status</a>
+
+{% for status in statuses %}
+<p>Name: {{ status.name }}</p>
+<p>ID: {{ status.id }}</p>
+<a href="{% url 'statuses-update' status.pk %}">Edit</a>
+<a href="{% url 'statuses-delete' status.pk %}">Delete</a>
+
+{% endfor %}
