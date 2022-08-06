@@ -17,6 +17,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
+
 class CustomLoginView(LoginView):
     template_name = 'hazard/login.html'
     fields = '__all__'
@@ -53,6 +54,12 @@ class HazardList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['hazards'] = context['hazards'].filter(user=self.request.user)
         context['count'] = context['hazards'].filter(status='1').count()
+
+        search_input = self.request.GET.get('search') or ''
+        if search_input:
+            context['hazards'] = context['hazards'].filter(
+                title__icontains=search_input)
+        context['search_input'] = search_input
         return context
 
 
@@ -140,6 +147,7 @@ class EditProfileForm(SuccessMessageMixin, UserChangeForm):
             'email'
         ]
 
+
 class AdminAccessMixin(PermissionRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         if(not self.request.user.is_authenticated):
@@ -147,6 +155,7 @@ class AdminAccessMixin(PermissionRequiredMixin):
         if not self.has_permission():
             return redirect('/')
         return super(AdminAccessMixin, self).dispatch(request, *args, **kwargs)
+
 
 class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
 
@@ -162,7 +171,7 @@ class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
 
 
 class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
-    
+
     raise_exception = False
     permission_required = 'categories.change_categories'
     permission_denied_message = ""
@@ -177,7 +186,7 @@ class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, 
 
 
 class CategoryCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, CreateView):
-    
+
     raise_exception = False
     permission_required = 'categories.add_categories'
     permission_denied_message = ""
@@ -191,39 +200,39 @@ class CategoryCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, 
 
 
 class CategoryDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
-    
+
     raise_exception = False
     permission_required = 'categories.delete_categories'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Category
     success_url = reverse_lazy('categories')
     success_message = "Category deleted"
 
 
 class RiskList(LoginRequiredMixin, AdminAccessMixin, ListView):
-    
+
     raise_exception = False
     permission_required = 'risks.view_risks'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Risk
     context_object_name = 'risks'
     template_name = 'hazard/risk_list.html'
 
 
 class RiskUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
-    
+
     raise_exception = False
     permission_required = 'risks.change_risks'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Risk
     template_name = 'hazard/update_risk.html'
     fields = '__all__'
@@ -232,7 +241,7 @@ class RiskUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Upda
 
 
 class RiskCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, CreateView):
-    
+
     raise_exception = False
     permission_required = 'risks.add_risks'
     permission_denied_message = ""
@@ -246,39 +255,39 @@ class RiskCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Crea
 
 
 class RiskDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
-    
+
     raise_exception = False
     permission_required = 'risks.delete_risks'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Risk
     success_url = reverse_lazy('risks')
     success_message = "Risk deleted"
 
 
 class StatusList(LoginRequiredMixin, AdminAccessMixin, ListView):
-    
+
     raise_exception = False
     permission_required = 'statuses.view_statuses'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Status
     context_object_name = 'statuses'
     template_name = 'hazard/status_list.html'
 
 
 class StatusUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
-    
+
     raise_exception = False
     permission_required = 'statuses.change_statuses'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Status
     template_name = 'hazard/update_status.html'
     fields = '__all__'
@@ -287,13 +296,13 @@ class StatusUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Up
 
 
 class StatusCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, CreateView):
-    
+
     raise_exception = False
     permission_required = 'statuses.add_statuses'
     permission_denied_message = ""
     login_url = 'hazards'
     redirect_field_name = 'next'
-    
+
     model = Status
     fields = '__all__'
     success_url = reverse_lazy('statuses')
@@ -301,7 +310,7 @@ class StatusCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Cr
 
 
 class StatusDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
-    
+
     raise_exception = False
     permission_required = 'statuses.delete_statuses'
     permission_denied_message = ""

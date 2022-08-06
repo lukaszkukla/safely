@@ -9,7 +9,6 @@ class Hazard(models.Model):
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
     description = models.TextField(null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)

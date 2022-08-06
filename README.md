@@ -235,7 +235,6 @@ The only requirement was to ensure that any images used in the app will correspo
 | -- | -- | -- | --
 | hazard_category | FK (Hazard Categories) | | null=False |
 | title || CharField | max_length=200
-| slug || CharField | max_length=254
 | image |  |  CloudinaryField | 'image', default='placeholder, null=True, blank=True
 | description || TextField |
 | updated_on || DateTimeField | auto_now=True
