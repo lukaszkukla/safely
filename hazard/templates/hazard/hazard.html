@@ -2,37 +2,39 @@
 
 {% block content %}
 
-    <h1>Hazard Details</h1>
-    <h2>{{ hazard }}</h2>
+<h1>Hazard Details</h1>
+<h2>{{ hazard }}</h2>
 
-    <a href="{% url 'hazards' %}">Go Back</a>
-    
-    <table>
-        <tr>            
-            <th>Slug</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Updated</th>
-            <th>Created</th>
-            <th>User</th>
-            <th>Risk</th>
-            <th>Status</th>
-        </tr>        
-        <tr>            
-            <td>{{ hazard.slug }}</td>
-            <td>
-                {% if 'placeholder' in hazard.image.url %}                
-                {% else %}
-                <img src="{{ hazard.image.url }}" alt="">
-                {% endif %}
-            </td>
-            <td>{{ hazard.description }}</td>
-            <td>{{ hazard.updated_on }}</td>
-            <td>{{ hazard.created_on }}</td>
-            <td>{{ hazard.user }}</td>
-            <td>{{ hazard.level }}</td>
-            <td>{{ hazard.status }}</td>
-        </tr>
-    </table>
+<a href="{% url 'hazards' %}">Go Back</a>
+
+<table>
+    <tr>
+        <th>Slug</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Updated</th>
+        <th>Created</th>
+        <th>User</th>
+        <th>Risk</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>{{ hazard.slug }}</td>
+        <td>
+            {% if 'placeholder' in hazard.image.url %}
+            <img src="https://res.cloudinary.com/lkcloud/image/upload/v1659808744/safely/hazards/hazard-placeholder-image_kerqvn.jpg"
+                alt="Forest road with radioactive hazard sign">
+            {% else %}
+            <img src="{{ hazard.image.url }}" alt="">
+            {% endif %}
+        </td>
+        <td>{{ hazard.description }}</td>
+        <td>{{ hazard.updated_on }}</td>
+        <td>{{ hazard.created_on }}</td>
+        <td>{{ hazard.user }}</td>
+        <td>{{ hazard.level }}</td>
+        <td>{{ hazard.status }}</td>
+    </tr>
+</table>
 
 {% endblock content %}

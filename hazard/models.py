@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Hazard(models.Model):
@@ -58,17 +60,23 @@ class Status(models.Model):
         verbose_name_plural = 'Statuses'
 
 # class UserProfile(models.Model):
+#     """
+#     An extension of django's User model
+#     to hold phone number
+#     """
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     email = models.CharField(max_length=255)
 #     phone_number = models.CharField(max_length=15, null=True, blank=True)
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
+#     def __str__(self):
+#         return self.user.username
 
 # @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
+# def create_update_user_profile(sender, instance, created, **kwargs):
+#     """
+#     Create and update user profile
+#     """
+    
+#     if created:
+#         UserProfile.objects.create(user=instance)
+#     # If user already exists, update profile
+#     instance.userprofile.save()

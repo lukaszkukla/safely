@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safely</title>
+    <title>Safely</title>    
 </head>
 
 <!-- Navigation -->
@@ -18,6 +18,7 @@
         {% if request.user.is_authenticated %}
         <p>Your login is: <strong>{{ request.user }}</strong></p>
         <a href="{% url 'profile-view' %}">Profile</a>
+        <a href="{% url 'hazards' %}">Hazards</a>
         {% if user.is_superuser %}
         <a href="{% url 'categories' %}">Categories</a>
         <a href="{% url 'risks' %}">Risks</a>
@@ -31,6 +32,19 @@
 
         <hr>
     </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dissmisible fade show" id="msg" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
     <main class="flex-shrink-0 main-bg">
         {% block content %}
@@ -42,6 +56,13 @@
     <footer>
         <p>Made by Lukasz Kukla</p>
     </footer>
+    <script>
+        setTimeout(function(){
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 3000);
+    </script>
 
 </body>
 
