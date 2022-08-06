@@ -1,3 +1,7 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
 <h1>Risk List</h1>
 
 <a href="{% url 'hazards' %}">Go Back</a>
@@ -11,3 +15,5 @@
 <a href="{% url 'risks-delete' risk.pk %}">Delete</a>
 
 {% endfor %}
+
+{% endblock content %}

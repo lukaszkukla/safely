@@ -1,3 +1,7 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
 <h1>Risk</h1>
 
 <a href="{% url 'risks' %}">Go Back</a>
@@ -10,3 +14,5 @@
 
     {% csrf_token %}
 </form>
+
+{% endblock content %}

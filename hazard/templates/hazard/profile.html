@@ -1,3 +1,7 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
 <h1>User Profile</h1>
 
 <a href="{% url 'hazards' %}">Go Back</a>
@@ -8,5 +12,7 @@
 <p>Email: {{ user.email }}</p>
 <input type="submit" value="Edit">
 </form>
+
+{% endblock content %}
 
     

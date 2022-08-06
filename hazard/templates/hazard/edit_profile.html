@@ -1,3 +1,7 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
 <h1>User Profile</h1>
 
 <a href="{% url 'profile-view' %}">Go Back</a>
@@ -8,3 +12,5 @@
 
     {% csrf_token %}   
 </form>
+
+{% endblock content %}

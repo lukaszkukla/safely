@@ -1,47 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if request.user.is_authenticated %}
-    <p>Your login is: <strong>{{ request.user }}</strong></p>
-    <a href="{% url 'profile-view' %}">Profile</a>
-    <a href="{% url 'categories' %}">Categories</a>
-    <a href="{% url 'risks' %}">Risks</a>
-    <a href="{% url 'statuses' %}">Statuses</a>
-    <a href="{% url 'logout' %}">Logout</a>
+{% extends 'hazard/base.html' %}
 
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+{% block content %}
 
-    <hr>
-
+<div>
     <h1>List of Hazards</h1>
 
     <a href="{% url 'hazard-create' %}">Add Hazard</a>
-    
+
     <table>
         <tr>
-            <th>Title</th>            
+            <th>Title</th>
             <th>Detail View</th>
-            <th>Hazard ID</th>            
+            <th>Hazard ID</th>
         </tr>
         {% for hazard in hazards %}
         <tr>
-            <td>{{ hazard.title }}</td>          
-            <td>{{ hazard.id }}</td>          
-            <td><a href="{% url 'hazard' hazard.id %}">Open</a></td>          
-            <td><a href="{% url 'hazard-update' hazard.id %}">Edit</a></td>          
-            <td><a href="{% url 'hazard-delete' hazard.id %}">Delete</a></td>          
+            <td>{{ hazard.title }}</td>
+            <td>{{ hazard.id }}</td>
+            <td><a href="{% url 'hazard' hazard.id %}">Open</a></td>
+            <td><a href="{% url 'hazard-update' hazard.id %}">Edit</a></td>
+            <td><a href="{% url 'hazard-delete' hazard.id %}">Delete</a></td>
         </tr>
         {% empty %}
         <h3>No hazards recorded</h3>
         {% endfor %}
     </table>
-</body>
-</html>
+</div>
+
+{% endblock content %}
