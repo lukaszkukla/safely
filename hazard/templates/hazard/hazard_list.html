@@ -10,6 +10,9 @@
     {% if request.user.is_authenticated %}
     <p>Your login is: <strong>{{ request.user }}</strong></p>
     <a href="{% url 'profile-view' %}">Profile</a>
+    <a href="{% url 'categories' %}">Categories</a>
+    <a href="{% url 'risks' %}">Risks</a>
+    <a href="{% url 'statuses' %}">Statuses</a>
     <a href="{% url 'logout' %}">Logout</a>
 
     {% else %}

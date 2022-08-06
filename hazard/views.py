@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.urls import is_valid_path, reverse_lazy
 
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
@@ -20,8 +20,9 @@ class CustomLoginView(LoginView):
     fields = '__all__'
     redirect_authenticated_user = True
 
-    def get_success_url(self): 
+    def get_success_url(self):
         return reverse_lazy('hazards')
+
 
 class Register(FormView):
     template_name = 'hazard/register.html'
@@ -40,6 +41,7 @@ class Register(FormView):
             return redirect('hazards')
         return super(Register, self).get(*args, **kwargs)
 
+
 class HazardList(LoginRequiredMixin, ListView):
     model = Hazard
     context_object_name = 'hazards'
@@ -49,6 +51,7 @@ class HazardList(LoginRequiredMixin, ListView):
         context['hazards'] = context['hazards'].filter(user=self.request.user)
         context['count'] = context['hazards'].filter(status='1').count()
         return context
+
 
 class HazardDetail(LoginRequiredMixin, DetailView):
     model = Hazard
@@ -61,6 +64,7 @@ class HazardDetail(LoginRequiredMixin, DetailView):
             raise Http404(('Permission Denied'))
         return hazard
 
+
 class HazardCreate(LoginRequiredMixin, CreateView):
     model = Hazard
     fields = [
@@ -70,12 +74,13 @@ class HazardCreate(LoginRequiredMixin, CreateView):
         'description',
         'level',
         'status'
-    ]    
+    ]
     success_url = reverse_lazy('hazards')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(HazardCreate, self).form_valid(form)
+
 
 class HazardUpdate(LoginRequiredMixin, UpdateView):
     model = Hazard
@@ -89,17 +94,20 @@ class HazardUpdate(LoginRequiredMixin, UpdateView):
     ]
     success_url = reverse_lazy('hazards')
 
+
 class HazardDelete(LoginRequiredMixin, DeleteView):
     model = Hazard
     context_object_name = 'hazard'
     success_url = reverse_lazy('hazards')
+
 
 def profileView(request):
     args = {'user', request.user}
     if request.user.is_authenticated:
         return render(request, 'hazard/profile.html')
     return redirect('login')
-    
+
+
 def profileEdit(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -114,8 +122,9 @@ def profileEdit(request):
             return render(request, 'hazard/edit_profile.html', args)
     return redirect('login')
 
+
 class EditProfileForm(UserChangeForm):
-    
+
     class Meta:
         model = User
         fields = [
@@ -124,64 +133,165 @@ class EditProfileForm(UserChangeForm):
             'email'
         ]
 
-class CategoryList(LoginRequiredMixin, ListView):
+class AdminAccessMixin(PermissionRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if(not self.request.user.is_authenticated):
+            return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+        if not self.has_permission():
+            return redirect('/')
+        return super(AdminAccessMixin, self).dispatch(request, *args, **kwargs)
+
+class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
+
+    raise_exception = False
+    permission_required = 'categories.view_categories'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+
     model = Category
     context_object_name = 'categories'
     template_name = 'hazard/category_list.html'
 
-class CategoryUpdate(LoginRequiredMixin, UpdateView):
+
+class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin, UpdateView):
+    
+    raise_exception = False
+    permission_required = 'categories.change_categories'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+
     model = Category
     template_name = 'hazard/update_category.html'
     fields = '__all__'
     success_url = reverse_lazy('categories')
 
-class CategoryCreate(LoginRequiredMixin, CreateView):
+
+class CategoryCreate(LoginRequiredMixin, AdminAccessMixin, CreateView):
+    
+    raise_exception = False
+    permission_required = 'categories.add_categories'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+
     model = Category
-    fields = '__all__'   
+    fields = '__all__'
     success_url = reverse_lazy('categories')
 
-class CategoryDelete(LoginRequiredMixin, DeleteView):
+
+class CategoryDelete(LoginRequiredMixin, AdminAccessMixin, DeleteView):
+    
+    raise_exception = False
+    permission_required = 'categories.delete_categories'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Category
     success_url = reverse_lazy('categories')
 
-class RiskList(LoginRequiredMixin, ListView):
+
+class RiskList(LoginRequiredMixin, AdminAccessMixin, ListView):
+    
+    raise_exception = False
+    permission_required = 'risks.view_risks'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Risk
     context_object_name = 'risks'
     template_name = 'hazard/risk_list.html'
 
-class RiskUpdate(LoginRequiredMixin, UpdateView):
+
+class RiskUpdate(LoginRequiredMixin, AdminAccessMixin, UpdateView):
+    
+    raise_exception = False
+    permission_required = 'risks.change_risks'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Risk
     template_name = 'hazard/update_risk.html'
     fields = '__all__'
     success_url = reverse_lazy('risks')
 
-class RiskCreate(LoginRequiredMixin, CreateView):
+
+class RiskCreate(LoginRequiredMixin, AdminAccessMixin, CreateView):
+    
+    raise_exception = False
+    permission_required = 'risks.add_risks'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+
     model = Risk
-    fields = '__all__'   
+    fields = '__all__'
     success_url = reverse_lazy('risks')
 
-class RiskDelete(LoginRequiredMixin, DeleteView):
+
+class RiskDelete(LoginRequiredMixin, AdminAccessMixin, DeleteView):
+    
+    raise_exception = False
+    permission_required = 'risks.delete_risks'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Risk
     success_url = reverse_lazy('risks')
 
-class StatusList(LoginRequiredMixin, ListView):
+
+class StatusList(LoginRequiredMixin, AdminAccessMixin, ListView):
+    
+    raise_exception = False
+    permission_required = 'statuses.view_statuses'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Status
     context_object_name = 'statuses'
     template_name = 'hazard/status_list.html'
 
-class StatusUpdate(LoginRequiredMixin, UpdateView):
+
+class StatusUpdate(LoginRequiredMixin, AdminAccessMixin, UpdateView):
+    
+    raise_exception = False
+    permission_required = 'statuses.change_statuses'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Status
     template_name = 'hazard/update_status.html'
     fields = '__all__'
     success_url = reverse_lazy('statuses')
 
-class StatusCreate(LoginRequiredMixin, CreateView):
+
+class StatusCreate(LoginRequiredMixin, AdminAccessMixin, CreateView):
+    
+    raise_exception = False
+    permission_required = 'statuses.add_statuses'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+    
     model = Status
-    fields = '__all__'   
+    fields = '__all__'
     success_url = reverse_lazy('statuses')
 
-class StatusDelete(LoginRequiredMixin, DeleteView):
+
+class StatusDelete(LoginRequiredMixin, AdminAccessMixin, DeleteView):
+    
+    raise_exception = False
+    permission_required = 'statuses.delete_statuses'
+    permission_denied_message = ""
+    login_url = 'hazards'
+    redirect_field_name = 'next'
+
     model = Status
     success_url = reverse_lazy('statuses')
-
-
