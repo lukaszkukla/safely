@@ -13,6 +13,7 @@ from .models import Hazard, Category, Risk, Status
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserModel
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
