@@ -4,15 +4,17 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import is_valid_path, reverse_lazy
 
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from .models import Hazard, Category, Risk, Status
 
+from .forms import PasswordChangingForm
+
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.forms import UserModel
 
 from django.contrib import messages
@@ -147,6 +149,14 @@ class EditProfileForm(SuccessMessageMixin, UserChangeForm):
             'last_name',
             'email'
         ]
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    # form_class = PasswordChangeForm
+    success_url = reverse_lazy('password_success')
+
+def password_success(request):
+    return render(request, 'hazard/password_success.html', {})
 
 
 class AdminAccessMixin(PermissionRequiredMixin):
