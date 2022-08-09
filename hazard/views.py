@@ -152,6 +152,7 @@ class EditProfileForm(SuccessMessageMixin, UserChangeForm):
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
+    template_name = 'hazard/change_password.html'
     # form_class = PasswordChangeForm
     success_url = reverse_lazy('password_success')
 
@@ -331,3 +332,7 @@ class StatusDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, De
     model = Status
     success_url = reverse_lazy('statuses')
     success_message = "Status deleted"
+
+def Error404View(request, exception):
+    """ Error Page 404 - Page Not Found """
+    return render(request, "404.html")

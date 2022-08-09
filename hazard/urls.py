@@ -45,8 +45,7 @@ urlpatterns = [
 
     path('profile/', profileView, name='profile-view'),
     path('profile/edit', profileEdit, name='profile-edit'),
-    #path('password/', auth_views.PasswordChangeView.as_view(template_name='hazard/change-password.html')),
-    path('password/', PasswordsChangeView.as_view(template_name='hazard/change-password.html')),
+    path('password/', PasswordsChangeView.as_view()),
     path('password_success', views.password_success, name='password_success'),
 
     path('categories', CategoryList.as_view(), name='categories'),    
