@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="row container mx-auto my-5">
+    <div class="col 12 p-3 p-md-5">
+        <h1 class="text-purple text-lg text-header text-center">Ooops...</h1>
+        <p class="text-md text-purple text-center">
+            404 <span class="text-sm">- page not found</span>
+        </p>
+
+        <hr class="text-purple w-lg-75 my-5">
+
+        <p class="text-sm text-purple text-center">
+            We've searched for what you were looking for and came up empty.
+        </p>
+        <p class="text-sm text-purple text-center">
+            Don't worry, there is plenty more to choose from.
+        </p>
+        <div class="text-center my-5">
+            <a href="{% url 'home' %}" class="btn btn-general btn-purple text-sm p-1 rounded-0 my-2 mx-3"
+                aria-labelledby="404-home">
+                Home
+            </a>
+            <span class="sr-only" id="404-home">Purple button with white writing that navigates to the home page</span>
+
+            <a href="{% url 'the_menu' %}" class="btn btn-general btn-light-green text-sm p-1 rounded-0 my-2 mx-3"
+                aria-labelledby="404-menu">
+                The Menu
+            </a>
+            <span class="sr-only" id="404-menu">Light green button with white writing that navigates to the menu
+                page</span>
+
+            <a href="{% url 'wine_store' %}" class="btn btn-general btn-purple text-sm p-1 rounded-0 my-2 mx-3"
+                aria-labelledby="404-wine">
+                Wine Store
+            </a>
+            <span class="sr-only" id="404-wine">Purple button with white writing that navigates to the wine store
+                page</span>
+
+            <a href="{% url 'the_works' %}" class="btn btn-general btn-light-green text-sm p-1 rounded-0 my-2 mx-3"
+                aria-labelledby="404-works">
+                The Works
+            </a>
+            <span class="sr-only" id="404-works">Light green button with white writing that navigates to the works
+                page</span>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

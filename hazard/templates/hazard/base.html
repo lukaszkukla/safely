@@ -1,61 +1,23 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safely {% block extra_title %}{% endblock %}</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
-    {% block corecss %}
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
-    {% endblock %}
+    {% include 'hazard/layouts/head.html' %}
 </head>
 
 <!-- Navigation -->
 
 <body>
 
-    <nav>
-        {% if request.user.is_authenticated %}        
-        <a href="{% url 'profile-view' %}">Profile</a>
-        <a href="{% url 'hazards' %}">Hazards</a>
-        {% if user.is_superuser %}
-        <a href="{% url 'categories' %}">Categories</a>
-        <a href="{% url 'risks' %}">Risks</a>
-        <a href="{% url 'statuses' %}">Statuses</a>
-        {% endif %}
-        <span id="hello-msg">Hello, <strong>{{ request.user }}</strong></span>
-        <a href="{% url 'logout' %}">Logout</a>
+    
+    {% include 'hazard/layouts/head.html' %}
 
-        {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        {% endif %}
+    <!-- navbar -->
+    {% include 'hazard/layouts/navbar.html' %}
 
-        <hr>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dissmisible fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    </button>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    <!-- messages -->
+    {% include 'hazard/components/messages.html' %}
+    
 
     <main class="container flex-shrink-0 main-bg">
         {% block content %}
@@ -64,16 +26,9 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>Made by Lukasz Kukla</p>
-    </footer>
-    <script>
-        setTimeout(function(){
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
-        }, 3000);
-    </script>
+    {% include 'hazard/layouts/footer.html' %}
+   
+    {% include 'hazard/layouts/scripts.html' %}
 
 </body>
 

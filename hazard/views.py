@@ -22,17 +22,30 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 class CustomLoginView(LoginView):
-    template_name = 'hazard/login.html'
+    page_title = 'Login'
+    context = {}
+    
+    template_name = 'hazard/pages/auth.html'
     fields = '__all__'
     redirect_authenticated_user = True
 
     def get_success_url(self):
         return reverse_lazy('hazards')
 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'login'
+        return context
+
 
 class Register(SuccessMessageMixin, FormView):
-    template_name = 'hazard/register.html'
+    page_title = 'Register'
+    context = {}
+    context['page'] = 'register'
+    template_name = 'hazard/pages/auth.html'
     form_class = UserCreationForm
+    register = True
     redirect_authenticated_user = True
     success_url = reverse_lazy('hazards')
     success_message = "You have registered successfully"
@@ -48,6 +61,11 @@ class Register(SuccessMessageMixin, FormView):
             return redirect('hazards')
         return super(Register, self).get(*args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'register'
+        return context
+
 
 class HazardList(LoginRequiredMixin, ListView):
     model = Hazard
@@ -55,7 +73,11 @@ class HazardList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['hazards'] = context['hazards'].filter(user=self.request.user)
+        if self.request.user.is_staff:
+            context['hazards'] = context['hazards']
+        else:
+            context['hazards'] = context['hazards'].filter(user=self.request.user)
+        
         context['count'] = context['hazards'].filter(status='1').count()
 
         search_input = self.request.GET.get('search') or ''
@@ -120,7 +142,7 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 def profileView(request):
     args = {'user', request.user}
     if request.user.is_authenticated:
-        return render(request, 'hazard/profile.html')
+        return render(request, 'hazard/pages/profile.html')
     return redirect('login')
 
 
@@ -150,14 +172,27 @@ class EditProfileForm(SuccessMessageMixin, UserChangeForm):
             'email'
         ]
 
-class PasswordsChangeView(PasswordChangeView):
+class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
-    template_name = 'hazard/change_password.html'
+    template_name = 'hazard/pages/password.html'
     # form_class = PasswordChangeForm
-    success_url = reverse_lazy('password_success')
+    success_url = reverse_lazy('password-update')
+    success_message = "Password updated"
 
-def password_success(request):
-    return render(request, 'hazard/password_success.html', {})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'password-change'
+        return context
+
+class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
+    form_class = PasswordChangingForm
+    template_name = 'hazard/pages/password.html'    
+    success_url = reverse_lazy('profile-view')   
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = 'password-update'
+        return context
 
 
 class AdminAccessMixin(PermissionRequiredMixin):
@@ -179,7 +214,7 @@ class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
 
     model = Category
     context_object_name = 'categories'
-    template_name = 'hazard/category_list.html'
+    template_name = 'hazard/pages/category.html'
 
 
 class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
