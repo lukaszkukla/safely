@@ -1,0 +1,19 @@
+{% block content %}
+
+<div>
+    {% if page == 'hazard-view' %}
+    {% include 'hazard/components/hazard/hazard_view.html' %}
+    {% elif page == 'hazard-detail-view' %}
+    {% include 'hazard/components/hazard/hazard_detail_view.html' %}
+    {% elif page == 'hazard-update' %}
+    {% include 'hazard/components/hazard/hazard_update.html' %}
+    {% elif page == 'hazard-create' %}
+    {% include 'hazard/components/hazard/hazard_create.html' %}
+    {% elif page == 'hazard-delete' %}
+    {% include 'hazard/components/hazard/hazard_delete.html' %}    
+    {% else %}
+    {% include 'hazard/pages/404.html' %}
+    {% endif %}
+</div>
+
+{% endblock content %}

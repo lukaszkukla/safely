@@ -1,0 +1,17 @@
+{% block content %}
+
+<div>
+    {% if page == 'status-view' %}
+    {% include 'hazard/components/status/status_view.html' %}
+    {% elif page == 'status-update' %}
+    {% include 'hazard/components/status/status_update.html' %}
+    {% elif page == 'status-create' %}
+    {% include 'hazard/components/status/status_create.html' %}
+    {% elif page == 'status-delete' %}
+    {% include 'hazard/components/status/status_delete.html' %}    
+    {% else %}
+    {% include 'hazard/pages/404.html' %}
+    {% endif %}
+</div>
+
+{% endblock content %}

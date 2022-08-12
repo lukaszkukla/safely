@@ -1,0 +1,16 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
+<h1>Update Hazard</h1>
+
+<a href="{% url 'hazards' %}">Go Back</a>
+
+<form action="" method="POST" enctype="multipart/form-data">    
+    {{ form.as_p }}    
+    <input type="submit" value="Update">
+
+    {% csrf_token %}
+</form>
+
+{% endblock content %}

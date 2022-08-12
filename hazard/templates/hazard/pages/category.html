@@ -2,6 +2,18 @@
 
 {% block content %}
 
-{% include 'hazard/components/category/category_list.html' %}
+<div>
+    {% if page == 'category-view' %}
+    {% include 'hazard/components/category/category_view.html' %}
+    {% elif page == 'category-update' %}
+    {% include 'hazard/components/category/category_update.html' %}
+    {% elif page == 'category-create' %}
+    {% include 'hazard/components/category/category_create.html' %}
+    {% elif page == 'category-delete' %}
+    {% include 'hazard/components/category/category_delete.html' %}    
+    {% else %}
+    {% include 'hazard/pages/404.html' %}
+    {% endif %}
+</div>
 
 {% endblock content %}

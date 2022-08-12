@@ -1,0 +1,17 @@
+{% block content %}
+
+<div>
+    {% if page == 'risk-view' %}
+    {% include 'hazard/components/risk/risk_view.html' %}
+    {% elif page == 'risk-update' %}
+    {% include 'hazard/components/risk/risk_update.html' %}
+    {% elif page == 'risk-create' %}
+    {% include 'hazard/components/risk/risk_create.html' %}
+    {% elif page == 'risk-delete' %}
+    {% include 'hazard/components/risk/risk_delete.html' %}    
+    {% else %}
+    {% include 'hazard/pages/404.html' %}
+    {% endif %}
+</div>
+
+{% endblock content %}
