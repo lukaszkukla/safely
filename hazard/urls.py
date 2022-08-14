@@ -14,6 +14,9 @@ from .views import (
     HazardDelete,
     CustomLoginView,
     Register,
+    # ProfileView,
+    # ProfileUpdate,
+    # ProfileDetail,
     profileView,
     profileEdit,
     CategoryList,
@@ -45,9 +48,11 @@ urlpatterns = [
     path('hazard/delete/<int:pk>/', HazardDelete.as_view(), name='hazard-delete'),
 
     path('profile/', profileView, name='profile-view'),
-    path('profile/edit', profileEdit, name='profile-edit'),
-    path('password/', PasswordsChangeView.as_view(), name='password-change'),
-    path('profile', PasswordChangeSuccess.as_view(), name='password-update'),
+    path('profile/update', profileEdit, name='profile-update'),
+    # path('<pk>/profile/', ProfileView.as_view(), name='profile-view'),
+    # path('<pk>/profile/update/', ProfileUpdate.as_view(), name='profile-update'),
+    path('password/', PasswordsChangeView.as_view(), name='password-view'),
+    path('password/update', PasswordChangeSuccess.as_view(), name='password-update'),
 
     path('categories', CategoryList.as_view(), name='categories'),    
     path('categories/create/', CategoryCreate.as_view(), name='categories-create'),
@@ -64,8 +69,8 @@ urlpatterns = [
     path('statuses/update/<int:pk>/', StatusUpdate.as_view(), name='statuses-update'),
     path('statuses/delete/<int:pk>/', StatusDelete.as_view(), name='statuses-delete'),
 
-    path('reset-password/', auth_views.PasswordResetView.as_view(), name="reset_password"),
-    path('reset-password_sent/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path('reset-password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+    path('password/reset', auth_views.PasswordResetView.as_view(), name="password-reset"),
+    path('password/reset-sent/', auth_views.PasswordResetDoneView.as_view(), name="password-reset-sent"),
+    path('password/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password-reset-form"),
+    path('password/reset-done/', auth_views.PasswordResetCompleteView.as_view(), name="password-reset-done"),
 ]

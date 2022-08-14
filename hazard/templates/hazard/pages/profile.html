@@ -2,6 +2,14 @@
 
 {% block content %}
 
-{% include 'hazard/components/profile/profile_card.html' %}
+<div>
+    {% if page == 'profile-view' %}
+    {% include 'hazard/components/profile/profile_view.html' %}
+    {% elif page == 'profile-update' %}
+    {% include 'hazard/components/profile/profile_update.html' %}
+    {% else %}
+    {% include 'hazard/pages/404.html' %}
+    {% endif %}
+</div>
 
 {% endblock content %}

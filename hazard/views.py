@@ -75,22 +75,19 @@ class HazardList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'hazard-view'
+        context['count'] = context['hazards'].filter(status='1').count()
         if self.request.user.is_superuser:
             context['hazards'] = context['hazards']
         else:
             context['hazards'] = context['hazards'].filter(
                 user=self.request.user)
 
-        # context['count'] = context['hazards'].filter(status='1').count()
-
         search_input = self.request.GET.get('search') or ''
         if search_input:
             context['hazards'] = context['hazards'].filter(
                 title__icontains=search_input)
         context['search_input'] = search_input
-        return context
-
-    
+        return context    
 
 
 class HazardDetail(LoginRequiredMixin, DetailView):
@@ -168,11 +165,10 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
 
 def profileView(request):
-    args = {'user', request.user}
+    context = {'page': 'profile-view'}
     if request.user.is_authenticated:
-        return render(request, 'hazard/pages/profile.html')
+        return render(request, 'hazard/components/profile/profile_view.html')
     return redirect('login')
-
 
 def profileEdit(request):
     if request.user.is_authenticated:
@@ -182,11 +178,14 @@ def profileEdit(request):
             if form.is_valid():
                 form.save()
                 messages.success(request, "Profile updated")
-                return redirect('/profile')
+                return redirect('profile-view')
         else:
             form = EditProfileForm(instance=request.user)
             args = {'form': form}
-            return render(request, 'hazard/profile_edit.html', args)
+   
+        
+        return render(request, 'hazard/components/profile/profile_update.html', args)
+
     return redirect('login')
 
 
@@ -205,23 +204,22 @@ class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
     template_name = 'hazard/pages/password.html'
     # form_class = PasswordChangeForm
-    success_url = reverse_lazy('password-update')
+    success_url = reverse_lazy('profile-view')
     success_message = "Password updated"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page'] = 'password-change'
+        context['page'] = 'password-update'
         return context
 
 
 class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
     template_name = 'hazard/pages/password.html'
-    success_url = reverse_lazy('profile-view')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page'] = 'password-update'
+        context['page'] = 'profile-view'
         return context
 
 
@@ -289,8 +287,7 @@ class CategoryCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'category-create'
-        return context
-    
+        return context    
 
 
 class CategoryDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
