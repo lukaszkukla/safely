@@ -16,9 +16,6 @@ from .views import (
     HazardDelete,
     CustomLoginView,
     Register,
-    # ProfileView,
-    # ProfileUpdate,
-    # ProfileDetail,
     profileView,
     profileEdit,
     CategoryList,
@@ -51,8 +48,6 @@ urlpatterns = [
 
     path('profile/', profileView, name='profile-view'),
     path('profile/update', profileEdit, name='profile-update'),
-    # path('<pk>/profile/', ProfileView.as_view(), name='profile-view'),
-    # path('<pk>/profile/update/', ProfileUpdate.as_view(), name='profile-update'),
     path('password/', PasswordsChangeView.as_view(), name='password-view'),
     path('password/update', PasswordChangeSuccess.as_view(), name='password-update'),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='hazard/components/password/password_reset.html'), name="password_reset"),    
@@ -78,6 +73,5 @@ urlpatterns = [
     path('statuses/update/<int:pk>/',
          StatusUpdate.as_view(), name='statuses-update'),
     path('statuses/delete/<int:pk>/',
-         StatusDelete.as_view(), name='statuses-delete'),
-   
+         StatusDelete.as_view(), name='statuses-delete'),   
 ]

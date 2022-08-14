@@ -1,11 +1,20 @@
-<h1>Login</h1>
+{% extends 'hazard/base.html' %}
 
-<form method="POST">
-    {{ form.as_p }}
-    <input type="submit" value="Login">
+{% block title %} Login {% endblock %}
+{% block content %}
 
-    {% csrf_token %}
-</form>
+<!-- Login -->
+<div class="container p-5">
+    <h1>Login</h1>
 
-<p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-<p>Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+    <form method="POST">
+        {{ form.as_p }}
+        <input type="submit" value="Login">
+
+        {% csrf_token %}
+    </form>
+
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+</div>
+{% endblock %}
