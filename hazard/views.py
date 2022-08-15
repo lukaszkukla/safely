@@ -75,10 +75,14 @@ class HazardList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'hazard-view'
-        context['count'] = context['hazards'].filter(status='1').count()
+        
         if self.request.user.is_superuser:
+            context['unresolved'] = context['hazards'].filter(user=self.request.user).exclude(status='3').count()
+            context['resolved'] = context['hazards'].filter(user=self.request.user, status='3').count()
             context['hazards'] = context['hazards']
         else:
+            context['unresolved'] = context['hazards'].filter(user=self.request.user).exclude(status='3').count()
+            context['resolved'] = context['hazards'].filter(user=self.request.user, status='3').count()
             context['hazards'] = context['hazards'].filter(
                 user=self.request.user)
 

@@ -5,29 +5,29 @@
     {% include 'hazard/layouts/head.html' %}
 </head>
 
-<!-- Navigation -->
+<!-- navigation -->
 
 <body>
 
-    
+    <!-- head -->
     {% include 'hazard/layouts/head.html' %}
 
     <!-- navbar -->
     {% include 'hazard/layouts/navbar.html' %}
 
     <!-- messages -->
-    {% include 'hazard/components/messages.html' %}
-    
+    {% include 'hazard/components/messages.html' %}    
 
+    <!-- main -->
     <main class="container flex-shrink-0 main-bg">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
 
-    <!-- Footer -->
+    <!-- footer -->
     {% include 'hazard/layouts/footer.html' %}
-   
+    <!-- scripts -->
     {% include 'hazard/layouts/scripts.html' %}
 
 </body>

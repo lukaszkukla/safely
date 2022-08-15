@@ -13,21 +13,34 @@
 html,
 body {
     height: 100%;
-    font-size: 62.5%;
+    font-size: 62.5%;    
 }
 
 body {
     font-size: 1.6rem;
     font-family: "Poppins", sans-serif;
     background: #fafafa;
+    background: #00ffff;
 }
 
 a {
     text-decoration: none;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff;
+    padding: 1rem;
+    background: #AE093B;
+}
+
+.navbar a {
+    color: #ffffff;
+}
+
 .container {
-    max-width: 550px;
+    max-width: 60rem;
     margin: auto;
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 13px -4px rgba(0,0,0, 0.21);

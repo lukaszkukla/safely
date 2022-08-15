@@ -37,6 +37,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'Categories'
+        ordering = ['name']
 
 
 class Risk(models.Model):
@@ -47,6 +48,7 @@ class Risk(models.Model):
 
     class Meta:
         verbose_name_plural = 'Risks'
+        ordering = ['id']
 
 
 class Status(models.Model):
@@ -57,6 +59,7 @@ class Status(models.Model):
 
     class Meta:
         verbose_name_plural = 'Statuses'
+        ordering = ['id']
 
 # class UserProfile(models.Model):
 #     """
