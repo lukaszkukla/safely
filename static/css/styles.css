@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400&display=swap');
 
+/* colors used for the website */
+
+:root {    
+    --white: #FFFFFF;
+    --black: #000000;
+    --azure: #E1F2F7;
+    --burgundy: #AE093B;
+    --pink: #E5BACE;
+    --green: #004208;
+    --grey: #FAFAFA;
+}
+
 /* global styles */
 
 * {
@@ -19,8 +31,7 @@ body {
 body {
     font-size: 1.6rem;
     font-family: "Poppins", sans-serif;
-    background: #fafafa;
-    background: #00ffff;
+    background: var(--grey);
 }
 
 a {
@@ -30,19 +41,76 @@ a {
 .navbar {
     display: flex;
     justify-content: space-between;
-    color: #ffffff;
+    color: var(--white);
     padding: 1rem;
-    background: #AE093B;
+    background: var(--burgundy);
 }
 
 .navbar a {
-    color: #ffffff;
+    color: var(--white);
 }
 
 .container {
-    max-width: 60rem;
+    max-width: 85rem;
     margin: auto;
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 13px -4px rgba(0,0,0, 0.21);
     box-shadow: 2px 2px 13px -4px rgba(0,0,0, 0.21);
+}
+
+/* .hazard-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background: var(--white);
+    border-top: 1px solid var(--black);
+}
+
+.hazard-title {
+    display: flex;
+} */
+
+.btn-haz, .btn-action {
+    padding: 1rem;
+    text-align: center;    
+}
+
+.btn-haz a {
+    color: var(--black);
+}
+
+.btn-center {
+    text-align: center;
+}
+
+.btn-update, .btn-update a {
+    background: var(--green);
+    color: var(--white);
+    display: inline;
+    width: 100rem;
+}
+
+.btn-delete, .btn-delete a {
+    background: var(--burgundy);
+    color: var(--white);
+    display: inline;
+}
+
+
+
+.hazard-resolved-icon {
+    color: var(--green);
+}
+
+.hazard-unresolved-icon {
+    color: var(--burgundy);
+}
+
+.fas, .fa-solid {
+    padding: 1rem;
+}
+
+.title-haz {
+    font-size: 2rem;
 }
