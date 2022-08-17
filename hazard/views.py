@@ -12,7 +12,7 @@ from django.contrib.auth import login
 
 from .models import Hazard, Category, Risk, Status
 
-from .forms import PasswordChangingForm
+from .forms import PasswordChangingForm, LoginForm
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -25,6 +25,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 class CustomLoginView(LoginView):
     page_title = 'Login'
     context = {}
+    form_class = LoginForm
 
     template_name = 'hazard/pages/auth.html'
     fields = '__all__'

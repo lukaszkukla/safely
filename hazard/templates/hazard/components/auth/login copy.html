@@ -1,0 +1,20 @@
+{% extends 'hazard/base.html' %}
+
+{% block title %} Login {% endblock %}
+{% block content %}
+
+<!-- Login -->
+<div class="container p-5">
+    <h1>Login</h1>
+
+    <form method="POST">
+        {{ form.as_p }}
+        <input type="submit" value="Login">
+
+        {% csrf_token %}
+    </form>
+
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+</div>
+{% endblock %}

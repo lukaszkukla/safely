@@ -2,7 +2,7 @@
 
 /* colors used for the website */
 
-:root {    
+:root {
     --white: #FFFFFF;
     --black: #000000;
     --azure: #E1F2F7;
@@ -19,13 +19,13 @@
     padding: 0;
     border: none;
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
     height: 100%;
-    font-size: 62.5%;    
+    font-size: 62.5%;
 }
 
 body {
@@ -41,21 +41,56 @@ a {
 .navbar {
     display: flex;
     justify-content: space-between;
-    color: var(--white);
+    color: var(--burgundy);
     padding: 1rem;
-    background: var(--burgundy);
 }
 
 .navbar a {
     color: var(--white);
 }
 
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: var(--white);
+}
+
 .container {
     max-width: 85rem;
     margin: auto;
     background-color: #fff;
-    -webkit-box-shadow: 2px 2px 13px -4px rgba(0,0,0, 0.21);
-    box-shadow: 2px 2px 13px -4px rgba(0,0,0, 0.21);
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+}
+
+.form-container {
+    max-width: 65rem;
+    margin: auto;
+    border-radius: 1rem;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+}
+
+.nav-bg {
+    background: var(--burgundy);
+}
+
+.nav-item {
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: var(--white);
+    text-decoration: underline;
+    transform: none;
+    transition: none;
 }
 
 /* .hazard-wrapper {
@@ -71,9 +106,10 @@ a {
     display: flex;
 } */
 
-.btn-haz, .btn-action {
+.btn-haz,
+.btn-action {
     padding: 1rem;
-    text-align: center;    
+    text-align: center;
 }
 
 .btn-haz a {
@@ -84,14 +120,15 @@ a {
     text-align: center;
 }
 
-.btn-update, .btn-update a {
+.btn-update,
+.btn-update a {
     background: var(--green);
     color: var(--white);
     display: inline;
-    width: 100rem;
 }
 
-.btn-delete, .btn-delete a {
+.btn-delete,
+.btn-delete a {
     background: var(--burgundy);
     color: var(--white);
     display: inline;
@@ -107,7 +144,8 @@ a {
     color: var(--burgundy);
 }
 
-.fas, .fa-solid {
+.fas,
+.fa-solid {
     padding: 1rem;
 }
 

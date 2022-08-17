@@ -4,17 +4,25 @@
 {% block content %}
 
 <!-- Login -->
-<div class="container p-5">
-    <h1>Login</h1>
-
-    <form method="POST">
-        {{ form.as_p }}
-        <input type="submit" value="Login">
-
+<div class="form-container">
+    <form class="row g-3" method="POST">
+        <div class="col-md-6 offset-md-3 p-2">
+            <label for="id_username" name="username" class="form-label">Username</label>
+            {{ form.username }}
+        </div>
+        <div class="col-md-6 offset-md-3 p-2">
+            <label for="id_password" name="password" class="form-label">Password</label>
+            {{ form.password }}
+        </div>
+        <div class="col-12 offset-md-3 p-2">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div class="col-12 offset-md-3 p-2">
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
+        </div>
         {% csrf_token %}
     </form>
-
-    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-    <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset Password</a></p>
 </div>
+
 {% endblock %}
