@@ -10,3 +10,4 @@ cloudinary_python.txt
 *.sqlite3
 *.pyc
 db.json
+core.\d{4,5}

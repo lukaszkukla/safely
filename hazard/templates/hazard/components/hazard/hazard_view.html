@@ -43,11 +43,9 @@
     </div>
     {% else %}
     {% if hazard.status.name == 'Resolved' %}
-    <div class="col-xs-12 col-md-6 hazard-resolved-icon btn-haz"><i class="fa-solid fa-circle-check"></i>{{
-        hazard.status }}</div>
+    <div class="col-xs-12 col-md-6 hazard-resolved-icon btn-haz"><i class="fa-solid fa-circle-check"></i>{{ hazard.status }}</div>
     {% else %}
-    <div class="col-xs-12 col-md-6 hazard-unresolved-icon btn-haz"><i class="fa-solid fa-circle-minus"></i>{{
-        hazard.status }}</div>
+    <div class="col-xs-12 col-md-6 hazard-unresolved-icon btn-haz"><i class="fa-solid fa-circle-minus"></i>{{ hazard.status }}</div>
     {% endif %}
     <div class="col-xs-12 col-md-6 btn-haz">
         {{ hazard.created_on|date:'Y-m-d' }}

@@ -1,3 +1,7 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
 <div>
     {% if page == 'register' %}
     {% include 'hazard/components/auth/register.html' %}
@@ -7,3 +11,5 @@
     {% include 'hazard/components/auth/login.html' %}
     {% endif %}
 </div>
+
+{% endblock %}

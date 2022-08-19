@@ -43,19 +43,28 @@ urlpatterns = [
     path('', HazardList.as_view(), name='hazards'),
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard/create/', HazardCreate.as_view(), name='hazard-create'),
-    path('hazard/update/<int:pk>/', HazardUpdate.as_view(), name='hazard-update'),
-    path('hazard/delete/<int:pk>/', HazardDelete.as_view(), name='hazard-delete'),
+    path('hazard/update/<int:pk>/', HazardUpdate.as_view(),
+         name='hazard-update'),
+    path('hazard/delete/<int:pk>/', HazardDelete.as_view(),
+         name='hazard-delete'),
 
     path('profile/', profileView, name='profile-view'),
     path('profile/update', profileEdit, name='profile-update'),
     path('password/', PasswordsChangeView.as_view(), name='password-view'),
-    path('password/update', PasswordChangeSuccess.as_view(), name='password-update'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='hazard/components/password/password_reset.html'), name="password_reset"),    
+    path('password/update', PasswordChangeSuccess.as_view(),
+         name='password-update'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(
+        template_name='hazard/components/password/password_reset.html'),
+        name="password_reset"),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
-        template_name='hazard/components/password/password_reset_done.html'), name="password_reset_done"),
+        template_name='hazard/components/password/password_reset_done.html'),
+        name="password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-        template_name='hazard/components/password/password_reset_confirm.html'), name="password_reset_confirm"),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='hazard/components/password/password_reset_complete.html'), name="password_reset_complete"),
+        template_name='hazard/components/password/password_reset_confirm.html'),
+        name="password_reset_confirm"),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
+        template_name='hazard/components/password/password_reset_complete.html'),
+        name="password_reset_complete"),
     path('categories', CategoryList.as_view(), name='categories'),
     path('categories/create/', CategoryCreate.as_view(), name='categories-create'),
     path('categories/update/<int:pk>/',
@@ -73,5 +82,5 @@ urlpatterns = [
     path('statuses/update/<int:pk>/',
          StatusUpdate.as_view(), name='statuses-update'),
     path('statuses/delete/<int:pk>/',
-         StatusDelete.as_view(), name='statuses-delete'),   
+         StatusDelete.as_view(), name='statuses-delete'),
 ]

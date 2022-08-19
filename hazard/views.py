@@ -12,7 +12,7 @@ from django.contrib.auth import login
 
 from .models import Hazard, Category, Risk, Status
 
-from .forms import PasswordChangingForm, LoginForm
+from .forms import PasswordChangingForm, LoginForm, UserRegistrationForm
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -45,7 +45,7 @@ class Register(SuccessMessageMixin, FormView):
     context = {}
     context['page'] = 'register'
     template_name = 'hazard/pages/auth.html'
-    form_class = UserCreationForm
+    form_class = UserRegistrationForm
     register = True
     redirect_authenticated_user = True
     success_url = reverse_lazy('hazards')
@@ -102,9 +102,11 @@ class HazardDetail(LoginRequiredMixin, DetailView):
 
     def get_object(self, queryset=None):
         hazard = super(DetailView, self).get_object(queryset)
-        if hazard.user != self.request.user:
+        if hazard.user == self.request.user or self.request.user.is_staff:
+            return hazard
+        else:
             raise Http404(('Permission Denied'))
-        return hazard
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -215,6 +217,7 @@ class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'password-update'
+        context['title'] = 'Password Change'
         return context
 
 

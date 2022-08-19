@@ -1,16 +1,41 @@
-{% extends 'hazard/base.html' %}
-
 {% block content %}
 
-<h1>Register new account</h1>
-
-<form method="POST">
-    {{ form.as_p }}
-    <input type="submit" value="Register">
-
-    {% csrf_token %}
-</form>
-
-<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+<div class="form-container">
+    <div>
+        <h1 class="py-5 text-center">Create your Safely account</h1>
+    </div>
+    <form class="row g-3" method="POST">
+        <div class="col-8 offset-2">
+            <label for="id_username" name="username" class="form-label">Username</label>
+            {{ form.username }}
+        </div>
+        <div class="col-8 offset-2">
+            <label for="id_password1" name="password1" class="form-label">Password</label>
+            {{ form.password1 }}
+        </div>
+        <div class="col-8 offset-2">
+            <label for="id_password2" name="password2" class="form-label">Confirm</label>
+            {{ form.password2 }}
+        </div>
+        <div class="col-12 p-2 text-center">
+            <button type="submit" class="btn btn-primary btn-main">Register</button>
+        </div>
+        <div class="col-10 offset-1 offset-md-2 p-2 text-smaller">
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+        {% csrf_token %}
+    </form>
+    <hr>
+    <div class="col-8 offset-2 offset-md-2 py-5 text-smaller">
+        <h3>User and Password Tips</h3>
+        <ul>
+            <li>Password is required field. It must be 150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>
+            <li>Your password can’t be too similar to your other personal information.</li>
+            <li>Your password must contain at least 8 characters.</li>
+            <li>Your password can’t be a commonly used password.</li>
+            <li>Your password can’t be entirely numeric.</li>
+        </ul>
+    </div>
+</div>
 
 {% endblock content %}

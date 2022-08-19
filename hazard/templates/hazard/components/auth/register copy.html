@@ -1,0 +1,16 @@
+{% extends 'hazard/base.html' %}
+
+{% block content %}
+
+<h1>Register new account</h1>
+
+<form method="POST">
+    {{ form.as_p }}
+    <input class="btn btn-primary btn-main" type="submit" value="Register">
+
+    {% csrf_token %}
+</form>
+
+<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+{% endblock content %}
