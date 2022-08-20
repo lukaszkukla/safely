@@ -54,8 +54,8 @@ urlpatterns = [
     path('profile/<int:pk>', UserListView.as_view(), name="profile-view"),
     path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name="profile-update"),
 #     path('profile/update', profileEdit, name='profile-update'),
-    path('password/<int:pk>', PasswordsChangeView.as_view(), name='password-view'),
-    path('password/update/<int:pk>', PasswordChangeSuccess.as_view(),
+    path('password/', PasswordsChangeView.as_view(), name='password-view'),
+    path('password/update', PasswordChangeSuccess.as_view(),
          name='password-update'),
     path('password_reset/', auth_views.PasswordResetView.as_view(
         template_name='hazard/components/password/password_reset.html'),

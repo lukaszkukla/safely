@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.urls import is_valid_path, reverse, reverse_lazy
+from django.urls import is_valid_path, reverse_lazy
 from django.http import Http404
 
 from django.contrib.auth.views import LoginView, PasswordChangeView
@@ -201,7 +201,7 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = ProfileForm
     template_name = 'hazard/pages/profile.html'
     success_message = "User details updated"  
-    success_url = reverse_lazy('profile-view')
+    success_url = "."
     slug_field = "username"
     redirect_field_name = 'next'
 
@@ -242,21 +242,7 @@ class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
 
 class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
-    template_name = 'hazard/pages/password.html'    
-    redirect_field_name = 'next'
-
-    def get_success_url(self, **kwargs):         
-        if  kwargs != None:
-            return reverse_lazy('profile-view', kwargs={'pk': kwargs['idnumber']})
-        else:
-            return reverse_lazy('profile-view', args=(self.object.id,))
-
-    def user_id(self, object_id):
-        user = User.objects.get(id=object_id)
-        return self.get_success_url(idnumber=user.id)
-
-    # def get_success_url(self, **kwargs):
-    #     return reverse("newJob")
+    template_name = 'hazard/pages/password.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

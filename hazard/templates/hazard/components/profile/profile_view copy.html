@@ -8,8 +8,7 @@
         <p>First name: {{ user.first_name }}</p>
         <p>Last name: {{ user.last_name }}</p>
         <p>Email: {{ user.email }}</p>
-    <a href="{% url 'profile-update' user.id %}">Edit</a>
-
+    <a href="{% url 'profile-update' slug %}">Edit</a>
 </div>
 
 {% endblock content %}

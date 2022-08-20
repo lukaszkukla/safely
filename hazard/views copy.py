@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.urls import is_valid_path, reverse, reverse_lazy
+from django.urls import is_valid_path, reverse_lazy
 from django.http import Http404
 
 from django.contrib.auth.views import LoginView, PasswordChangeView
@@ -12,7 +12,7 @@ from django.contrib.auth import login
 
 from .models import Hazard, Category, Risk, Status
 
-from .forms import PasswordChangingForm, LoginForm, UserRegistrationForm, ProfileForm
+from .forms import PasswordChangingForm, LoginForm, UserRegistrationForm
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -177,14 +177,13 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 #     template_name = 'accounts/profile.html'
     
 
-class UserListView(DetailView):
+class UserListView(ListView):
     """
     Class to list all the user
     """
     model = User
-    slug_field = 'username'
     template_name = 'hazard/pages/profile.html'
-    context_object_name = 'user_profile'
+    context_object_name = "users"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -192,27 +191,30 @@ class UserListView(DetailView):
         context['title'] = 'User Profile'
         return context
 
-class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    """
-    Class that only allows authentic user to update their profile
-    Composed of first_name, last_name
-    """
-    model = User
-    form_class = ProfileForm
-    template_name = 'hazard/pages/profile.html'
-    success_message = "User details updated"  
-    success_url = reverse_lazy('profile-view')
-    slug_field = "username"
-    redirect_field_name = 'next'
 
-    def get_queryset(self):
-        base_qs = super(ProfileUpdateView, self).get_queryset()
-        return base_qs.filter(username=self.request.user.username)
+def profileView(request):
+    context = {'page': 'profile-view'}
+    if request.user.is_authenticated:
+        return render(request, 'hazard/components/profile/profile_view.html', context)
+    return redirect('login')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = 'profile-update'
-        return context
+def profileEdit(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = EditProfileForm(request.POST, instance=request.user)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Profile updated")
+                return redirect('profile-view')            
+        else:
+            form = EditProfileForm(instance=request.user)
+            args = {'form': form}
+   
+        
+        return render(request, 'hazard/components/profile/profile_update.html', args)
+
+    return redirect('login')
 
 
 class EditProfileForm(SuccessMessageMixin, UserChangeForm):
@@ -242,21 +244,7 @@ class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
 
 class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
-    template_name = 'hazard/pages/password.html'    
-    redirect_field_name = 'next'
-
-    def get_success_url(self, **kwargs):         
-        if  kwargs != None:
-            return reverse_lazy('profile-view', kwargs={'pk': kwargs['idnumber']})
-        else:
-            return reverse_lazy('profile-view', args=(self.object.id,))
-
-    def user_id(self, object_id):
-        user = User.objects.get(id=object_id)
-        return self.get_success_url(idnumber=user.id)
-
-    # def get_success_url(self, **kwargs):
-    #     return reverse("newJob")
+    template_name = 'hazard/pages/password.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

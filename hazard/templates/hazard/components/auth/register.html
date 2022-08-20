@@ -20,8 +20,9 @@
         <div class="col-12 p-2 text-center">
             <button type="submit" class="btn btn-primary btn-main">Register</button>
         </div>
-        <div class="col-10 offset-1 offset-md-2 p-2 text-smaller">
-            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        <div class="col-10 offset-1 offset-md-2 pb-4 text-smaller">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+
         </div>
         {% csrf_token %}
     </form>

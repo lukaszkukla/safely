@@ -104,3 +104,12 @@ class UserRegistrationForm(UserCreationForm):
         """
         model = User
         fields = ('username', 'password1', 'password2')
+
+class ProfileForm(forms.ModelForm):
+    """
+    Profile Form. Composed of
+    first_name,last_name,date_of_birth,gender
+    """
+    class Meta:
+        model = User
+        fields = '__all__'
