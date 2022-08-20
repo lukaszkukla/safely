@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import is_valid_path, reverse, reverse_lazy
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -127,6 +128,7 @@ class HazardCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     ]
     success_url = reverse_lazy('hazards')
     success_message = "New hazard created"
+    permission_required = 'hazards.view_categories'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -171,11 +173,30 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         return context
 
 
-# class ProfileView(DetailView):
-#     model = get_user_model()
-#     context_object_name = 'user_object'
-#     template_name = 'accounts/profile.html'
-    
+def profileView(request):
+    context = {'page': 'profile-view'}
+    if request.user.is_authenticated:
+        return render(request, 'hazard/components/profile/profile_view.html', context)
+    return redirect('login')
+
+def profileEdit(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = EditProfileForm(request.POST, instance=request.user)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Profile updated")
+                return redirect('profile-view')            
+        else:
+            form = EditProfileForm(instance=request.user)
+            args = {'form': form}
+   
+        
+        return render(request, 'hazard/components/profile/profile_update.html', args)
+
+    return redirect('login')
+
 
 class UserListView(DetailView):
     """
@@ -184,13 +205,15 @@ class UserListView(DetailView):
     model = User
     slug_field = 'username'
     template_name = 'hazard/pages/profile.html'
-    context_object_name = 'user_profile'
-
+    context_object_name = 'user_profile'            
+   
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'profile-view'
         context['title'] = 'User Profile'
         return context
+
+
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
@@ -200,8 +223,7 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ProfileForm
     template_name = 'hazard/pages/profile.html'
-    success_message = "User details updated"  
-    success_url = reverse_lazy('profile-view')
+    success_message = "User details updated"
     slug_field = "username"
     redirect_field_name = 'next'
 
@@ -213,6 +235,9 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['page'] = 'profile-update'
         return context
+
+    def get_success_url(self):
+        return reverse_lazy('profile-view', args={self.request.user.id})
 
 
 class EditProfileForm(SuccessMessageMixin, UserChangeForm):
@@ -229,8 +254,7 @@ class EditProfileForm(SuccessMessageMixin, UserChangeForm):
 class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
     template_name = 'hazard/pages/password.html'
-    # form_class = PasswordChangeForm
-    success_url = reverse_lazy('profile-view')
+    form_class = PasswordChangeForm
     success_message = "Password updated"
 
     def get_context_data(self, **kwargs):
@@ -239,21 +263,22 @@ class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
         context['title'] = 'Password Change'
         return context
 
+    def get_success_url(self):
+        return reverse_lazy('profile-view', args={self.request.user.id})
+
 
 class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
     form_class = PasswordChangingForm
     template_name = 'hazard/pages/password.html'    
     redirect_field_name = 'next'
 
-    def get_success_url(self, **kwargs):         
-        if  kwargs != None:
-            return reverse_lazy('profile-view', kwargs={'pk': kwargs['idnumber']})
-        else:
-            return reverse_lazy('profile-view', args=(self.object.id,))
+    # def get_success_url(self, **kwargs):
+    #     return reverse_lazy('profile-view', kwargs={'pk': kwargs['idnumber']})
+        
 
-    def user_id(self, object_id):
-        user = User.objects.get(id=object_id)
-        return self.get_success_url(idnumber=user.id)
+    # def user_id(self, object_id):
+    #     user = User.objects.get(id=object_id)
+    #     return self.get_success_url(idnumber=user.id)
 
     # def get_success_url(self, **kwargs):
     #     return reverse("newJob")
@@ -262,6 +287,10 @@ class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
         context = super().get_context_data(**kwargs)
         context['page'] = 'profile-view'
         return context
+
+    def get_success_url(self):
+        return reverse_lazy('profile-view', args={self.request.user.id})
+    
 
 
 class AdminAccessMixin(PermissionRequiredMixin):
