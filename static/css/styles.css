@@ -14,6 +14,7 @@
     --darkgreen: #004208;
     --lightgrey: #FAFAFA;
     --mediumgrey: #D9DADF;
+    --grey: #666666;
     --darkgrey: #444444;
     --orange: #FFA500;
 }
@@ -44,6 +45,10 @@ a {
     text-decoration: none;
 }
 
+footer a:hover {
+    color: var(--azure)
+}
+
 .text-smaller {
     font-size: 1.4rem;
 }
@@ -69,7 +74,7 @@ hr {
 /* Container */
 .container {
     max-width: 120rem;
-    margin: auto;
+    margin: 0 auto;
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
     box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
@@ -80,6 +85,17 @@ hr {
     max-width: 65rem;
     margin: 1rem auto;
 }
+
+.page-header {
+    text-align: left;
+    margin: 0 auto;
+}
+
+.title-page {
+    font-size: 2rem;
+    padding-bottom: 2rem;
+}
+
 
 /* Navbar */
 .navbar {
@@ -162,73 +178,16 @@ hr {
     display: flex;
 } */
 
-/* Button */
-.btn {
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+/* Content Text */
+.resolved {
+    color: var(--green);
+    font-weight: 700;
 }
 
-.btn-main,
-.btn-edit,
-.btn-view,
-.btn-delete {
-    width: 100%;
-    font-size: 1.6rem;
-    background: var(--burgundy);
-    border: none;
+.unresolved {
+    color: var(--burgundy);
+    font-weight: 700;
 }
-
-.btn-main:hover {
-    background: var(--green);
-}
-
-.btn-view {
-    background: var(--darkgrey);
-}
-
-.btn-view:hover {
-    background: var(--black);    
-}
-
-.btn-edit {
-    background: var(--green);
-}
-
-.btn-edit:hover {
-    background: var(--darkgreen);
-}
-
-.btn-delete:hover {
-    background-color: var(--darkpink);
-}
-
-.btn-haz,
-.btn-action {
-    padding: 0.5rem;
-    text-align: center;
-}
-
-.btn-haz a {
-    color: var(--black);
-}
-
-.btn-center {
-    text-align: center;
-}
-
-/* .btn-update,
-.btn-update a {
-    background: var(--green);
-    color: var(--white);
-    display: inline;
-} */
-
-/* .btn-delete,
-.btn-delete a {
-    background: var(--burgundy);
-    color: var(--white);
-    display: inline;
-} */
 
 /* Card */
 .card {
@@ -281,8 +240,77 @@ hr {
     white-space: nowrap;
 }
 
-/* Input */
-.input-main {
+/* Button and Input */
+
+.btn {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-main,
+.btn-add,
+.btn-edit,
+.btn-view,
+.btn-delete {
+    width: 100%;
+    font-size: 1.6rem;
+    background: var(--burgundy);
+    border: none;
+}
+
+.btn-main:hover {
+    background: var(--green);
+}
+
+.btn-view {
+    background: var(--darkgrey);
+}
+
+.btn-view:hover {
+    background: var(--black);    
+}
+
+.btn-edit, .btn-add {
+    background: var(--green);
+}
+
+.btn-edit:hover, .btn-add:hover {
+    background: var(--darkgreen);
+}
+
+.btn-delete:hover {
+    background-color: var(--darkpink);
+}
+
+.btn-haz,
+.btn-action {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.btn-haz a {
+    color: var(--black);
+}
+
+.btn-center, .center-text {
+    text-align: center;
+}
+
+/* .btn-update,
+.btn-update a {
+    background: var(--green);
+    color: var(--white);
+    display: inline;
+} */
+
+/* .btn-delete,
+.btn-delete a {
+    background: var(--burgundy);
+    color: var(--white);
+    display: inline;
+} */
+
+.input-main, .search-hazard-form-input {
     border: 1px solid var(--mediumgrey);
     border-radius: 5px;
     font-size: 1.6rem;
@@ -291,4 +319,139 @@ hr {
 .form-control:focus {
     border-color: #AE093B;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #AE093B99;
+}
+
+.search-hazard-form-input, .search-hazard-form-btn {
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+}
+
+#footer {
+    width: 100%;
+    background-color: var(--grey);
+    color: var(--white);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.section-width-1200 {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+/* social media links */
+
+.footer-social {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.social-media {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+.social-media-links {
+    display: inline-block;
+    padding: 1.6rem;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    transition: -webkit-transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+    width: 10rem;
+    height: 10rem;
+    color: var(--white);
+}
+
+.social-media-links:hover {
+    -webkit-transform: translateY(8px);
+        -ms-transform: translateY(8px);
+            transform: translateY(8px);
+}
+
+/* site map */
+
+#footer .logo {
+    color: var(--white);
+    padding: 0 1rem;
+}
+
+.footer-links-inline {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 0 1rem;
+    list-style: none;
+}
+
+.footer-links-text {
+    color: var(--white);
+}
+
+.footer-links-buttons-divider {
+    display: inline;
+    list-style-type: none;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0 1rem;
+    color: var(--white);
+}
+
+.all-rights-reserved {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.design-by-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    width: 100%;
+    background: var(--darkgrey);
+    margin-top: auto;
+
+}
+
+.designed-by {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: right;
+    min-height: 6rem;
+    padding-right: 1rem;
 }
