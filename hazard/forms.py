@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
+from .models import Hazard
 
 
 class PasswordChangingForm(PasswordChangeForm):
@@ -107,13 +108,42 @@ class UserRegistrationForm(UserCreationForm):
 
 class ProfileForm(forms.ModelForm):
     """
-    Profile Form. Composed of
-    first_name,last_name,date_of_birth,gender
+    Creates user profile form
     """
     class Meta:
+        """
+        Meta class for profile form
+        """
         model = User
         fields = [
             'first_name',
             'last_name',
             'email'
         ]
+
+
+class HazardDetailsForm(forms.ModelForm):
+    """
+    Creates hazard details form
+    """
+    # category = forms.CharField(
+    #     max_length=200,
+    #     widget=forms.TextInput(
+    #         attrs={
+    #             'class': 'col-12 input-main form-control'
+    #         }
+    #     )
+    # )
+    # title = forms.CharField(
+    #     max_length=200,
+    #     widget=forms.TextInput(
+    #         attrs={
+    #             'class': 'col-12 input-main form-control'
+    #         }
+    #     )
+    # )
+
+    
+    class Meta:
+        model = Hazard
+        fields = '__all__'

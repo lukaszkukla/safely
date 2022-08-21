@@ -1,39 +1,157 @@
-
 {% block content %}
 
-<h1>Hazard Details</h1>
-<h2>{{ hazard }}</h2>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Hazard Details</h1>
+        <h3>{{ hazard.title }}</h3>
+    </div>
+</div>
 
-<a href="{% url 'hazards' %}">Go Back</a>
-
-<table>
-    <tr>
-        <th>Slug</th>
-        <th>Image</th>
-        <th>Description</th>
-        <th>Updated</th>
-        <th>Created</th>
-        <th>User</th>
-        <th>Risk</th>
-        <th>Status</th>
-    </tr>
-    <tr>
-        <td>{{ hazard.slug }}</td>
-        <td>
+<div class="mb-3">
+    <div class="row">
+        <div class="col-12 card p-3 mb-3 center">
             {% if 'placeholder' in hazard.image.url %}
-            <img src="https://res.cloudinary.com/lkcloud/image/upload/v1659808744/safely/hazards/hazard-placeholder-image_kerqvn.jpg"
-                alt="Forest road with radioactive hazard sign">
+            <img class=""
+                src="https://res.cloudinary.com/lkcloud/image/upload/v1661038778/safely/hazards/hazard-warning-placeholder-image_dqtff5.jpg"
+                alt="Yellow slippery road signage">
             {% else %}
-            <img src="{{ hazard.image.url }}" alt="">
+            <img class="card-img-top" src="{{ hazard.image.url }}" alt="">
             {% endif %}
-        </td>
-        <td>{{ hazard.description }}</td>
-        <td>{{ hazard.updated_on }}</td>
-        <td>{{ hazard.created_on }}</td>
-        <td>{{ hazard.user }}</td>
-        <td>{{ hazard.level }}</td>
-        <td>{{ hazard.status }}</td>
-    </tr>
-</table>
+        </div>
+    </div>
+    <div class="row">
+        {% if hazard.level.level == 'Low' %}        
+        <div class="col-6 text-center resolved-icon">
+            <p class="card-status">Risk Level:</p>
+            <p><i class="fa-solid fa-temperature-low"></i>
+                {{ hazard.level }}
+            </p>
+        </div>
+        {% elif hazard.level.level == 'Medium' %}
+        <div class="col-6 text-center pending-icon">
+            <p class="card-status">Risk Level:</p>
+            <p><i class="fa-solid fa-temperature-half"></i>
+                {{ hazard.level }}
+            </p>
+        </div>
+        {% elif hazard.level.level == 'High' %}
+        <div class="col-6 text-center unresolved-icon">
+            <p class="card-status">Risk Level:</p>
+            <p><i class="fa-solid fa-temperature-high"></i>
+                {{ hazard.level }}
+            </p>
+        </div>
+        {% else %}
+        <div class="col-6 text-center unresolved-icon">
+            <p class="card-status">Risk Level:</p>
+            <p><i class="fa-solid fa-temperature-empty"></i>
+                {{ hazard.level }}
+            </p>
+        </div>
+        {% endif %}        
+        {% if user.is_superuser %}
+        {% if hazard.status.name == 'Resolved' %}
+        <div class="col-6 resolved-icon text-center">
+            <p class="card-status">Status:</p>
+            <p>
+                <i class="fa-solid fa-circle-check"></i>
+                {{ hazard.status }}
+            </p>
+        </div>
+        {% elif hazard.status.name == 'Pending' %}
+        <div class="col-6 pending-icon text-center">
+            <p class="card-status">Status:</p>
+            <p>
+                <i class="fa-solid fa-circle-chevron-right"></i>
+                {{ hazard.status }}
+            </p>
+        </div>
+        {% else %}
+        <div class="col-6 unresolved-icon text-center">
+            <p class="card-status">Status:</p>
+            <p>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ hazard.status }}
+            </p>
+        </div>
+        {% endif %}
+        <div class="row center">
+            {% if hazard.description == '' %}
+            <div class="col-xs-12">
+                <p><strong>Description:</strong></p>
+                <p class="unresolved-icon">This record is missing description...</p>
+            </div>
+            {% else %}
+            <div class="col-xs-12">
+                <p><strong>Description:</strong></p>
+                <p>{{ hazard.description }}</p>
+            </div>
+            {% endif %}
+            <div class="col-xs-12">
+                <p><strong>Updated Date:</strong></p>
+                <p>{{ hazard.updated_on }}</p>
+            </div>
+            <div class="col-xs-12">
+                <p><strong>Recorded Date:</strong></p>
+                <p>{{ hazard.created_on }}</p>
+            </div>
+            <div class="col-xs-12">
+                <p><strong>Recorded By:</strong></p>
+                <p>{{ hazard.user }}</p>
+            </div>
+            {% else %}
+            {% if hazard.status.name == 'Resolved' %}
+            <div class="col-6 col-md-6 resolved-icon text-center">
+                <p class="card-status">Status:</p>
+                    <i class="fa-solid fa-circle-check"></i>
+                    {{ hazard.status }}
+                </p>
+            </div>
+            {% elif hazard.status.name == 'Pending' %}
+            <div class="col-6 pending-icon text-center">
+                <p class="card-status">Status:</p>
+                <p>
+                    <i class="fa-solid fa-circle-chevron-right"></i>
+                    {{ hazard.status }}
+                </p>
+            </div>
+            {% else %}
+            <div class="col-6 col-md-6 unresolved-icon text-center">
+                <p class="card-status">Status:</p>
+                <p>
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ hazard.status }}
+                </p>
+            </div>
+            {% endif %}
+            <div class="col-xs-12 col-md-6">
+                {{ hazard.created_on|date:'Y-m-d' }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="row btn-center center g-2">
+            <div class="col-xs-12">
+                <a class="back" href="{% url 'hazards' %}">
+                    <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+                        <i class="fa-solid fa-circle-chevron-left"></i>
+                    </button>
+                </a>
+            </div>
+            <div class="col-xs-12">
+                <a class="edit-record" href="{% url 'hazard-update' hazard.id %}">
+                    <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
+                        <i class="fa-solid fa-pencil"></i></button>
+                </a>
+            </div>
+            <div class="col-xs-12">
+                <a class="edit-record" href="{% url 'hazard-delete' hazard.id %}">
+                    <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+                        <i class="fa-solid fa-trash-can"></i></button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
