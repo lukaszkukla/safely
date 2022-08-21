@@ -36,6 +36,9 @@ body {
 }
 
 body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     font-size: 1.6rem;
     font-family: "Poppins", sans-serif;
     background: var(--lightgrey);
@@ -328,6 +331,7 @@ hr {
 }
 
 #footer {
+    margin-top: auto;
     width: 100%;
     background-color: var(--grey);
     color: var(--white);
