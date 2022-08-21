@@ -515,8 +515,8 @@ class RiskDelete(LoginRequiredMixin, AdminAccessMixin,
     model = Risk
     template_name = 'hazard/pages/risk.html'
     success_url = reverse_lazy('risks')
-    success_message = "Risk deleted"    
-
+    success_message = "Risk deleted"
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'risk-delete'
