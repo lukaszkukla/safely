@@ -137,7 +137,6 @@ class HazardCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         'level',
         'status'
     ]
-    # success_url = reverse_lazy('hazards')
     success_message = "New hazard created"
     permission_required = 'hazards.view_categories'
 
@@ -154,6 +153,7 @@ class HazardCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('hazard', args={self.object.id})
 
+
 class HazardUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     Class that allows logged user to update own hazard record
@@ -168,7 +168,6 @@ class HazardUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         'level',
         'status'
     ]
-    # success_url = reverse_lazy('hazard')
     success_message = "Hazard record updated"
 
     def get_context_data(self, **kwargs):
@@ -197,7 +196,7 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         context['page'] = 'hazard-delete'
         context['title'] = 'Hazard Delete'
         return context
-
+        
 
 def profileView(request):
     context = {'page': 'profile-view'}

@@ -1,17 +1,58 @@
 {% block content %}
 
-<h1>Category List</h1>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Category List</h1>
+    </div>
+</div>
 
-<a href="{% url 'hazards' %}">Go Back</a>
-
-<a href="{% url 'categories-create' %}">Add Category</a>
+<div class="col-xs-12 my-3">
+    <a class="back" href="{% url 'hazards' %}">
+        <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+            <i class="fa-solid fa-circle-chevron-left"></i>
+            <span> Back</span>
+        </button>
+    </a>
+</div>
+<div class="col-xs-12 mb-3">
+    <a class="edit-record" href="{% url 'categories-create' %}">
+        <button type="button" class="btn btn-success btn-add p-3" role="button" aria-label="Add New Record">
+            <i class="fa-solid fa-circle-plus fa-lg"></i>
+            <span> Add</span>
+        </button>
+    </a>
+</div>
 
 {% for category in categories %}
-<p>Name: {{ category.name }}</p>
-<p>ID: {{ category.id }}</p>
-<a href="{% url 'categories-update' category.pk %}">Edit</a>
-<a href="{% url 'categories-delete' category.pk %}">Delete</a>
-
+<div class="form-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="card-status title-item-wrap">Name:</p>
+            <p>{{ category.name }}</p>
+        </div>
+        <div class="col-xs-12 item-description">
+            <p class="card-status">Description:</p>
+            <p>{{ category.description }}</p>
+        </div>
+    </div>
+    <div class="row btn-center g-2">
+        <div class="col-6">
+            <a class="edit-record" href="{% url 'categories-update' category.pk %}">
+                <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
+                    <i class="fas fa-pen"></i>
+                    <span> Edit</span>
+                </button>
+            </a>
+        </div>
+        <div class="col-6">
+            <a class="edit-record" href="{% url 'categories-delete' category.pk %}">
+                <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span> Delete</span>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
 {% endfor %}
-
 {% endblock content %}

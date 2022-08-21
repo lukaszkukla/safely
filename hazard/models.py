@@ -8,7 +8,7 @@ from django.dispatch import receiver
 class Hazard(models.Model):
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=80)
     image = CloudinaryField('image', default='placeholder')
     description = models.TextField(null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)

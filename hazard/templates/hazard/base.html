@@ -12,11 +12,13 @@
     <!-- navbar -->
     {% include 'hazard/layouts/navbar.html' %}
 
-    <!-- messages -->
-    {% include 'hazard/components/messages.html' %}    
+       
 
     <!-- main -->
     <main class="container flex-shrink-0 main-bg wrapper">
+         <!-- messages -->
+        {% include 'hazard/components/messages.html' %}
+        
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}

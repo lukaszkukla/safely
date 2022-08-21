@@ -1,16 +1,57 @@
 {% block content %}
 
-<h1>Delete hazard</h1>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Hazard Delete</h1>
+    </div>
+</div>
 
-<a href="{% url 'hazards' %}">Go Back</a>
-
-<form action="" method="POST">
-    <p>Are you sure? The <strong>'{{ hazard.title }}'</strong> hazard record will be <strong>permanently deleted!</strong></p>
-    
-    {{ form.as_p }}    
-    <input type="submit" value="Delete">
-
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="row center form-container g-0">
+        <div class="col-12 p-3 mb-3 center">
+            <p>Are you sure you want to delete <strong>'{{ hazard.title }}'</strong>?</p>
+            <p>This record will be <strong>deleted permanently</strong>!</p>
+        </div>
+    </div>
+    {{ form.as_p }}
+    <div class="row center form-container">
+        <div class="col-12 card p-3 mb-3 center">
+            {% if 'placeholder' in hazard.image.url %}
+            <img class=""
+                src="https://res.cloudinary.com/lkcloud/image/upload/v1661038778/safely/hazards/hazard-warning-placeholder-image_dqtff5.jpg"
+                alt="Yellow slippery road signage">
+            {% else %}
+            <img class="card-img-top" src="{{ hazard.image.url }}" alt="">
+            {% endif %}
+        </div>
+        {% if hazard.description == '' %}
+        <div class="col-xs-12 p-2">
+            <p><strong>Description:</strong></p>
+            <p class="unresolved-icon">This record is missing description...</p>
+        </div>
+        {% else %}
+        <div class="col-xs-12 p-2">
+            <p><strong>Description:</strong></p>
+            <p>{{ hazard.description }}</p>
+        </div>
+        {% endif %}
+        <div class="col-xs-12 my-3">
+            <a class="back" href="{% url 'hazards' %}">
+                <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+                    <i class="fa-solid fa-circle-chevron-left"></i>
+                    <span> Back</span>
+                </button>
+            </a>
+        </div>
+        <div class="col-xs-12 mb-3">
+            <button type="submit" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+                <i class="fa-solid fa-trash-can"></i>
+                <span> Delete</span>
+            </button>
+        </div>
+    </div>
     {% csrf_token %}
+
 </form>
 
 {% endblock content %}
