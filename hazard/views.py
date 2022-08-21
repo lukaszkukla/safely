@@ -12,7 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from .models import Hazard, Category, Risk, Status
-
+from django.contrib.auth.views import redirect_to_login
 from .forms import PasswordChangingForm, LoginForm, UserRegistrationForm, ProfileForm
 
 from django.contrib.auth.models import User
@@ -23,7 +23,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 
-class CustomLoginView(LoginView):
+class CustomLoginView(LoginView):    
     page_title = 'Login'
     context = {}
     form_class = LoginForm
@@ -38,6 +38,7 @@ class CustomLoginView(LoginView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'login'
+        context['title'] = 'Login'
         return context
 
 
@@ -66,6 +67,7 @@ class Register(SuccessMessageMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'register'
+        context['title'] = 'Register'
         return context
 
 
@@ -77,14 +79,19 @@ class HazardList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'hazard-view'
-        
+        context['title'] = 'Hazard Records List View'
+
         if self.request.user.is_superuser:
-            context['unresolved'] = context['hazards'].filter(user=self.request.user).exclude(status='3').count()
-            context['resolved'] = context['hazards'].filter(user=self.request.user, status='3').count()
+            context['unresolved'] = context['hazards'].filter(
+                user=self.request.user).exclude(status='3').count()
+            context['resolved'] = context['hazards'].filter(
+                user=self.request.user, status='3').count()
             context['hazards'] = context['hazards']
         else:
-            context['unresolved'] = context['hazards'].filter(user=self.request.user).exclude(status='3').count()
-            context['resolved'] = context['hazards'].filter(user=self.request.user, status='3').count()
+            context['unresolved'] = context['hazards'].filter(
+                user=self.request.user).exclude(status='3').count()
+            context['resolved'] = context['hazards'].filter(
+                user=self.request.user, status='3').count()
             context['hazards'] = context['hazards'].filter(
                 user=self.request.user)
 
@@ -93,7 +100,7 @@ class HazardList(LoginRequiredMixin, ListView):
             context['hazards'] = context['hazards'].filter(
                 title__icontains=search_input)
         context['search_input'] = search_input
-        return context    
+        return context
 
 
 class HazardDetail(LoginRequiredMixin, DetailView):
@@ -108,14 +115,18 @@ class HazardDetail(LoginRequiredMixin, DetailView):
         else:
             raise Http404(('Permission Denied'))
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'hazard-detail-view'
-        return context    
+        context['title'] = 'Hazard Record Details View'
+        return context
 
 
 class HazardCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    """
+    Class that allows admin to create a new hazard record
+    """
+
     model = Hazard
     template_name = 'hazard/pages/hazard.html'
     fields = [
@@ -141,6 +152,10 @@ class HazardCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 class HazardUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Class that allows logged user to update own hazard record
+    """
+
     model = Hazard
     template_name = 'hazard/pages/hazard.html'
     fields = [
@@ -161,6 +176,10 @@ class HazardUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    """
+    Class that allows admin to delete own hazard record
+    """
+
     model = Hazard
     template_name = 'hazard/pages/hazard.html'
     context_object_name = 'hazard'
@@ -179,6 +198,7 @@ def profileView(request):
         return render(request, 'hazard/components/profile/profile_view.html', context)
     return redirect('login')
 
+
 def profileEdit(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -187,26 +207,26 @@ def profileEdit(request):
             if form.is_valid():
                 form.save()
                 messages.success(request, "Profile updated")
-                return redirect('profile-view')            
+                return redirect('profile-view')
         else:
             form = EditProfileForm(instance=request.user)
             args = {'form': form}
-   
-        
+
         return render(request, 'hazard/components/profile/profile_update.html', args)
 
     return redirect('login')
 
 
-class UserListView(DetailView):
+class UserListView(LoginRequiredMixin, DetailView):
     """
-    Class to list all the user
+    Class allows to view details of logged user
     """
+
     model = User
     slug_field = 'username'
     template_name = 'hazard/pages/profile.html'
-    context_object_name = 'user_profile'            
-   
+    context_object_name = 'user_profile'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'profile-view'
@@ -214,17 +234,20 @@ class UserListView(DetailView):
         return context
 
 
-
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
-    Class that only allows authentic user to update their profile
-    Composed of first_name, last_name
+    Class allows to edit details of logged user
     """
+
     model = User
     form_class = ProfileForm
     template_name = 'hazard/pages/profile.html'
     success_message = "User details updated"
     slug_field = "username"
+    raise_exception = False
+    permission_required = 'categories.view_categories'
+    permission_denied_message = ""
+    login_url = 'hazards'
     redirect_field_name = 'next'
 
     def get_queryset(self):
@@ -234,6 +257,7 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'profile-update'
+        context['title'] = 'User Profile Update'
         return context
 
     def get_success_url(self):
@@ -241,8 +265,14 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class EditProfileForm(SuccessMessageMixin, UserChangeForm):
+    """
+    Form for logged user profile edit
+    """
 
     class Meta:
+        """
+        Meta class for EditProfileForm
+        """
         model = User
         fields = [
             'first_name',
@@ -252,6 +282,9 @@ class EditProfileForm(SuccessMessageMixin, UserChangeForm):
 
 
 class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
+    """
+    Class that allows logged user to update own password
+    """
     form_class = PasswordChangingForm
     template_name = 'hazard/pages/password.html'
     form_class = PasswordChangeForm
@@ -268,20 +301,12 @@ class PasswordsChangeView(SuccessMessageMixin, PasswordChangeView):
 
 
 class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
+    """
+    Class that inform user if the password updated successfully
+    """
     form_class = PasswordChangingForm
-    template_name = 'hazard/pages/password.html'    
+    template_name = 'hazard/pages/password.html'
     redirect_field_name = 'next'
-
-    # def get_success_url(self, **kwargs):
-    #     return reverse_lazy('profile-view', kwargs={'pk': kwargs['idnumber']})
-        
-
-    # def user_id(self, object_id):
-    #     user = User.objects.get(id=object_id)
-    #     return self.get_success_url(idnumber=user.id)
-
-    # def get_success_url(self, **kwargs):
-    #     return reverse("newJob")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -290,12 +315,11 @@ class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
 
     def get_success_url(self):
         return reverse_lazy('profile-view', args={self.request.user.id})
-    
 
 
 class AdminAccessMixin(PermissionRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
-        if(not self.request.user.is_authenticated):
+        if not self.request.user.is_authenticated:
             return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
         if not self.has_permission():
             return redirect('/')
@@ -303,6 +327,9 @@ class AdminAccessMixin(PermissionRequiredMixin):
 
 
 class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
+    """
+    Class that allows admin to view category list
+    """
 
     raise_exception = False
     permission_required = 'categories.view_categories'
@@ -317,10 +344,15 @@ class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'category-view'
+        context['title'] = 'Category View'
         return context
 
 
-class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
+class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin,
+                     SuccessMessageMixin, UpdateView):
+    """
+    Class that allows admin to update category item
+    """
 
     raise_exception = False
     permission_required = 'categories.change_categories'
@@ -337,10 +369,15 @@ class CategoryUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'category-update'
+        context['title'] = 'Category Update'
         return context
 
 
-class CategoryCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, CreateView):
+class CategoryCreate(LoginRequiredMixin, AdminAccessMixin,
+                     SuccessMessageMixin, CreateView):
+    """
+    Class that allows admin to create new category item
+    """
 
     raise_exception = False
     permission_required = 'categories.add_categories'
@@ -357,10 +394,15 @@ class CategoryCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'category-create'
-        return context    
+        context['title'] = 'Category Add New'
+        return context
 
 
-class CategoryDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
+class CategoryDelete(LoginRequiredMixin, AdminAccessMixin,
+                     SuccessMessageMixin, DeleteView):
+    """
+    Class that allows admin to delete category item
+    """
 
     raise_exception = False
     permission_required = 'categories.delete_categories'
@@ -376,10 +418,14 @@ class CategoryDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'category-delete'
+        context['title'] = 'Category Delete'
         return context
 
 
 class RiskList(LoginRequiredMixin, AdminAccessMixin, ListView):
+    """
+    Class that allows admin to view list of risk types
+    """
 
     raise_exception = False
     permission_required = 'risks.view_risks'
@@ -389,15 +435,20 @@ class RiskList(LoginRequiredMixin, AdminAccessMixin, ListView):
 
     model = Risk
     template_name = 'hazard/pages/risk.html'
-    context_object_name = 'risks'    
+    context_object_name = 'risks'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'risk-view'
+        context['title'] = 'Risk View'
         return context
 
 
-class RiskUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
+class RiskUpdate(LoginRequiredMixin, AdminAccessMixin,
+                 SuccessMessageMixin, UpdateView):
+    """
+    Class that allows admin to update riks details
+    """
 
     raise_exception = False
     permission_required = 'risks.change_risks'
@@ -414,10 +465,15 @@ class RiskUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Upda
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'risk-update'
+        context['title'] = 'Risk Update'
         return context
 
 
-class RiskCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, CreateView):
+class RiskCreate(LoginRequiredMixin, AdminAccessMixin,
+                 SuccessMessageMixin, CreateView):
+    """
+    Class that allows admin to create a new risk item
+    """
 
     raise_exception = False
     permission_required = 'risks.add_risks'
@@ -430,14 +486,19 @@ class RiskCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Crea
     fields = '__all__'
     success_url = reverse_lazy('risks')
     success_message = "Risk created"
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'risk-create'
+        context['title'] = 'Risk Add New'
         return context
 
 
-class RiskDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
+class RiskDelete(LoginRequiredMixin, AdminAccessMixin,
+                 SuccessMessageMixin, DeleteView):
+    """
+    Class that allows admin to delete risk item
+    """
 
     raise_exception = False
     permission_required = 'risks.delete_risks'
@@ -448,15 +509,19 @@ class RiskDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Dele
     model = Risk
     template_name = 'hazard/pages/risk.html'
     success_url = reverse_lazy('risks')
-    success_message = "Risk deleted"
+    success_message = "Risk deleted"    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'risk-delete'
+        context['title'] = 'Risk Delete'
         return context
 
 
 class StatusList(LoginRequiredMixin, AdminAccessMixin, ListView):
+    """
+    Class that allows admin to view status list
+    """
 
     raise_exception = False
     permission_required = 'statuses.view_statuses'
@@ -466,15 +531,20 @@ class StatusList(LoginRequiredMixin, AdminAccessMixin, ListView):
 
     model = Status
     template_name = 'hazard/pages/status.html'
-    context_object_name = 'statuses'    
+    context_object_name = 'statuses'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'status-view'
+        context['title'] = 'Status List View'
         return context
 
 
-class StatusUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, UpdateView):
+class StatusUpdate(LoginRequiredMixin, AdminAccessMixin,
+                   SuccessMessageMixin, UpdateView):
+    """
+    Class that allows admin to update status item
+    """
 
     raise_exception = False
     permission_required = 'statuses.change_statuses'
@@ -486,15 +556,20 @@ class StatusUpdate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Up
     template_name = 'hazard/pages/status.html'
     fields = '__all__'
     success_url = reverse_lazy('statuses')
-    success_message = "Status updated"    
+    success_message = "Status updated"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'status-update'
+        context['title'] = 'Status Update'
         return context
 
 
-class StatusCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, CreateView):
+class StatusCreate(LoginRequiredMixin, AdminAccessMixin,
+                   SuccessMessageMixin, CreateView):
+    """
+    Class that allows admin to create a new status item
+    """
 
     raise_exception = False
     permission_required = 'statuses.add_statuses'
@@ -511,10 +586,15 @@ class StatusCreate(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, Cr
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'status-create'
+        context['title'] = 'Status Add New'
         return context
 
 
-class StatusDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, DeleteView):
+class StatusDelete(LoginRequiredMixin, AdminAccessMixin,
+                   SuccessMessageMixin, DeleteView):
+    """
+    Class that allows admin to delete status item
+    """
 
     raise_exception = False
     permission_required = 'statuses.delete_statuses'
@@ -530,9 +610,17 @@ class StatusDelete(LoginRequiredMixin, AdminAccessMixin, SuccessMessageMixin, De
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'status-delete'
+        context['title'] = 'Status Delete'
         return context
 
 
-def Error404View(request, exception):
-    """ Error Page 404 - Page Not Found """
-    return render(request, "404.html")
+def error404View(request, exception=None):
+    """ A view to return the 404 page """
+
+    return render(request, 'hazard/pages/404.html')
+
+
+def server_error_500(request):
+    """ A view to return the 500 page """
+
+    return render(request, 'hazard/pages/500.html')

@@ -4,10 +4,6 @@ from django.contrib.auth.views import LogoutView
 
 from django.contrib.auth import views as auth_views
 
-from . import views
-
-from django.urls import reverse_lazy
-
 from .views import (
     HazardList,
     HazardDetail,
@@ -70,7 +66,8 @@ urlpatterns = [
         template_name='hazard/components/password/password_reset_complete.html'),
         name="password_reset_complete"),
     path('categories', CategoryList.as_view(), name='categories'),
-    path('categories/create/', CategoryCreate.as_view(), name='categories-create'),
+    path('categories/create/', CategoryCreate.as_view(),
+         name='categories-create'),
     path('categories/update/<int:pk>/',
          CategoryUpdate.as_view(), name='categories-update'),
     path('categories/delete/<int:pk>/',
