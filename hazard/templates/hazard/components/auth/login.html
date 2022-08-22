@@ -1,7 +1,5 @@
 {% block content %}
 
-
-
 <div class="form-container">
     <div>
         <h1 class="py-5 text-center">Sign in to your account</h1>
@@ -24,16 +22,14 @@
                 {{ form.password }}
             </div>
             <div class="col-xs-12">
-                <a class="back" href="{% url 'password_reset' %}">
-                    <button type="submit" class="btn btn-primary btn-main" role="button" aria-label="Login">
-                        <i class="fa-solid fa-unlock"></i>
-                        <span> Login</span>
-                    </button>
-                </a>
+                <button type="submit" class="btn btn-primary btn-main" role="button" aria-label="Login">
+                    <i class="fa-solid fa-unlock"></i>
+                    <span> Login</span>
+                </button>
             </div>
             <div class="col-xs-12 text-smaller">
                 <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-            </div>            
+            </div>
             {% csrf_token %}
         </div>
     </form>

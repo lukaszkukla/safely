@@ -5,6 +5,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 
 from .views import (
+    HomePage,
     HazardList,
     HazardDetail,
     HazardCreate,
@@ -12,8 +13,6 @@ from .views import (
     HazardDelete,
     CustomLoginView,
     Register,
-#     profileView,
-#     profileEdit,
     CategoryList,
     CategoryUpdate,
     CategoryCreate,
@@ -38,7 +37,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='hazards'), name='logout'),
     path('register/', Register.as_view(), name='register'),
 
-    path('', HazardList.as_view(), name='hazards'),
+    path('', HomePage.as_view(), name='homepage'),
+    path('hazard/', HazardList.as_view(), name='hazards'),
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard/create/', HazardCreate.as_view(), name='hazard-create'),
     path('hazard/update/<int:pk>/', HazardUpdate.as_view(),
@@ -46,11 +46,12 @@ urlpatterns = [
     path('hazard/delete/<int:pk>/', HazardDelete.as_view(),
          name='hazard-delete'),
 
-#     path('profile/', profileView, name='profile-view'),
     path('profile/<int:pk>', UserListView.as_view(), name="profile-view"),
-    path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name="profile-update"),
-#     path('profile/update', profileEdit, name='profile-update'),
-    path('password/<int:pk>', PasswordsChangeView.as_view(), name='password-view'),
+    path('profile/update/<int:pk>/', ProfileUpdateView.as_view(),
+         name="profile-update"),
+
+    path('password/<int:pk>', PasswordsChangeView.as_view(),
+         name='password-view'),
     path('password/update/<int:pk>', PasswordChangeSuccess.as_view(),
          name='password-update'),
     path('password_reset/', auth_views.PasswordResetView.as_view(
@@ -59,9 +60,10 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='hazard/components/password/password_reset_done.html'),
         name="password_reset_done"),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-        template_name='hazard/components/password/password_reset_confirm.html'),
-        name="password_reset_confirm"),
+    path('reset/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(
+             template_name='hazard/components/password/password_reset_confirm.html'),
+         name="password_reset_confirm"),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='hazard/components/password/password_reset_complete.html'),
         name="password_reset_complete"),

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -23,6 +24,10 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 
+class HomePage(TemplateView):
+    template_name = 'hazard/pages/index.html'
+
+
 class CustomLoginView(LoginView):    
     page_title = 'Login'
     context = {}
@@ -33,7 +38,7 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('hazards')
+        return reverse_lazy('homepage')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

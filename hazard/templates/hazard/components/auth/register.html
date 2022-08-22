@@ -1,42 +1,50 @@
 {% block content %}
 
-<div class="form-container">
-    <div>
-        <h1 class="py-5 text-center">Create your Safely account</h1>
+<div class="row center form-container page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Create your Safely account</h1>
     </div>
-    <form class="row g-3" method="POST">
-        <div class="col-8 offset-2">
+</div>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="row center form-container g-3 pb-3">
+        <div class="col-xs-12">
             <label for="id_username" name="username" class="form-label">Username</label>
             {{ form.username }}
         </div>
-        <div class="col-8 offset-2">
+        <div class="col-xs-12">
             <label for="id_password1" name="password1" class="form-label">Password</label>
             {{ form.password1 }}
         </div>
-        <div class="col-8 offset-2">
+        <div class="col-xs-12">
             <label for="id_password2" name="password2" class="form-label">Confirm</label>
             {{ form.password2 }}
         </div>
-        <div class="col-12 p-2 text-center">
-            <button type="submit" class="btn btn-primary btn-main">Register</button>
+        <div class="col-xs-12">
+            <button type="submit" class="btn btn-primary btn-main" role="button" aria-label="Login">
+                <i class="fa-solid fa-unlock"></i>
+                <span> Register</span>
+            </button>
         </div>
-        <div class="col-10 offset-1 offset-md-2 pb-4 text-smaller">
+        <div class="col-xs-12 text-smaller">
             Already have an account? <a href="{% url 'login' %}">Login</a>
-
         </div>
-        {% csrf_token %}
-    </form>
-    <hr>
-    <div class="col-8 offset-2 offset-md-2 py-5 text-smaller">
-        <h3>User and Password Tips</h3>
-        <ul>
-            <li>Password is required field. It must be 150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>
-            <li>Your password can’t be too similar to your other personal information.</li>
-            <li>Your password must contain at least 8 characters.</li>
-            <li>Your password can’t be a commonly used password.</li>
-            <li>Your password can’t be entirely numeric.</li>
-        </ul>
     </div>
+    {% csrf_token %}
+</form>
+<hr>
+<div id="password-change" class="row center form-container text-smaller g-3 pb-3">
+    <h3>User and Password Tips</h3>
+    <ul>
+        <li><i class="fa-solid fa-check"></i> Password is required field. It must be 150 characters or fewer. Letters,
+            digits and @/./+/-/_ only.</li>
+        <li><i class="fa-solid fa-check"></i> Your password can’t be too similar to your other personal information.
+        </li>
+        <li><i class="fa-solid fa-check"></i> Your password must contain at least 8 characters.</li>
+        <li><i class="fa-solid fa-check"></i> Your password can’t be a commonly used password.</li>
+        <li><i class="fa-solid fa-check"></i> Your password can’t be entirely numeric.</li>
+    </ul>
 </div>
+
 
 {% endblock content %}
