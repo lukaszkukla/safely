@@ -7,7 +7,7 @@
 </div>
 
 <form action="" method="POST" enctype="multipart/form-data">
-    <div class="row center form-container g-0">
+    <div class="row center form-container g-3 pb-3">
         <div class="col-xs-12">
             <label for="id_name">Name:</label>
             {{ form.name }}
@@ -16,7 +16,7 @@
             <label for="id_description">Description:</label>
             {{ form.description }}
         </div>
-        <div class="col-xs-12 pt-3">
+        <div class="col-6">
             <a class="back" href="{% url 'categories' %}">
                 <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
                     <i class="fa-solid fa-circle-chevron-left"></i>
@@ -24,7 +24,7 @@
                 </button>
             </a>
         </div>
-        <div class="col-xs-12 update-hazard pb-3">
+        <div class="col-6 update-hazard">
             <button type="submit" class="btn btn-success btn-edit">
                 <i class="fa-solid fa-circle-check" aria-label="Update"></i>
                 <span> Update</span>

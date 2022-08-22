@@ -1,15 +1,42 @@
 {% block content %}
 
-<div>
-    <h1>User Profile</h1>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">User Profile</h1>
+    </div>
+</div>
 
-    <a href="{% url 'hazards' %}">Go Back</a>
-        <p>Username: {{ user.username }}</p>
-        <p>First name: {{ user.first_name }}</p>
-        <p>Last name: {{ user.last_name }}</p>
-        <p>Email: {{ user.email }}</p>
-    <a href="{% url 'profile-update' user.id %}">Edit</a>
-
+<div class="row">
+    <div class="col-xs-12">
+        <p class="title-item-wrap"><strong>Username: </strong> {{ user.username }} </p>
+    </div>
+    <div class="col-xs-12">
+        <p class="title-item-wrap"><strong>First Name: </strong>{{ user.first_name }}</p>
+    </div>
+    <div class="col-xs-12">
+        <p class="title-item-wrap"><strong>Last name: </strong>{{ user.last_name }}</p>
+    </div>
+    <div class="col-xs-12">
+        <p class="title-item-wrap"><strong>Email: </strong>{{ user.email }}</p>
+    </div>
+</div>
+<div class="row btn-center g-3 pb-3">
+    <div class="col-6">
+        <a class="back" href="{% url 'hazards' %}">
+            <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+                <i class="fa-solid fa-circle-chevron-left"></i>
+                <span> Back</span>
+            </button>
+        </a>
+    </div>
+    <div class="col-6">
+        <a class="edit-record" href="{% url 'profile-update' user.id %}">
+            <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
+                <i class="fas fa-pen"></i>
+                <span> Edit</span>
+            </button>
+        </a>
+    </div>
 </div>
 
 {% endblock content %}

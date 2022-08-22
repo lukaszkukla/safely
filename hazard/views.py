@@ -189,7 +189,6 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'hazard/pages/hazard.html'
     context_object_name = 'hazard'
     success_url = reverse_lazy('hazards')
-    success_message = "Hazard record deleted"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -419,7 +418,6 @@ class CategoryDelete(LoginRequiredMixin, AdminAccessMixin,
     model = Category
     template_name = 'hazard/pages/category.html'
     success_url = reverse_lazy('categories')
-    success_message = "Category deleted"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -515,7 +513,6 @@ class RiskDelete(LoginRequiredMixin, AdminAccessMixin,
     model = Risk
     template_name = 'hazard/pages/risk.html'
     success_url = reverse_lazy('risks')
-    success_message = "Risk deleted"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -611,7 +608,6 @@ class StatusDelete(LoginRequiredMixin, AdminAccessMixin,
     model = Status
     template_name = 'hazard/pages/status.html'
     success_url = reverse_lazy('statuses')
-    success_message = "Status deleted"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,14 +1,38 @@
 {% block content %}
 
-<h1>Status</h1>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Status Delete</h1>
+    </div>
+</div>
 
-<a href="{% url 'statuses' %}">Go Back</a>
-
-<form action="" method="POST">
-    <p>Are you sure? The <strong>'{{ status.name }}'</strong> hazard record will be <strong>permanently deleted!</strong></p>
-    
-    {{ form.as_p }}    
-    <input type="submit" value="Delete">
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="row center form-container g-0">
+        <div class="col-12 p-3 mb-3 center">
+            <p>Are you sure you want to delete <strong>'{{ status.name }}'</strong>?</p>
+            <p>This status type will be <strong>deleted permanently</strong>!</p>
+        </div>
+    </div>    
+    <div class="row center form-container">
+        <div class="col-xs-12 p-2">
+            <p><strong>Status:</strong></p>
+            <p>{{ status.name }}</p>
+        </div>
+        <div class="col-6 pb-3">
+            <a class="back" href="{% url 'statuses' %}">
+                <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+                    <i class="fa-solid fa-circle-chevron-left"></i>
+                    <span> Back</span>
+                </button>
+            </a>
+        </div>
+        <div class="col-6 pb-3">
+            <button type="submit" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+                <i class="fa-solid fa-trash-can"></i>
+                <span> Delete</span>
+            </button>
+        </div>
+    </div>
 
     {% csrf_token %}
 </form>

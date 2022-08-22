@@ -1,14 +1,33 @@
 {% block content %}
 
-<h1>Create Status</h1>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Status Create</h1>
+    </div>
+</div>
 
-<a href="{% url 'statuses' %}">Go Back</a>
-
-<form action="" method="POST" enctype="multipart/form-data">    
-    {{ form.as_p }}    
-    <input type="submit" value="Save">
-
-    {% csrf_token %}
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="row center form-container g-3 pb-3">
+        <div class="col-xs-12">
+            <label for="id_level">Status:</label>
+            {{ form.name }}
+        </div>        
+        <div class="col-6">
+            <a class="back" href="{% url 'statuses' %}">
+                <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+                    <i class="fa-solid fa-circle-chevron-left"></i>
+                    <span> Back</span>
+                </button>
+            </a>
+        </div>
+        <div class="col-6 update-hazard">
+            <button type="submit" class="btn btn-success btn-edit">
+                <i class="fa-solid fa-circle-check" aria-label="Save"></i>
+                <span> Save</span>
+            </button>
+        </div>
+        {% csrf_token %}
+    </div>
 </form>
 
 {% endblock content %}

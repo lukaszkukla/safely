@@ -1,17 +1,58 @@
 {% block content %}
 
-<h1>Status List</h1>
+<div class="row page-header">
+    <div class="col-xs-12">
+        <h1 class="center-text title-page">Status List</h1>
+    </div>
+</div>
 
-<a href="{% url 'hazards' %}">Go Back</a>
-
-<a href="{% url 'statuses-create' %}">Add Status</a>
-
-{% for status in statuses %}
-<p>Name: {{ status.name }}</p>
-<p>ID: {{ status.id }}</p>
-<a href="{% url 'statuses-update' status.pk %}">Edit</a>
-<a href="{% url 'statuses-delete' status.pk %}">Delete</a>
-
-{% endfor %}
+<div class="col-xs-12 my-3">
+    <a class="back" href="{% url 'hazards' %}">
+        <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+            <i class="fa-solid fa-circle-chevron-left"></i>
+            <span> Back</span>
+        </button>
+    </a>
+</div>
+<div class="col-xs-12 mb-3">
+    <a class="edit-record" href="{% url 'statuses-create' %}">
+        <button type="button" class="btn btn-success btn-add p-3" role="button" aria-label="Add New Record">
+            <i class="fa-solid fa-circle-plus fa-lg"></i>
+            <span> Add</span>
+        </button>
+    </a>
+</div>
+<div class="card-container">
+    <div class="row space-evenly">
+        {% for status in statuses %}
+        <div class="form-container card">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="card-status title-item-wrap">Status Type:</p>
+                    <p>{{ status.name }}</p>
+                </div>
+            </div>
+            <div class="row btn-center g-2">
+                <div class="col-6">
+                    <a class="edit-record" href="{% url 'statuses-update' status.pk %}">
+                        <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
+                            <i class="fas fa-pen"></i>
+                            <span> Edit</span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a class="edit-record" href="{% url 'statuses-delete' status.pk %}">
+                        <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span> Delete</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock content %}
