@@ -28,7 +28,8 @@ from .views import (
     PasswordsChangeView,
     PasswordChangeSuccess,
     UserListView,
-    ProfileUpdateView
+    ProfileUpdateView,
+    PrivacyPolicy
 )
 
 
@@ -38,6 +39,7 @@ urlpatterns = [
     path('register/', Register.as_view(), name='register'),
 
     path('', HomePage.as_view(), name='homepage'),
+    path('privacy/', PrivacyPolicy.as_view(), name='privacy-policy'),
     path('hazard/', HazardList.as_view(), name='hazards'),
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard/create/', HazardCreate.as_view(), name='hazard-create'),

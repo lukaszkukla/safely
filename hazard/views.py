@@ -27,6 +27,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 class HomePage(TemplateView):
     template_name = 'hazard/pages/index.html'
 
+class PrivacyPolicy(TemplateView):
+    template_name = 'hazard/pages/privacy.html'
 
 class CustomLoginView(LoginView):    
     page_title = 'Login'
