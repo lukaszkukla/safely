@@ -27,10 +27,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 class HomePage(TemplateView):
     template_name = 'hazard/pages/index.html'
 
+
 class PrivacyPolicy(TemplateView):
     template_name = 'hazard/pages/privacy.html'
 
-class CustomLoginView(LoginView):    
+
+class ThanksPage(TemplateView):
+    template_name = 'hazard/pages/thanks.html'
+    success_url = reverse_lazy('thanks')
+
+
+class CustomLoginView(LoginView):
     page_title = 'Login'
     context = {}
     form_class = LoginForm

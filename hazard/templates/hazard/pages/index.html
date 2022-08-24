@@ -7,34 +7,46 @@
 <div id="hero">
     <div class="hero-image"></div>
     <div class="hero-text">
-        Your memories… <br>
-        painted with light like nothing else you’ve ever seen before…
-    </div>
-    <a href="#ethos">
-        <div class="scroll-down">
-            scroll down
-        </div>
-    </a>
-</div>
-<div class="row center form-container g-3 pb-3">
-    <div class="col-xs-12">
-        <p>random text</p>
+        <p>Your safety</p>
+        <p>is our priority</p>
     </div>
 </div>
-
 
 <section id="about">
     <div class="row center form-container g-3 pb-3">
         <div class="col-xs-12">
-            <p>Text abouts</p>
+            <h2 class="section-header">About</h2>
         </div>
         <div class="col-xs-12">
-            <p>text about 2</p>
+            <p>
+                Safely Ltd. is a newly established business in the outskirts of Dublin, Republic of Ireland. It was
+                founded by 2 friends who share common goal of making workplace a safe place.
+            </p>
+            <p>
+                Pinky and Brain have vast experience in health and safety, risk assessment and management. Their
+                previous employers were in need of a simple solution that help them record and keep track of any risks
+                and inicidents that might happen in the workplace. As a project leads in finding such a software they
+                have done extensive research in finding the perfect solution.
+            </p>
+            <p>
+                Pinky and Brain decided to join their forces and share their researches with each other. They exchanged
+                information and pros and cons of all tested solutions to speed up their work.
+            </p>
+            <p>
+                They both came to same conclusion that none of the apps available on the market could satisfy their
+                needs. Many apps required expensive and extensive implementations, often overloaded with features that
+                required hours of training.
+            </p>
+            <p>
+                This insight gave them an idea to build their own app. They both work for a global companies that can
+                afford to spend money and build something that will meet their needs. With that in mind both Pinky and
+                Brain sold the idea to the board of directors and got funding to build the app and start a new venture.
+            </p>
         </div>
     </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="pt-3">
     <div class="row center form-container g-3 pb-3">
         <div class="col-xs-12">
             <h2 class="section-header">let's talk...</h2>
@@ -46,14 +58,14 @@
         <div class="col-xs-12">
             <h3>contact</h3>
             <ul>
-                <li><i class="fas fa-globe"></i> kukladev.com</li>
+                <li><a href="http://kukladev.com/" target="_blank" rel="noopener"><i class="fas fa-globe"></i> kukladev.com</a></li>
                 <li><a href="tel:+353870540026"><i class="fas fa-phone-alt"></i> +353 87 054 0026</a></li>
                 <li><a href="mailto:lukaszkukladev@gmail.com"><i class="fas fa-envelope"></i>
                         lukaszkukladev@gmail.com</a></li>
             </ul>
         </div>
     </div>
-    <form method="get" action="" class="contact-form">
+    <form method="GET" action="{% url 'thanks' %}" class="contact-form">
         <div class="row center form-container g-3 pb-3">
             <div class="col-xs-12">
                 <label for="name" class="contact-form-label">name (required)</label>
@@ -78,11 +90,12 @@
             <div class="col-xs-12">
                 <button type="submit" class="btn btn-success btn-edit" aria-label="submit form button">
                     <i class="fa-solid fa-paper-plane"></i>
-                    <span> let's talk</span>
+                    <span> Contact me</span>
                 </button>
             </div>
+            {% csrf_token %}
+        </div>
     </form>
-    </div>
 </section>
-</main>
+
 {% endblock content %}

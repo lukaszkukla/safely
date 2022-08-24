@@ -47,9 +47,9 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
     * [Final Thoughts](#final-thoughts "Final Thoughts")
 
 # Background
-Safely Ltd. is a newly established business in the outskirts of Dublin, Republic of Ireland. The was founded by 2 friends who share common goal of making workplace a safe place. 
+Safely Ltd. is a newly established business in the outskirts of Dublin, Republic of Ireland. It was founded by 2 friends who share common goal of making workplace a safe place. 
 
-Pinky and Brain have vast experience in health and safety, risk assessment and management. Their previous employers were in need of a simple solution that help them record and keep track of any risks and inicidents that might happen in the workplace. As a project leads in finding such a software they have done extensive research in finding the perfect solution. 
+Pinky and the Brain have vast experience in health and safety, risk assessment and management. Their previous employers were in need of a simple solution that help them record and keep track of any risks and inicidents that might happen in the workplace. As a project leads in finding such a software they have done extensive research in finding the perfect solution. 
 
 Pinky and Brain decided to join their forces and share their researches with each other. They exchanged information and pros and cons of all tested solutions to speed up their work.
 

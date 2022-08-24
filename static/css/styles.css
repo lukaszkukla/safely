@@ -610,16 +610,16 @@ hr {
     width: 100%;
     position: relative;
     overflow: hidden;
-    max-height: calc(100vh - 6rem);
+    max-height: calc(100vh);
     z-index: 1;
 }
 
 .hero-image {
     /* push hero image down so it's not covered by navbar */
-    height: calc(100vh - 3rem);
+    height: calc(100vh);
 
     width: 100%;
-    background: url('https://res.cloudinary.com/lkcloud/image/upload/v1661209387/safely/forest-road-radioactive-hazard-sign_vjjan7.jpg') no-repeat center center;
+    background: url('https://res.cloudinary.com/lkcloud/image/upload/v1661346361/safely/hazards/Collection_of_Construction_Safety_Helmet_d5p7an.jpg') no-repeat center center;
 
     /* animates zoom effect on loadig page */
     -webkit-animation-name: hero-zoom;
@@ -659,12 +659,13 @@ hr {
 /* hero text */
 
 .hero-text {
-    font-size: 1.8rem;
-    text-transform: lowercase;
-    text-align: left;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    align-items: center;
+    text-align: center;
     width: 28rem;
     height: 12rem;
-    padding: 1rem 1rem 0 1rem;
+    padding: 2rem 1rem 0 1rem;
     background-color: var(--light-grey-transparent);
     bottom: 20rem;
     position: relative;
