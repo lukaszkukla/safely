@@ -5,54 +5,53 @@
         <h1 class="center-text title-page">Risk List</h1>
     </div>
 </div>
-
-<div class="col-xs-12 my-3">
-    <a class="back" href="{% url 'hazards' %}">
-        <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-            <i class="fa-solid fa-circle-chevron-left"></i>
-            <span> Back</span>
-        </button>
-    </a>
-</div>
-<div class="col-xs-12 mb-3">
-    <a class="edit-record" href="{% url 'risks-create' %}">
-        <button type="button" class="btn btn-success btn-add p-3" role="button" aria-label="Add New Record">
-            <i class="fa-solid fa-circle-plus fa-lg"></i>
-            <span> Add</span>
-        </button>
-    </a>
-</div>
-<div class="card-container">
-    <div class="row space-evenly">
-        {% for risk in risks %}
-        <div class="form-container card">
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="card-status title-item-wrap">Risk Level:</p>
-                    <p>{{ risk.level }}</p>
-                </div>
-            </div>
-            <div class="row btn-center g-2">
-                <div class="col-6">
-                    <a class="edit-record" href="{% url 'risks-update' risk.pk %}">
-                        <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
-                            <i class="fas fa-pen"></i>
-                            <span> Edit</span>
-                        </button>
-                    </a>
-                </div>
-                <div class="col-6">
-                    <a class="edit-record" href="{% url 'risks-delete' risk.pk %}">
-                        <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
-                            <i class="fa-solid fa-trash-can"></i>
-                            <span> Delete</span>
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+<div class="form-container">
+    <div class="col-xs-12 my-3">
+        <a class="back" href="{% url 'hazards' %}">
+            <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
+                <i class="fa-solid fa-circle-chevron-left"></i>
+                <span> Back</span>
+            </button>
+        </a>
     </div>
+    <div class="col-xs-12 mb-3">
+        <a class="edit-record" href="{% url 'risks-create' %}">
+            <button type="button" class="btn btn-success btn-add p-3" role="button" aria-label="Add New Record">
+                <i class="fa-solid fa-circle-plus fa-lg"></i>
+                <span> Add</span>
+            </button>
+        </a>
+    </div>
+</div>
+{% for risk in risks %}
+<div class="form-container card">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="card-status title-item-wrap">Risk Level:</p>
+            <p>{{ risk.level }}</p>
+        </div>
+    </div>
+    <div class="row btn-center g-2">
+        <div class="col-6">
+            <a class="edit-record" href="{% url 'risks-update' risk.pk %}">
+                <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
+                    <i class="fas fa-pen"></i>
+                    <span> Edit</span>
+                </button>
+            </a>
+        </div>
+        <div class="col-6">
+            <a class="edit-record" href="{% url 'risks-delete' risk.pk %}">
+                <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span> Delete</span>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
 </div>
 
 {% endblock content %}

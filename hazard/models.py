@@ -41,7 +41,7 @@ class Category(models.Model):
 
 
 class Risk(models.Model):
-    level = models.CharField(max_length=6, unique=True, default='Low')
+    level = models.CharField(max_length=6, unique=True)
 
     def __str__(self):
         return self.level
@@ -52,7 +52,7 @@ class Risk(models.Model):
 
 
 class Status(models.Model):
-    name = models.CharField(max_length=8, unique=True, default='Open')
+    name = models.CharField(max_length=8, unique=True)
 
     def __str__(self):
         return self.name
@@ -60,25 +60,4 @@ class Status(models.Model):
     class Meta:
         verbose_name_plural = 'Statuses'
         ordering = ['id']
-
-# class UserProfile(models.Model):
-#     """
-#     An extension of django's User model
-#     to hold phone number
-#     """
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     phone_number = models.CharField(max_length=15, null=True, blank=True)
-
-#     def __str__(self):
-#         return self.user.username
-
-# @receiver(post_save, sender=User)
-# def create_update_user_profile(sender, instance, created, **kwargs):
-#     """
-#     Create and update user profile
-#     """
-    
-#     if created:
-#         UserProfile.objects.create(user=instance)
-#     # If user already exists, update profile
-#     instance.userprofile.save()
+        

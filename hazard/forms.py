@@ -11,6 +11,7 @@ class PasswordChangingForm(PasswordChangeForm):
     Creates form for user to change password
     """
     old_password = forms.CharField(
+        max_length=100,
         label='Old Password',
         widget=forms.PasswordInput(
             attrs={
