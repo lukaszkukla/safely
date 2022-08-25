@@ -61,19 +61,19 @@ urlpatterns = [
     path('password-reset/', auth_views.PasswordResetView.as_view(
         template_name='hazard/pages/password.html'),
         name="password-reset"),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='hazard/pages/password.html'
     ),
-        name="password_reset_done"),
+        name="password-reset-done"),
     path('reset/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
              template_name='hazard/pages/password.html'
          ),
-         name="password_reset_confirm"),
+         name="password-reset-confirm"),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='hazard/pages/password.html'
     ),
-        name="password_reset_complete"),
+        name="password-reset-complete"),
     path('categories', CategoryList.as_view(), name='categories'),
     path('categories/create/', CategoryCreate.as_view(),
          name='categories-create'),
