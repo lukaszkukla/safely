@@ -11,6 +11,7 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
 &nbsp;
 
 # Table of Contents
+* [Database Disclaimer](#database-disclaimer "Database Disclaimer")
 * [Background](#background "Background")
 * [Mission Statement](#mission-statement "Mission Statement")
 * [Target Audience](#target-audience "Target Audience")
@@ -45,6 +46,17 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
         * Deployment via Heroku
     * [Credits](#credits "Credits")
     * [Final Thoughts](#final-thoughts "Final Thoughts")
+
+# Database Disclaimer
+Heroku reguralry performs database maintenance. When this happens hostname and credentials change. If upon project submission such error occurs please contact me directly or through the student support department so I can update the link.
+Please note this is outside my control. Below is the example of email from Heroku that is sent to user admin when this happens.
+
+    *Heroku
+    Your database DATABASE_URL on app-safely requires maintenance. During this period, your database will become read-only. Once maintenance has completed, your database credentials and hostname will have changed, but we will update your app's config variables accordingly to reflect the new database connection string.*
+
+    *This automated maintenance is a necessary part of our Hobby tier plans, Dev and Basic. Should you need more control over maintenance windows, a production database (Standard tier or higher) offers more control over database maintenance, as we are able to schedule them in advance and provide better tools for self-served maintenance.*
+
+    *We expect maintenance to last just a few moments depending on the size of your database. We will notify you when maintenance begins, and again once it's complete.*
 
 # Background
 Safely Ltd. is a newly established business in the outskirts of Dublin, Republic of Ireland. It was founded by 2 friends who share common goal of making workplace a safe place. 
