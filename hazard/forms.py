@@ -12,6 +12,8 @@ class PasswordChangingForm(PasswordChangeForm):
     """
     old_password = forms.CharField(
         max_length=100,
+        required=True,
+        error_messages={'required': 'Please enter your name'},
         label='Old Password',
         widget=forms.PasswordInput(
             attrs={
@@ -21,6 +23,7 @@ class PasswordChangingForm(PasswordChangeForm):
     )
     new_password1 = forms.CharField(
         max_length=100,
+        required=True,
         label='New Password',
         widget=forms.PasswordInput(
             attrs={
@@ -30,6 +33,7 @@ class PasswordChangingForm(PasswordChangeForm):
     )
     new_password2 = forms.CharField(
         max_length=100,
+        required=True,
         label='Confirm Password',
         widget=forms.PasswordInput(
             attrs={
