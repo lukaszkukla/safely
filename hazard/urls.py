@@ -59,7 +59,7 @@ urlpatterns = [
     path('password/update/<int:pk>', PasswordChangeSuccess.as_view(),
          name='password-update'),
     path('password-reset/', auth_views.PasswordResetView.as_view(
-        template_name='hazard/components/password/password_reset.html'),
+        template_name='hazard/pages/password.html'),
         name="password-reset"),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='hazard/components/password/password_reset_done.html'
