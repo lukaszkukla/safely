@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
@@ -138,3 +138,15 @@ class HazardDetailsForm(forms.ModelForm):
         """
         model = Hazard
         fields = '__all__'
+
+
+class UserPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+        'class': 'col-xs-12',
+        'placeholder': 'please enter your email',
+        'type': 'email',
+        'name': 'email'
+        }))
