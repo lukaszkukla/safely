@@ -1,14 +1,15 @@
 {% block content %}
-
-<div class="row page-header">
-    <div class="col-xs-12">
-        <h1 class="center-text title-page">Hazard Details</h1>
-        <h3 class="title-item-wrap">{{ hazard.title }}</h3>
+<div class="row center form-container g-0">
+    <div class="row page-header">
+        <div class="col-xs-12">
+            <h1 class="center-text title-page">Hazard Details</h1>
+            <h3 class="title-item-wrap"><strong>Title:</strong> {{ hazard.title }}</h3>
+        </div>
     </div>
 </div>
 
 <div class="mb-3">
-    <div class="row">
+    <div class="row center form-container g-0">
         <div class="col-12 card p-3 mb-3 center">
             {% if 'placeholder' in hazard.image.url %}
             <img class=""
@@ -19,8 +20,8 @@
             {% endif %}
         </div>
     </div>
-    <div class="row">
-        {% if hazard.level.level == 'Low' %}        
+    <div class="row center form-container g-0">
+        {% if hazard.level.level == 'Low' %}
         <div class="col-6 text-center resolved-icon">
             <p class="card-status">Risk Level:</p>
             <p><i class="fa-solid fa-temperature-low"></i>
@@ -48,7 +49,7 @@
                 {{ hazard.level }}
             </p>
         </div>
-        {% endif %}        
+        {% endif %}
         {% if user.is_superuser %}
         {% if hazard.status.name == 'Resolved' %}
         <div class="col-6 resolved-icon text-center">
@@ -103,8 +104,8 @@
             {% if hazard.status.name == 'Resolved' %}
             <div class="col-6 col-md-6 resolved-icon text-center">
                 <p class="card-status">Status:</p>
-                    <i class="fa-solid fa-circle-check"></i>
-                    {{ hazard.status }}
+                <i class="fa-solid fa-circle-check"></i>
+                {{ hazard.status }}
                 </p>
             </div>
             {% elif hazard.status.name == 'Pending' %}
@@ -134,7 +135,7 @@
             <div class="col-xs-12">
                 <a class="back" href="{% url 'hazards' %}">
                     <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-                        <i class="fa-solid fa-circle-chevron-left"></i> 
+                        <i class="fa-solid fa-circle-chevron-left"></i>
                         <span> Back</span>
                     </button>
                 </a>

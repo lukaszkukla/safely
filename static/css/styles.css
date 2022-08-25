@@ -701,3 +701,17 @@ hr {
     font-size: 2rem;
     padding: 3rem 2rem;
 }
+
+/* media queries */
+
+@media screen and (min-width: 896px) {
+    .form-container {
+        max-width: 70rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .form-container {
+        max-width: 85rem;
+    }
+}
