@@ -107,6 +107,7 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields = ('username', 'password1', 'password2')
 
+
 class ProfileForm(forms.ModelForm):
     """
     Creates user profile form
@@ -127,24 +128,9 @@ class HazardDetailsForm(forms.ModelForm):
     """
     Creates hazard details form
     """
-    # category = forms.CharField(
-    #     max_length=200,
-    #     widget=forms.TextInput(
-    #         attrs={
-    #             'class': 'col-12 input-main form-control'
-    #         }
-    #     )
-    # )
-    # title = forms.CharField(
-    #     max_length=200,
-    #     widget=forms.TextInput(
-    #         attrs={
-    #             'class': 'col-12 input-main form-control'
-    #         }
-    #     )
-    # )
-
-    
     class Meta:
+        """
+        Meta class for HazardDetailsForm class
+        """
         model = Hazard
         fields = '__all__'

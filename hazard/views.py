@@ -2,42 +2,72 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.urls import is_valid_path, reverse, reverse_lazy
+from django.views.generic.edit import (
+    CreateView,
+    UpdateView,
+    DeleteView,
+    FormView
+)
+
+from django.urls import reverse_lazy
 from django.http import Http404
-from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.views import LoginView, PasswordChangeView
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-
-from .models import Hazard, Category, Risk, Status
-from django.contrib.auth.views import redirect_to_login
-from .forms import PasswordChangingForm, LoginForm, UserRegistrationForm, ProfileForm, HazardDetailsForm
-
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from django.contrib.auth.forms import UserModel
-
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin
+)
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
+from django.contrib.auth.forms import (
+    UserChangeForm,
+    PasswordChangeForm,
+    UserModel,
+    UserCreationForm
+)
+
+from django.contrib.auth import login
+from django.contrib.auth.views import redirect_to_login
+
+from django.contrib.auth.models import User
+from .models import Hazard, Category, Risk, Status
+
+from .forms import (
+    PasswordChangingForm,
+    LoginForm,
+    UserRegistrationForm,
+    ProfileForm,
+    HazardDetailsForm
+)
+
 
 class HomePage(TemplateView):
+    """
+    Class that displays homepage (index.html)
+    """
     template_name = 'hazard/pages/index.html'
 
 
 class PrivacyPolicy(TemplateView):
+    """
+    Class that displays privacy policy page
+    """
     template_name = 'hazard/pages/privacy.html'
 
 
 class ThanksPage(TemplateView):
+    """
+    Class that displays thanks page upon contact form submission
+    """
     template_name = 'hazard/pages/thanks.html'
     success_url = reverse_lazy('thanks')
 
 
 class CustomLoginView(LoginView):
+    """
+    Class that displays customised login form
+    """
     page_title = 'Login'
     context = {}
     form_class = LoginForm
@@ -57,6 +87,9 @@ class CustomLoginView(LoginView):
 
 
 class Register(SuccessMessageMixin, FormView):
+    """
+    Class that allows to register a new user
+    """
     page_title = 'Register'
     context = {}
     context['page'] = 'register'
@@ -86,6 +119,10 @@ class Register(SuccessMessageMixin, FormView):
 
 
 class HazardList(LoginRequiredMixin, ListView):
+    """
+    Class that displays list of all hazards for the logged in user,
+    or all hazards for all users if logged as admin
+    """
     model = Hazard
     template_name = 'hazard/pages/hazard.html'
     context_object_name = 'hazards'
@@ -118,7 +155,10 @@ class HazardList(LoginRequiredMixin, ListView):
 
 
 class HazardDetail(LoginRequiredMixin, DetailView):
-    model = Hazard    
+    """
+    Class that allow user to see details of recorded hazard
+    """
+    model = Hazard
     template_name = 'hazard/pages/hazard.html'
     context_object_name = 'hazard'
 
@@ -140,7 +180,6 @@ class HazardCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     """
     Class that allows admin to create a new hazard record
     """
-
     model = Hazard
     template_name = 'hazard/pages/hazard.html'
     fields = [
@@ -198,7 +237,6 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     """
     Class that allows admin to delete own hazard record
     """
-
     model = Hazard
     template_name = 'hazard/pages/hazard.html'
     context_object_name = 'hazard'
@@ -209,31 +247,6 @@ class HazardDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         context['page'] = 'hazard-delete'
         context['title'] = 'Hazard Delete'
         return context
-        
-
-def profileView(request):
-    context = {'page': 'profile-view'}
-    if request.user.is_authenticated:
-        return render(request, 'hazard/components/profile/profile_view.html', context)
-    return redirect('login')
-
-
-def profileEdit(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = EditProfileForm(request.POST, instance=request.user)
-
-            if form.is_valid():
-                form.save()
-                messages.success(request, "Profile updated")
-                return redirect('profile-view')
-        else:
-            form = EditProfileForm(instance=request.user)
-            args = {'form': form}
-
-        return render(request, 'hazard/components/profile/profile_update.html', args)
-
-    return redirect('login')
 
 
 class UserListView(LoginRequiredMixin, DetailView):
@@ -337,9 +350,16 @@ class PasswordChangeSuccess(SuccessMessageMixin, PasswordChangeView):
 
 
 class AdminAccessMixin(PermissionRequiredMixin):
+    """
+    Class that checks if user has admin access
+    """
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
-            return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+            return redirect_to_login(
+                self.request.get_full_path(),
+                self.get_login_url(),
+                self.get_redirect_field_name()
+            )
         if not self.has_permission():
             return redirect('/')
         return super(AdminAccessMixin, self).dispatch(request, *args, **kwargs)
@@ -349,7 +369,6 @@ class CategoryList(LoginRequiredMixin, AdminAccessMixin, ListView):
     """
     Class that allows admin to view category list
     """
-
     raise_exception = False
     permission_required = 'categories.view_categories'
     permission_denied_message = ""
@@ -527,7 +546,7 @@ class RiskDelete(LoginRequiredMixin, AdminAccessMixin,
     model = Risk
     template_name = 'hazard/pages/risk.html'
     success_url = reverse_lazy('risks')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page'] = 'risk-delete'
@@ -632,11 +651,9 @@ class StatusDelete(LoginRequiredMixin, AdminAccessMixin,
 
 def error404View(request, exception=None):
     """ A view to return the 404 page """
-
     return render(request, 'hazard/pages/404.html')
 
 
 def server_error_500(request):
     """ A view to return the 500 page """
-
     return render(request, 'hazard/pages/500.html')
