@@ -6,6 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Hazard
 
 
+
+
 class PasswordChangingForm(PasswordChangeForm):
     """
     Creates form for user to change password
@@ -144,9 +146,9 @@ class UserPasswordResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
         super(UserPasswordResetForm, self).__init__(*args, **kwargs)
 
-    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={
         'class': 'col-xs-12',
         'placeholder': 'please enter your email',
         'type': 'email',
         'name': 'email'
-        }))
+    }))

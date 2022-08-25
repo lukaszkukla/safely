@@ -4,7 +4,7 @@ from django.contrib.auth.views import LogoutView
 
 from django.contrib.auth import views as auth_views
 
-from .forms import UserPasswordResetForm
+from .forms import UserPasswordResetForm, PasswordChangingForm
 
 
 from .views import (
@@ -45,6 +45,7 @@ urlpatterns = [
     path('', HomePage.as_view(), name='homepage'),
     path('thanks/', ThanksPage.as_view(), name='thanks'),
     path('privacy/', PrivacyPolicy.as_view(), name='privacy-policy'),
+    
     path('hazard/', HazardList.as_view(), name='hazards'),
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard/create/', HazardCreate.as_view(), name='hazard-create'),
@@ -57,18 +58,18 @@ urlpatterns = [
     path('profile/update/<int:pk>/', ProfileUpdateView.as_view(),
          name="profile-update"),
 
-    path('password/<int:pk>', PasswordsChangeView.as_view(),
-         name='password-view'),
+    path('password/<int:pk>', PasswordsChangeView.as_view(
+         form_class=PasswordChangingForm
+         ),
+         name='password-view'
+         ),
     path('password/update/<int:pk>', PasswordChangeSuccess.as_view(),
          name='password-update'),
     path('password_reset/', auth_views.PasswordResetView.as_view(
-        template_name='hazard/components/password/password_reset.html',
-        form_class=UserPasswordResetForm),
-        name='password_reset'
-     ),
-#     path('password_reset/', auth_views.PasswordResetView.as_view(
-#         template_name='hazard/components/password/password_reset.html'),
-#         name="password_reset"),
+         template_name='hazard/components/password/password_reset.html',
+         form_class=UserPasswordResetForm),
+         name='password_reset'
+         ),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='hazard/components/password/password_reset_done.html'
     ),
