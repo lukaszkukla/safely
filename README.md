@@ -435,17 +435,15 @@ There are a few ideas that I would like to implement in the future:
 |JS Validation|Validating JS & jQuery|[jshint](https://jshint.com/ "JSHint")|
 |PEP8|Validating python|[PEP8](http://pep8online.com/ "PEP8")|
 | Lucid | Site structure design | [Lucid](https://lucid.co/ "Lucid")|
-| **~~LOADING.IO~~** | Spin Loader | [loading.io](https://loading.io/ "loading.io")|
 | Pexels | Images |[Pexels](https://pexels.com/ "Pexels")|
 | TinyPng | Image optimisation | [TinyPNG](https://tinypng.com/ "TinyPNG")|
 | jpg2png.com | Image converter | [jpg2png](https://jpg2png.com/ "jpg2png")|
 | GitPod | Development environment |[Gitpod](https://www.gitpod.io/ "Gitpod")|
 | WireframePro | Structure and App Flow |[diagrams.net](https://www.diagrams.net/ "diagrams.net")|
 | WireframePro | Wireframes |[WireframePro](https://mockflow.com/design/wireframepro/ "WireframePro")|
-| Vertabelo | Database Schema |[Vertabelo](https://vertabelo.com/ "Vertabelo")|
+| drawSQL | Database Schema |[drawSQL](https://drawsql.app/ "drawSQL")|
 | Bootstrap | Responsive design |[Bootstrap](https://getbootstrap.com "Bootstrap")|
 | Font Awesome | Icons |[Font Awesome library](https://fontawesome.com/ "Font Awesome")|
-| miniwebtool | Secret Key |[Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/ "miniwebtool")|
 | Colours | Colour pallet| [coolors](https://coolors.co/ "coolors")|
 | Google Fonts| Fonts |[Google Fonts](https://fonts.google.com/ "Fonts")|
 | WebAIM| Colour contrast checks |[WebAIM](https://webaim.org/resources/contrastchecker/ "WebAIM")|
