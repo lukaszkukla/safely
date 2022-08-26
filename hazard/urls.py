@@ -45,7 +45,7 @@ urlpatterns = [
     path('', HomePage.as_view(), name='homepage'),
     path('thanks/', ThanksPage.as_view(), name='thanks'),
     path('privacy/', PrivacyPolicy.as_view(), name='privacy-policy'),
-    
+
     path('hazard/', HazardList.as_view(), name='hazards'),
     path('hazard/<int:pk>/', HazardDetail.as_view(), name='hazard'),
     path('hazard/create/', HazardCreate.as_view(), name='hazard-create'),
@@ -76,7 +76,8 @@ urlpatterns = [
         name="password_reset_done"),
     path('reset/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
-             template_name='hazard/components/password/password_reset_confirm.html'
+             template_name='hazard/components/\
+             password/password_reset_confirm.html'
          ),
          name="password_reset_confirm"),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(

@@ -17,14 +17,11 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     PermissionRequiredMixin
 )
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.contrib.auth.forms import (
     UserChangeForm,
     PasswordChangeForm,
-    UserModel,
-    UserCreationForm
 )
 
 from django.contrib.auth import login
