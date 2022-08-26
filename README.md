@@ -241,7 +241,7 @@ The only requirement was to ensure that any images used in the app will correspo
 
 ## Models
 
-### Hazards
+### Hazard
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
@@ -258,7 +258,7 @@ The only requirement was to ensure that any images used in the app will correspo
 \
 &nbsp;
 
-### HazardCategories
+### Category
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
@@ -267,33 +267,21 @@ The only requirement was to ensure that any images used in the app will correspo
 \
 &nbsp;
 
-### RiskLevels
+### Risk
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
-| risk_level | | CharField | max_length=5, unique=True, null=False, blank=False, editable=False
+| level | | CharField | max_length=5, unique=True, null=False, blank=False, editable=False
 
 \
 &nbsp;
 
-### StatusTypes
+### Status
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
-| status_name |  | CharField | max_length=8, unique=True, null=False, blank=False, editable=False
+| name |  | CharField | max_length=8, unique=True, null=False, blank=False, editable=False
 
-\
-&nbsp;
-
-### UsersProfile
-
-| Name | Key | Type | Other Details
-| -- | -- | -- | --
-| user | FK (User) | | on_delete=models.CASCADE
-| first_name | | CharField | max_length=50, null=False, blank=False
-| last_name | | CharField | max_length=50, null=False, blank=False
-| email | | CharField | max_length=255, null=False, blank=False
-| phone_number | | | max_length=15, null=True, blank=True 
 
 \
 &nbsp;
@@ -312,27 +300,30 @@ The navigation bar is fully responsive to adapt to various screen sizes. It is *
 
 - Unauthenticated user view:
 
-![Mobile](docs/features/mobile.png "Mobile")
+[Mobile](docs/features/unauthenticated-mobile.png "Mobile")
 
-![Desktop](docs/features/desktop.png "Desktop")
+[Desktop](docs/features/unauthenticated-desktop.png "Desktop")
+
 
 - Authenticated, standard user view:
 
-![Mobile](docs/features/mobile-standard-user.png "Mobile")
+[Mobile](docs/features/mobile-standard-user.png "Mobile")
 
-![Desktop](docs/features/desktop-standard-user.png "Desktop")
+[Desktop](docs/features/desktop-standard-user.png "Desktop")
 
 - Authenticated, administrator view: 
 
-![Mobile](docs/features/mobile-admin-user.png "Mobile")
+[Mobile](docs/features/mobile-admin-user.png "Mobile")
 
-![Desktop](docs/features/desktop-admin-user.png "Desktop")
+[Desktop](docs/features/desktop-admin-user.png "Desktop")
 
 ### Administrator
 
-Administrator can see list of all recorded hazards for every user. It can also add, update and delete categories of hazards.
+Administrator can see list of all recorded hazards for every user. It can also add, update and delete categories, risks and statuses.
 
-![Administrator Dashboard](docs/features/administrator-dashboard.png "Administrator Dashboard")
+[Administrator Dashboard](docs/features/administrator-dashboard.png "Administrator Dashboard")
+
+[Standard User Dashboard](docs/features/standard-user-dashboard.png "Standard User Dashboard")
 
 ### Footer
 
@@ -341,14 +332,10 @@ The footer is responsive to adapt to various screen sizes. Each item of the foot
 ![Footer](docs/features/footer.png "Footer")
 
 ### Homepage
-The home page is divided into four sections:
-- Hero Image, with the company slogan
+The home page is divided into sections:
+- Hero Image, with the slogan
 
 ![Hero Image](docs/features/hero.png "Hero")
-
-- About the app, a brief description of the actual product
-
-![About The App](docs/features/about-app.png "About The App")
 
 - About the company, a brief description of the company
 
