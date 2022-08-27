@@ -149,7 +149,8 @@ class UserPasswordResetForm(PasswordResetForm):
             attrs={
                 'class': 'col-xs-12',
                 'placeholder': 'please enter your email',
-                'type': 'email'
+                'type': 'email',
+                'name': 'email'
             }
         )
     )
