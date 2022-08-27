@@ -282,7 +282,6 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     Class allows to edit details of logged user
     """
-
     model = User
     form_class = ProfileForm
     template_name = 'hazard/pages/profile.html'

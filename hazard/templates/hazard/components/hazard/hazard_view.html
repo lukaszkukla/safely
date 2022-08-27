@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="row page-header">
+<div class="row page-header form-container">
     <div class="col-xs-12">
         <h1 class="center-text title-page">Hazard Records</h1>
         <h3>
@@ -14,15 +14,18 @@
             record{{ resolved|pluralize:'s' }}
         </h3>
     </div>
+</div>
+<div class="row center form-container g-3 pb-3">
     <div class="col-xs-12 my-3">
         <form method="GET" class="search-hazard-form">
             <div class="row">
-                <div class="col-8">
+                <div class="col-7">
                     <input type="search" name="search" value="{{ search_input }}"
                         class="search-hazard-form-input form-control">
                 </div>
-                <div class="col-4">
-                    <button type="submit" class="btn search-hazard-form-btn btn-dark btn-view btn-search">
+                <div class="col-5">
+                    <button type="submit" class="btn search-hazard-form-btn btn-dark btn-view btn-search"
+                        aria-label="Search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <span> Search</span>
                     </button>
@@ -31,12 +34,10 @@
         </form>
     </div>
     <div class="col-xs-12 mb-3">
-        <div class="btn btn-success btn-add p-3">
-            <a class="edit-record" href="{% url 'hazard-create' %}">
-                <i class="fa-solid fa-circle-plus fa-lg"></i>
-                <span class="link-white"> Add</span>
-            </a>
-        </div>
+        <a class="edit-record btn btn-success btn-add p-3" href="{% url 'hazard-create' %}">
+            <i class="fa-solid fa-circle-plus fa-lg"></i>
+            <span class="link-white"> Add</span>
+        </a>
     </div>
 </div>
 <div class="card-container">

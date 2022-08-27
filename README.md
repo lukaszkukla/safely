@@ -561,7 +561,7 @@ All HTML files include django code that gives erros during the html validation p
 ### CSS
 | File Name | File Path | Result | W3C | Comments |
 |--|--|--|--|--|
-| base.css | static/css/base.css | PASS | [link](docs/validation/css/styles.png "link") |[49 warnings](docs/validation/css/styles-warnings.png "link")|
+| styles.css | static/css/styles.css | PASS | [link](docs/validation/css/styles.png "link") |[49 warnings](docs/validation/css/styles-warnings.png "link")|
 *all warnings are marked with "is a vendor extension" these were added when CSS code was run through [Autoprefixer](https://autoprefixer.github.io/ "Autoprefixer") for web browser compability purposes*
 
 \
@@ -578,14 +578,23 @@ All HTML files include django code that gives erros during the html validation p
 ### Python
 | File Name | File Path | Result | PEP8 | Comments |
 |--|--|--|--|--|
-| models.py | PATH/models.py | PASS | [link](PATH/models.png "link") ||
-| views.py | PATH/views.py | PASS | [link](PATH/views.png "link") ||
-| urls.py | PATH/urls.py | PASS | [link](PATH/urls.png "link") ||
-| forms.py | PATH/forms.py | PASS | [link](PATH/forms.png "link") ||
-| settings.py | PATH/settings.py | PASS | [link](PATH/settings.png "link") ||
-| test_models.py | PATH/test_models.py | PASS | [link](PATH/test_models.png "link") ||
-| test_views.py | PATH/test_views.py | PASS | [link](PATH/test_views.png "link") ||
-| test_urls.py | PATH/test_urls.py | PASS | [link](PATH/test_urls.png "link") ||
+| admin.py | hazard/admin.py | PASS | [link](hazard/admin.png "link") ||
+| apps.py | hazard/apps.py | PASS | [link](hazard/apps.png "link") ||
+| forms.py | hazard/forms.py | PASS | [link](hazard/forms.png "link") ||
+| models.py | hazard/models.py | PASS | [link](hazard/models.png "link") ||
+| tests.py | hazard/tests.py | PASS | [link](hazard/tests.png "link") ||
+| urls.py | hazard/urls.py | PASS | [link](hazard/haz-urls.png "link") ||
+| views.py | hazard/views.py | PASS | [link](hazard/views.png "link") ||
+| asgi.py | hazard/asgi.py | PASS | [link](hazard/asgi.png "link") ||
+| settings.py | safely/settings.py | PASS | [link](safely/settings.png "link") ||
+| urls.py | safely/urls.py | PASS | [link](safely/urls.png "link") ||
+| wsgi.py | safely/wsgi.py | PASS | [link](safely/wsgi.png "link") ||
+
+
+
+| test_models.py | safely/test_models.py | PASS | [link](safely/test_models.png "link") ||
+| test_views.py | safely/test_views.py | PASS | [link](safely/test_views.png "link") ||
+| test_urls.py | safely/test_urls.py | PASS | [link](safely/test_urls.png "link") ||
 
 \
 &nbsp; 

@@ -1,10 +1,27 @@
-{% block content %}
-
 <div class="row page-header">
     <div class="col-xs-12">
         <h1 class="center-text title-page">Hazard Create</h1>
     </div>
 </div>
+
+{% if form.errors %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="row center form-container g-3 pb-3 error-msg">
+    <div class="col-xs-12 alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+</div>
+{% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+<div class="row center form-container g-3 pb-3 error-msg">
+    <div class="col-xs-12 alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
 
 <form method="POST" enctype="multipart/form-data">
     <div class="row center form-container g-3 pb-3">
@@ -14,7 +31,7 @@
         </div>
         <div class="col-xs-12">
             <label for="id_title">Title:</label>
-            <input type="text" name="title" maxlength="200" required="" id="id_title" class="input-text-field">
+            <input type="text" name="title" maxlength="200" id="id_title" class="input-text-field" required>
         </div>
         <div class="col-xs-12">
             <label for="id_image">Image:</label>
@@ -49,5 +66,3 @@
     {% csrf_token %}
 
 </form>
-
-{% endblock content %}

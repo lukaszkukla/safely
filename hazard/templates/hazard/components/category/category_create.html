@@ -4,7 +4,26 @@
     </div>
 </div>
 
-<form method="POST" enctype="multipart/form-data">
+{% if form.errors %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="row center form-container g-3 pb-3 error-msg">
+    <div class="col-xs-12 alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+</div>
+{% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+<div class="row center form-container g-3 pb-3 error-msg">
+    <div class="col-xs-12 alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">    
     <div class="row center form-container g-3 pb-3">
         <div class="col-xs-12">
             <label for="id_name">Name:</label>

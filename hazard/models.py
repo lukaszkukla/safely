@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MinLengthValidator
 
 
 class Hazard(models.Model):
@@ -11,7 +12,13 @@ class Hazard(models.Model):
     """
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
-    title = models.CharField(max_length=80)
+    title = models.CharField(
+        max_length=80,
+        null=True,
+        unique=True,
+        validators=[MinLengthValidator(4)]
+    )
+    
     image = CloudinaryField('image', default='placeholder')
     description = models.TextField(null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -38,7 +45,12 @@ class Category(models.Model):
     """
     A class used to represent a Category
     """
-    name = models.CharField(max_length=80, null=True, blank=True)
+    name = models.CharField(
+        max_length=80,
+        unique=True,
+        null=True,
+        validators=[MinLengthValidator(3)]
+    )
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -56,7 +68,12 @@ class Risk(models.Model):
     """
     A class used to represent a Risk
     """
-    level = models.CharField(max_length=6, unique=True)
+    level = models.CharField(
+        max_length=6,
+        unique=True,
+        null=True,
+        validators=[MinLengthValidator(3)]
+    )
 
     def __str__(self):
         return self.level
@@ -73,7 +90,12 @@ class Status(models.Model):
     """
     A class used to represent a Status
     """
-    name = models.CharField(max_length=8, unique=True)
+    name = models.CharField(
+        max_length=8,
+        unique=True,
+        null=True,
+        validators=[MinLengthValidator(4)]
+    )
 
     def __str__(self):
         return self.name

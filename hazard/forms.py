@@ -141,6 +141,9 @@ class HazardDetailsForm(forms.ModelForm):
 
 
 class UserPasswordResetForm(PasswordResetForm):
+    """
+    Creates reset password form
+    """
     def __init__(self, *args, **kwargs):
         super(UserPasswordResetForm, self).__init__(*args, **kwargs)
 
