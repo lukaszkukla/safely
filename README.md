@@ -526,6 +526,7 @@ All HTML files include django code that gives erros during the html validation p
 | File Name | File Path | Result | W3C | Comments |
 |--|--|--|--|--|
 | index.html | hazard/templates/pages/index.html | PASS | [link](docs/validation/html/index.png "link") ||
+| login.html | hazard/templates/components/auth/login.html | PASS | [link](docs/validation/html/login.png "link") ||
 | hazard_view.html | hazard/templates/components/hazard/hazard_view.html | PASS | [link](docs/validation/html/hazard-list-view.png "link") ||
 | hazard_create.html | hazard/templates/components/hazard/hazard_create.html | PASS | [link](docs/validation/html/hazard-add-new.png "link") ||
 | hazard_detail_view.html | hazard/templates/components/hazard/hazard_detail_view.html | PASS | [link](docs/validation/html/hazard-details.png "link") ||
@@ -533,6 +534,7 @@ All HTML files include django code that gives erros during the html validation p
 | hazard_delete.html | hazard/templates/components/hazard/hazard_delete.html | PASS | [link](docs/validation/html/hazard-delete.png "link") ||
 | profile_view.html | hazard/templates/components/profile/profile_view.html | PASS | [link](docs/validation/html/profile-view.png "link") ||
 | profile_update.html | hazard/templates/components/profile/profile_update.html | PASS | [link](docs/validation/html/profile-update.png "link") ||
+| password_change.html | hazard/templates/components/password/password_change.html | PASS | [link](docs/validation/html/password-change.png "link") ||
 
 
 
