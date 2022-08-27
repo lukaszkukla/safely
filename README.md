@@ -51,12 +51,13 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
 Heroku reguralry performs database maintenance. When this happens hostname and credentials change. If upon project submission such error occurs please contact me directly or through the student support department so I can update the link.
 Please note this is outside my control. Below is the example of email from Heroku that is sent to user admin when this happens.
 
-    *Heroku
-    Your database DATABASE_URL on app-safely requires maintenance. During this period, your database will become read-only. Once maintenance has completed, your database credentials and hostname will have changed, but we will update your app's config variables accordingly to reflect the new database connection string.*
+*Heroku
+Your database DATABASE_URL on app-safely requires maintenance.
+During this period, your database will become read-only. Once maintenance has completed, your database credentials and hostname will have changed, but we will update your app's config variables accordingly to reflect the new database connection string.*
 
-    *This automated maintenance is a necessary part of our Hobby tier plans, Dev and Basic. Should you need more control over maintenance windows, a production database (Standard tier or higher) offers more control over database maintenance, as we are able to schedule them in advance and provide better tools for self-served maintenance.*
+*This automated maintenance is a necessary part of our Hobby tier plans, Dev and Basic. Should you need more control over maintenance windows, a production database (Standard tier or higher) offers more control over database maintenance, as we are able to schedule them in advance and provide better tools for self-served maintenance.*
 
-    *We expect maintenance to last just a few moments depending on the size of your database. We will notify you when maintenance begins, and again once it's complete.*
+*We expect maintenance to last just a few moments depending on the size of your database. We will notify you when maintenance begins, and again once it's complete.*
 
 # Background
 Safely Ltd. is a newly established business in the outskirts of Dublin, Republic of Ireland. It was founded by 2 friends who share common goal of making workplace a safe place. 
@@ -96,8 +97,8 @@ From the resulting interviews, the user goals have been defined:
 1. Simple registration, login and logout function
 1. Capture a hazard on a mobile device
 1. Ability to edit and update existing records
-1. View open and unresolved records
-1. Ability to change status when hazard is resolved
+1. View, open and edit records
+1. Ability to change status and risk level of a recorded hazard
 
 &nbsp;
 
@@ -245,14 +246,14 @@ The only requirement was to ensure that any images used in the app will correspo
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
-| hazard_category | FK (Hazard Categories) | | null=False |
+| category | FK (Hazard Categories) | | null=False |
 | title || CharField | max_length=200
 | image |  |  CloudinaryField | 'image', default='placeholder, null=True, blank=True
 | description || TextField |
 | updated_on || DateTimeField | auto_now=True
 | created_on || DateTimeField | auto_now_add=True
-| author | FK (User) |  | on_delete=models.CASCADE
-| risk_level | FK (Risk Levels) |  | null=False
+| user | FK (User) |  | on_delete=models.CASCADE
+| level | FK (Risk Levels) |  | null=False
 | status || FK (StatusTypes) | null=False
 
 \
@@ -263,6 +264,8 @@ The only requirement was to ensure that any images used in the app will correspo
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
 | name || CharField | max_length=80, unique=True, null=False, blank=False, on_delete=models.SET_NULL
+| description || TextField |
+
 
 \
 &nbsp;
@@ -271,7 +274,7 @@ The only requirement was to ensure that any images used in the app will correspo
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
-| level | | CharField | max_length=5, unique=True, null=False, blank=False, editable=False
+| level | | CharField | max_length=6, unique=True, null=False, blank=False, editable=False
 
 \
 &nbsp;
@@ -311,9 +314,16 @@ The navigation bar is fully responsive to adapt to various screen sizes. It is *
 
 [Desktop](docs/features/desktop-standard-user.png "Desktop")
 
+Additionally authenticated user whether admin or not can see number of resolved and unresolved records
+
+![Mobile](docs/features/mobile-un-resolved-records.png "Mobile")
+
+![Desktop](docs/features/desktop-un-resolved-records.png "Desktop")
+
+
 - Authenticated, administrator view: 
 
-[Mobile](docs/features/mobile-admin-user.png "Mobile")
+[Truncated](docs/features/mobile-admin-user.png "Mobile")
 
 [Desktop](docs/features/desktop-admin-user.png "Desktop")
 
@@ -324,6 +334,15 @@ Administrator can see list of all recorded hazards for every user. It can also a
 [Administrator Dashboard](docs/features/administrator-dashboard.png "Administrator Dashboard")
 
 [Standard User Dashboard](docs/features/standard-user-dashboard.png "Standard User Dashboard")
+
+### Title Truncate
+
+If the title of the hazard record in is too long, the overflow text might be truncatd. In such cases the three dots will appear insted of truncated charcters. In order to see the full title user must click on the specific record to view more details.
+
+- Title overflow hidden: 
+![Title Overflow Hidden](docs/features/title-truncated-001.png "Title Overflow Hidden")
+- Title fully displayed:
+![Title Fully Displayed](docs/features/title-truncated-002.png "Title Fully Displayed")
 
 ### Footer
 
@@ -347,7 +366,7 @@ The home page is divided into sections:
 
 ### Hazards List
 
-The hazard list is displays all hazards for the currently logged user. Each hazard is displayed in the separate card. User can click into it to view more details. Additionaly, each card can be edited and updated by the user. Only administrator can delete any hazard if necessary.
+The hazard list is displays all hazards for the currently logged user. Each hazard is displayed in the separate card. User can click into it to view more details. Additionaly, each card can be edited, updated and deleted by the user. Only administrator can view, update and delete hazard records of other users.
 
 ![Hazards List](docs/features/hazards-view.png "Hazards List")
 

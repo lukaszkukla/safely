@@ -103,6 +103,10 @@ hr {
     margin: 0 auto;
 }
 
+#contact {
+    background: var(--lightgrey);
+}
+
 /* Navbar */
 .navbar {
     display: flex;
