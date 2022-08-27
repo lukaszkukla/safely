@@ -15,15 +15,15 @@
         </h3>
     </div>
     <div class="col-xs-12 my-3">
-        <form action="" method="GET" class="search-hazard-form">
+        <form method="GET" class="search-hazard-form">
             <div class="row">
                 <div class="col-8">
-                    <input type="text" name="search" value="{{ search_input }}"
-                        class="search-hazard-form-input form-control" role="search">
+                    <input type="search" name="search" value="{{ search_input }}"
+                        class="search-hazard-form-input form-control">
                 </div>
                 <div class="col-4">
                     <button type="submit" class="btn search-hazard-form-btn btn-dark btn-view btn-search">
-                        <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
                         <span> Search</span>
                     </button>
                 </div>
@@ -31,12 +31,12 @@
         </form>
     </div>
     <div class="col-xs-12 mb-3">
-        <a class="edit-record" href="{% url 'hazard-create' %}">
-            <button type="button" class="btn btn-success btn-add p-3" role="button" aria-label="Add New Record">
+        <div class="btn btn-success btn-add p-3">
+            <a class="edit-record" href="{% url 'hazard-create' %}">
                 <i class="fa-solid fa-circle-plus fa-lg"></i>
-                <span> Add</span>
-            </button>
-        </a>
+                <span class="link-white"> Add</span>
+            </a>
+        </div>
     </div>
 </div>
 <div class="card-container">
@@ -112,27 +112,21 @@
 
                 <div class="row btn-center g-2">
                     <div class="col-xs-12">
-                        <a class="view-record" href="{% url 'hazard' hazard.id %}">
-                            <button type="button" class="btn btn-dark btn-view" role="button" aria-label="View Details">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <span> View</span>
-                            </button>
+                        <a class="view-record btn btn-dark btn-view" href="{% url 'hazard' hazard.id %}">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span> View</span>
                         </a>
                     </div>
                     <div class="col-6">
-                        <a class="edit-record" href="{% url 'hazard-update' hazard.id %}">
-                            <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
-                                <i class="fas fa-pen"></i>
-                                <span> Edit</span>
-                            </button>
+                        <a class="edit-record btn btn-success btn-edit" href="{% url 'hazard-update' hazard.id %}">
+                            <i class="fas fa-pen"></i>
+                            <span> Edit</span>
                         </a>
                     </div>
                     <div class="col-6">
-                        <a class="edit-record" href="{% url 'hazard-delete' hazard.id %}">
-                            <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
-                                <i class="fa-solid fa-trash-can"></i>
-                                <span> Delete</span>
-                            </button>
+                        <a class="edit-record btn btn-dark btn-delete" href="{% url 'hazard-delete' hazard.id %}">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span> Delete</span>
                         </a>
                     </div>
                 </div>

@@ -1,4 +1,3 @@
-{% block content %}
 <div class="row center form-container g-0">
     <div class="row page-header">
         <div class="col-xs-12">
@@ -133,31 +132,23 @@
 
         <div class="row btn-center center g-2">
             <div class="col-xs-12">
-                <a class="back" href="{% url 'hazards' %}">
-                    <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-                        <i class="fa-solid fa-circle-chevron-left"></i>
-                        <span> Back</span>
-                    </button>
+                <a class="back btn btn-dark btn-back" href="{% url 'hazards' %}">
+                    <i class="fa-solid fa-circle-chevron-left"></i>
+                    <span> Back</span>
                 </a>
             </div>
             <div class="col-xs-12">
-                <a class="edit-record" href="{% url 'hazard-update' hazard.id %}">
-                    <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
-                        <i class="fa-solid fa-pencil"></i>
-                        <span> Edit</span>
-                    </button>
+                <a class="edit-record btn btn-success btn-edit" href="{% url 'hazard-update' hazard.id %}">
+                    <i class="fa-solid fa-pencil"></i>
+                    <span> Edit</span>
                 </a>
             </div>
             <div class="col-xs-12">
-                <a class="edit-record" href="{% url 'hazard-delete' hazard.id %}">
-                    <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <span> Delete</span>
-                    </button>
+                <a class="edit-record btn btn-dark btn-delete" href="{% url 'hazard-delete' hazard.id %}">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span> Delete</span>
                 </a>
             </div>
         </div>
     </div>
 </div>
-
-{% endblock content %}

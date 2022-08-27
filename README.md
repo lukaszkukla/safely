@@ -358,7 +358,7 @@ The home page is divided into sections:
 
 - About the company, a brief description of the company
 
-![About Us](docs/features/about-us.png "About Us")
+![About](docs/features/about.png "About")
 
 - Contact form for any enquiries
 
@@ -366,21 +366,21 @@ The home page is divided into sections:
 
 ### Hazards List
 
-The hazard list is displays all hazards for the currently logged user. Each hazard is displayed in the separate card. User can click into it to view more details. Additionaly, each card can be edited, updated and deleted by the user. Only administrator can view, update and delete hazard records of other users.
+The hazard list displays all hazards for the currently logged user. Each hazard is displayed in the separate card. User can click into it to view more details. Additionaly, each card can be edited, updated and deleted by the user. Only administrator can view, update and delete hazard records of other users.
 
-![Hazards List](docs/features/hazards-view.png "Hazards List")
+[Hazards List](docs/features/hazards-view.png "Hazards List")
 
 ### Hazard Details
 
-The hazard details page displays all information recorded by the user. Here user have also option to change the status of it from open to resolved. 
+The hazard details page displays all information about the item recorded by the user. Here user have also option to change the risk level and status of it. Additionally, if the record is missing a descrition, the red text appears indicating that to the user.
 
-![Hazard Details](docs/features/hazard-details.png "Hazard Details")
+[Hazard Details](docs/features/hazard-details.png "Hazard Details")
 
-### User Profile
+### Search
+User can narrow down the list of hazards using search option. This simple yet very effective funciton will display only items that contain searched keyword in the title.
 
-The user profile page displays details of the currently logged user. It gives it an option to view, edit and update details.
-
-![User Profile](docs/features/user-profile.png "User Profile")
+* [Search Result](docs/features/search-result-view.png "Search Result")
+* [Full List](docs/features/full-list-view.png "Full List")
 
 \
 &nbsp;
@@ -391,7 +391,6 @@ The user profile page displays details of the currently logged user. It gives it
 ## Future developments
 
 There are a few ideas that I would like to implement in the future:
-* Search function to find hazards by entering keywords
 * Filter funciton to narrow down list based on the hazard type, riks level, status etc.
 * Additional user profiles and access levels -> administrator, manager, employee
 * Use Google maps location service when adding a new hazard
@@ -453,7 +452,6 @@ There are a few ideas that I would like to implement in the future:
 | Colours | Colour pallet| [coolors](https://coolors.co/ "coolors")|
 | Google Fonts| Fonts |[Google Fonts](https://fonts.google.com/ "Fonts")|
 | WebAIM| Colour contrast checks |[WebAIM](https://webaim.org/resources/contrastchecker/ "WebAIM")|
-|**~~Pillow~~**| Image processing tool | [Pillow](https://pillow.readthedocs.io/en/stable/ "Pillow")|
 |generateprivacypolicy.com|Privacy Policy Generator| [Generate Privacy Policy](https://www.generateprivacypolicy.com/)|
 |favicon.io| Create the favicon| [favicon.io](https://favicon.io/ "favicon.io")|
 
@@ -523,11 +521,24 @@ Comming soon!
 ## Code Validation
 
 ### HTML
+All HTML files include django code that gives erros during the html validation process. All pages were tested but I ignored all warning and errors relating to django. Here is a sample test result after removing all django code [No Django Code](docs/validation/html/no-django.png "No Django Code") 
+
 | File Name | File Path | Result | W3C | Comments |
 |--|--|--|--|--|
-| index.html | PATH/index.html | PASS | [link](docs/validation/html/index.png "link") ||
-| privacy-policy.html | PATH/privacy-policy.html | PASS | [link](docs/validation/html/privacy-policy.png "link") ||
+| index.html | hazard/templates/pages/index.html | PASS | [link](docs/validation/html/index.png "link") ||
+| hazard_view.html | hazard/templates/components/hazard/hazard_view.html | PASS | [link](docs/validation/html/hazard-list-view.png "link") ||
+| hazard_create.html | hazard/templates/components/hazard/hazard_create.html | PASS | [link](docs/validation/html/hazard-add-new.png "link") ||
+| hazard_detail_view.html | hazard/templates/components/hazard/hazard_detail_view.html | PASS | [link](docs/validation/html/hazard-details.png "link") ||
+| hazard_update.html | hazard/templates/components/hazard/hazard_update.html | PASS | [link](docs/validation/html/hazard-update.png "link") ||
+| hazard_delete.html | hazard/templates/components/hazard/hazard_delete.html | PASS | [link](docs/validation/html/hazard-delete.png "link") ||
+| profile_view.html | hazard/templates/components/profile/profile_view.html | PASS | [link](docs/validation/html/profile-view.png "link") ||
+| profile_update.html | hazard/templates/components/profile/profile_update.html | PASS | [link](docs/validation/html/profile-update.png "link") ||
+
+
+
+
 | 400.html | PATH/400.html | PASS | [link](docs/validation/html/400.png "link") ||
+| privacy.html | hazard/templates/pages/privacy.html | PASS | [link](docs/validation/html/privacy-policy.png "link") ||
 | signup.html | PATH/signup.html | PASS | [link](docs/validation/html/signup.png "link") ||
 | signin.html | PATH/signin.html | PASS | [link](docs/validation/html/signin.png "link") ||
 | signout.html | PATH/signout.html | PASS | [link](docs/validation/html/signout.png "link") ||
@@ -540,7 +551,8 @@ Comming soon!
 ### CSS
 | File Name | File Path | Result | W3C | Comments |
 |--|--|--|--|--|
-| base.css | static/css/base.css | PASS | [link](docs/validation/css/base.png "link") |[5 warnings](docs/validation/css/base-warnings.png "link")|
+| base.css | static/css/base.css | PASS | [link](docs/validation/css/styles.png "link") |[49 warnings](docs/validation/css/styles-warnings.png "link")|
+*all warnings are marked with "is a vendor extension" these were added when CSS code was run through [Autoprefixer](https://autoprefixer.github.io/ "Autoprefixer") for web browser compability purposes*
 
 \
 &nbsp; 

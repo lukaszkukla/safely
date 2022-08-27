@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     <div class="row center form-container g-0">
         <div class="col-12 p-3 mb-3 center">
             <p>Are you sure you want to delete <strong>'{{ hazard.title }}'</strong>?</p>
@@ -36,15 +36,13 @@
         </div>
         {% endif %}
         <div class="col-6 pb-3">
-            <a class="back" href="{% url 'hazards' %}">
-                <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-                    <i class="fa-solid fa-circle-chevron-left"></i>
-                    <span> Back</span>
-                </button>
+            <a class="back btn btn-dark btn-back" href="{% url 'hazards' %}">
+                <i class="fa-solid fa-circle-chevron-left"></i>
+                <span> Back</span>
             </a>
         </div>
         <div class="col-6 pb-3">
-            <button type="submit" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+            <button type="submit" class="btn btn-dark btn-delete">
                 <i class="fa-solid fa-trash-can"></i>
                 <span> Delete</span>
             </button>

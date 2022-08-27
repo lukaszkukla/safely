@@ -45,12 +45,22 @@ class HomePage(TemplateView):
     """
     template_name = 'hazard/pages/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Home'
+        return context
+        
 
 class PrivacyPolicy(TemplateView):
     """
     Class that displays privacy policy page
     """
     template_name = 'hazard/pages/privacy.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Privacy Policy'
+        return context
 
 
 class ThanksPage(TemplateView):
@@ -59,6 +69,11 @@ class ThanksPage(TemplateView):
     """
     template_name = 'hazard/pages/thanks.html'
     success_url = reverse_lazy('thanks')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Contact - Thank You'
+        return context
 
 
 class CustomLoginView(LoginView):
@@ -350,6 +365,7 @@ class AdminAccessMixin(PermissionRequiredMixin):
     """
     Class that checks if user has admin access
     """
+
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_authenticated:
             return redirect_to_login(

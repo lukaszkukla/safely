@@ -169,16 +169,10 @@ hr {
     color: #fff;
 }
 
-.dropdown-toggle {}
-
 .dropdown-menu {
     background: #AE093B;
     font-size: 1.6rem;
 }
-
-.dropdown-item {}
-
-
 
 /* Content Text */
 .resolved {
@@ -328,6 +322,16 @@ hr {
 .btn-change-password {
     color: var(--white);
     background: var(--pink);
+}
+
+.edit-record,
+.view-record {
+    color: var(--white);
+}
+
+.edit-record:hover,
+.view-record:hover {
+    color: var(--white);
 }
 
 #id_image {
