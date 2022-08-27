@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     <div class="row center form-container g-3 pb-3">
         <div class="col-xs-12">
             <label for="id_name">Name:</label>
@@ -15,16 +15,14 @@
             {{ form.description }}
         </div>
         <div class="col-6">
-            <a class="back" href="{% url 'categories' %}">
-                <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-                    <i class="fa-solid fa-circle-chevron-left"></i>
-                    <span> Back</span>
-                </button>
+            <a class="back btn btn-dark btn-back" href="{% url 'categories' %}">
+                <i class="fa-solid fa-circle-chevron-left"></i>
+                <span> Back</span>
             </a>
         </div>
         <div class="col-6 update-hazard">
-            <button type="submit" class="btn btn-success btn-edit">
-                <i class="fa-solid fa-circle-check" aria-label="Update"></i>
+            <button type="submit" class="btn btn-success btn-edit" aria-label="Update">
+                <i class="fa-solid fa-circle-check"></i>
                 <span> Update</span>
             </button>
         </div>

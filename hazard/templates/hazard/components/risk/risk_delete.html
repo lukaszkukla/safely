@@ -1,12 +1,10 @@
-{% block content %}
-
 <div class="row page-header">
     <div class="col-xs-12">
         <h1 class="center-text title-page">Risk Delete</h1>
     </div>
 </div>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     <div class="row center form-container g-0">
         <div class="col-12 p-3 mb-3 center">
             <p>Are you sure you want to delete <strong>'{{ risk.level }}'</strong>?</p>
@@ -20,15 +18,13 @@
             <p>{{ risk.level }}</p>
         </div>
         <div class="col-6 pb-3">
-            <a class="back" href="{% url 'risks' %}">
-                <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-                    <i class="fa-solid fa-circle-chevron-left"></i>
-                    <span> Back</span>
-                </button>
+            <a class="back btn btn-dark btn-back" href="{% url 'risks' %}">
+                <i class="fa-solid fa-circle-chevron-left"></i>
+                <span> Back</span>
             </a>
         </div>
         <div class="col-6 pb-3">
-            <button type="submit" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
+            <button type="submit" class="btn btn-dark btn-delete" aria-label="Delete">
                 <i class="fa-solid fa-trash-can"></i>
                 <span> Delete</span>
             </button>
@@ -37,5 +33,3 @@
 
     {% csrf_token %}
 </form>
-
-{% endblock content %}

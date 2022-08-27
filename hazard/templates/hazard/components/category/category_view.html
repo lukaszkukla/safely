@@ -5,19 +5,15 @@
 </div>
 <div class="form-container">
     <div class="col-xs-12 my-3">
-        <a class="back" href="{% url 'hazards' %}">
-            <button type="button" class="btn btn-dark btn-back" role="button" aria-label="Go Back">
-                <i class="fa-solid fa-circle-chevron-left"></i>
-                <span> Back</span>
-            </button>
+        <a class="back btn btn-dark btn-back" href="{% url 'hazards' %}">
+            <i class="fa-solid fa-circle-chevron-left"></i>
+            <span> Back</span>
         </a>
     </div>
     <div class="col-xs-12 mb-3">
-        <a class="edit-record" href="{% url 'categories-create' %}">
-            <button type="button" class="btn btn-success btn-add p-3" role="button" aria-label="Add New Record">
-                <i class="fa-solid fa-circle-plus fa-lg"></i>
-                <span> Add</span>
-            </button>
+        <a class="edit-record btn btn-success btn-add p-3" href="{% url 'categories-create' %}">
+            <i class="fa-solid fa-circle-plus fa-lg"></i>
+            <span> Add</span>
         </a>
     </div>
 </div>
@@ -36,19 +32,15 @@
     </div>
     <div class="row btn-center g-2">
         <div class="col-6">
-            <a class="edit-record" href="{% url 'categories-update' category.pk %}">
-                <button type="button" class="btn btn-success btn-edit" role="button" aria-label="Edit">
-                    <i class="fas fa-pen"></i>
-                    <span> Edit</span>
-                </button>
+            <a class="edit-record btn btn-success btn-edit" href="{% url 'categories-update' category.pk %}">
+                <i class="fas fa-pen"></i>
+                <span> Edit</span>
             </a>
         </div>
         <div class="col-6">
-            <a class="edit-record" href="{% url 'categories-delete' category.pk %}">
-                <button type="button" class="btn btn-dark btn-delete" role="button" aria-label="Delete">
-                    <i class="fa-solid fa-trash-can"></i>
-                    <span> Delete</span>
-                </button>
+            <a class="edit-record btn btn-dark btn-delete" href="{% url 'categories-delete' category.pk %}">
+                <i class="fa-solid fa-trash-can"></i>
+                <span> Delete</span>
             </a>
         </div>
     </div>

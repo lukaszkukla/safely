@@ -526,6 +526,7 @@ All HTML files include django code that gives erros during the html validation p
 | File Name | File Path | Result | W3C | Comments |
 |--|--|--|--|--|
 | index.html | hazard/templates/pages/index.html | PASS | [link](docs/validation/html/index.png "link") ||
+| register.html | hazard/templates/components/auth/register.html | PASS | [link](docs/validation/html/register.png "link") ||
 | login.html | hazard/templates/components/auth/login.html | PASS | [link](docs/validation/html/login.png "link") ||
 | hazard_view.html | hazard/templates/components/hazard/hazard_view.html | PASS | [link](docs/validation/html/hazard-list-view.png "link") ||
 | hazard_create.html | hazard/templates/components/hazard/hazard_create.html | PASS | [link](docs/validation/html/hazard-add-new.png "link") ||
@@ -535,17 +536,24 @@ All HTML files include django code that gives erros during the html validation p
 | profile_view.html | hazard/templates/components/profile/profile_view.html | PASS | [link](docs/validation/html/profile-view.png "link") ||
 | profile_update.html | hazard/templates/components/profile/profile_update.html | PASS | [link](docs/validation/html/profile-update.png "link") ||
 | password_change.html | hazard/templates/components/password/password_change.html | PASS | [link](docs/validation/html/password-change.png "link") ||
-
-
-
-
+| password_reset.html | hazard/templates/components/password/password_reset.html | PASS | [link](docs/validation/html/password-reset-001.png "link") ||
+| password_reset_done.html | hazard/templates/components/password/password_done.html | PASS | [link](docs/validation/html/password-reset-002.png "link") ||
+| password_reset_confirm.html | hazard/templates/components/password/password_confirm.html | PASS | [link](docs/validation/html/password-reset-003.png "link") ||
+| password_reset_complete.html | hazard/templates/components/password/password_complete.html | PASS | [link](docs/validation/html/password-reset-004.png "link") ||
+| category_view.html | hazard/templates/components/category/category_view.html | PASS | [link](docs/validation/html/category-list-view.png "link") ||
+| category_create.html | hazard/templates/components/category/category_create.html | PASS | [link](docs/validation/html/category-add-new.png "link") ||
+| category_update.html | hazard/templates/components/category/category_update.html | PASS | [link](docs/validation/html/category-update.png "link") ||
+| category_delete.html | hazard/templates/components/category/category_delete.html | PASS | [link](docs/validation/html/category-delete.png "link") ||
+| risk_view.html | hazard/templates/components/risk/risk_view.html | PASS | [link](docs/validation/html/risk-list-view.png "link") ||
+| risk_create.html | hazard/templates/components/risk/risk_create.html | PASS | [link](docs/validation/html/risk-add-new.png "link") ||
+| risk_update.html | hazard/templates/components/risk/risk_update.html | PASS | [link](docs/validation/html/risk-update.png "link") ||
+| risk_delete.html | hazard/templates/components/risk/risk_delete.html | PASS | [link](docs/validation/html/category-delete.png "link") ||
+| status_view.html | hazard/templates/components/status/status_view.html | PASS | [link](docs/validation/html/status-list-view.png "link") ||
+| status_create.html | hazard/templates/components/status/status_create.html | PASS | [link](docs/validation/html/status-add-new.png "link") ||
+| status_update.html | hazard/templates/components/status/status_update.html | PASS | [link](docs/validation/html/status-update.png "link") ||
+| status_delete.html | hazard/templates/components/status/status_delete.html | PASS | [link](docs/validation/html/category-delete.png "link") ||
 | 400.html | PATH/400.html | PASS | [link](docs/validation/html/400.png "link") ||
-| privacy.html | hazard/templates/pages/privacy.html | PASS | [link](docs/validation/html/privacy-policy.png "link") ||
-| signup.html | PATH/signup.html | PASS | [link](docs/validation/html/signup.png "link") ||
-| signin.html | PATH/signin.html | PASS | [link](docs/validation/html/signin.png "link") ||
-| signout.html | PATH/signout.html | PASS | [link](docs/validation/html/signout.png "link") ||
-| contact.html | PATH/contact.html | PASS | [link](docs/validation/html/contact.png "link") ||
-| record-hazard.html | PATH/record-hazard.html | PASS | [link](docs/validation/html/record-hazard.png "link") ||
+
 
 \
 &nbsp; 
