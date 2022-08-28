@@ -22,7 +22,7 @@ from .views import (
     CategoryDelete,
     RiskList,
     RiskUpdate,
-    RiskCreate,
+#     RiskCreate,
     RiskDelete,
     StatusList,
     StatusUpdate,
