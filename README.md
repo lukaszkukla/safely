@@ -20,35 +20,35 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
     * [User Goals](#user-goals "User Goals")
     * [User Stories](#user-stories "User Stories")
     * [Requirements and Expectations](#requirements-and-expectations "Requirements and Expectations")
-    * [Planning](#Planning "Planning")
-        * Scoring System
-        * Scoring Results
-    * [Wireframes](#wireframes "Wireframes")
-    * [Design Choices](#design-choices "Design Choices")
-        * Fonts
-        * Colours
-        * Images
-    * [Structure](#structure "Structure")
-        * Site Structure and App Flow
-        * Data Schema
-        * Models
-    * [Features](#features "Features")
-        * Existing Features
-        * Future developments
-    * [Technologies used](#technologies-used "Technologies used")
-        * Languages
-        * Libraries, Frameworks and Tools
-    * [Testing](#testing "Testing")
-        * UX Testing
-        * Manual Testing
-        * Code Validation
-        * Bugs
-        * Unfixed Bugs
-    * [Deployment](#deployment "Deployment")
-        * Local Deployment
-        * Deployment via Heroku
-    * [Credits](#credits "Credits")
-    * [Final Thoughts](#final-thoughts "Final Thoughts")
+* [Planning](#Planning "Planning")
+    * Scoring System
+    * Scoring Results
+* [Wireframes](#wireframes "Wireframes")
+* [Design Choices](#design-choices "Design Choices")
+    * Fonts
+    * Colours
+    * Images
+* [Structure](#structure "Structure")
+    * Site Structure and App Flow
+    * Data Schema
+    * Models
+* [Features](#features "Features")
+    * Existing Features
+    * Future developments
+* [Technologies used](#technologies-used "Technologies used")
+    * Languages
+    * Libraries, Frameworks and Tools
+* [Testing](#testing "Testing")
+    * UX Testing
+    * Manual Testing
+    * Code Validation
+    * Bugs
+    * Unfixed Bugs
+* [Deployment](#deployment "Deployment")
+    * Local Deployment
+    * Deployment via Heroku
+* [Credits](#credits "Credits")
+* [Final Thoughts](#final-thoughts "Final Thoughts")
 
 # Database Disclaimer
 Heroku reguralry performs database maintenance. When this happens hostname and credentials change. If upon project submission such error occurs please contact me directly or through the student support department so I can update the link.
