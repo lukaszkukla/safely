@@ -19,8 +19,10 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
     * [User Persona](#user-persona "User Persona")
     * [User Goals](#user-goals "User Goals")
     * [User Stories](#user-stories "User Stories")
-    * [Requirements and Expectations](#requirements-and-expectations)
-    * [Planning](#Planning)
+    * [Requirements and Expectations](#requirements-and-expectations "Requirements and Expectations")
+    * [Planning](#Planning "Planning")
+        * Scoring System
+        * Scoring Results
     * [Wireframes](#wireframes "Wireframes")
     * [Design Choices](#design-choices "Design Choices")
         * Fonts
@@ -151,6 +153,7 @@ From the resulting interviews, the user goals have been defined:
 ## Planning
 The items are graded in a 0 - 10 system in both importance and feasibility as per the grading system below.
 
+### Scoring system
 &nbsp;
 
 | | Score - 0 | Score - 5 | Score - 10 |
@@ -168,7 +171,7 @@ The outcome is calculated by combining the scores from the *Importance* and *Fea
 
 &nbsp;
 
-### Strategy Description
+### Scoring results
 
 | User story ID | Importance Score | Feasibility Score | Outcome |
 | --------------- | ----------| -----------| ---------- |
