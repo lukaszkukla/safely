@@ -655,7 +655,6 @@ All HTML files were tested using browser's "View page source" function due to dj
 | apps.py | hazard/apps.py | PASS | [link](docs/validation/python/apps.png "link") ||
 | forms.py | hazard/forms.py | PASS | [link](docs/validation/python/forms.png "link") ||
 | models.py | hazard/models.py | PASS | [link](docs/validation/python/models.png "link") ||
-| tests.py | hazard/tests.py | PASS | [link](docs/validation/python/tests.png "link") ||
 | urls.py | hazard/urls.py | PASS | [link](docs/validation/python/haz-urls.png "link") ||
 | views.py | hazard/views.py | PASS | [link](docs/validation/python/views.png "link") ||
 | asgi.py | hazard/asgi.py | PASS | [link](docs/validation/python/asgi.png "link") ||
