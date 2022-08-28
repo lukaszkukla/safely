@@ -620,12 +620,12 @@ All HTML files were tested using browser's "View page source" function due to dj
 | risk_view.html | hazard/templates/components/risk/risk_view.html | PASS | [link](docs/validation/html/risk-list-view.png "link") ||
 | risk_create.html | hazard/templates/components/risk/risk_create.html | PASS | [link](docs/validation/html/risk-add-new.png "link") ||
 | risk_update.html | hazard/templates/components/risk/risk_update.html | PASS | [link](docs/validation/html/risk-update.png "link") ||
-| risk_delete.html | hazard/templates/components/risk/risk_delete.html | PASS | [link](docs/validation/html/category-delete.png "link") ||
+| risk_delete.html | hazard/templates/components/risk/risk_delete.html | PASS | [link](docs/validation/html/risk-delete.png "link") ||
 | status_view.html | hazard/templates/components/status/status_view.html | PASS | [link](docs/validation/html/status-list-view.png "link") ||
 | status_create.html | hazard/templates/components/status/status_create.html | PASS | [link](docs/validation/html/status-add-new.png "link") ||
 | status_update.html | hazard/templates/components/status/status_update.html | PASS | [link](docs/validation/html/status-update.png "link") ||
-| status_delete.html | hazard/templates/components/status/status_delete.html | PASS | [link](docs/validation/html/category-delete.png "link") ||
-| 400.html | PATH/400.html | PASS | [link](docs/validation/html/400.png "link") ||
+| status_delete.html | hazard/templates/components/status/status_delete.html | PASS | [link](docs/validation/html/status-delete.png "link") ||
+| 400.html | hazard/templates/pages/404.html | PASS | [link](docs/validation/html/400.png "link") ||
 
 
 \
@@ -651,23 +651,17 @@ All HTML files were tested using browser's "View page source" function due to dj
 ### Python
 | File Name | File Path | Result | PEP8 | Comments |
 |--|--|--|--|--|
-| admin.py | hazard/admin.py | PASS | [link](hazard/admin.png "link") ||
-| apps.py | hazard/apps.py | PASS | [link](hazard/apps.png "link") ||
-| forms.py | hazard/forms.py | PASS | [link](hazard/forms.png "link") ||
-| models.py | hazard/models.py | PASS | [link](hazard/models.png "link") ||
-| tests.py | hazard/tests.py | PASS | [link](hazard/tests.png "link") ||
-| urls.py | hazard/urls.py | PASS | [link](hazard/haz-urls.png "link") ||
-| views.py | hazard/views.py | PASS | [link](hazard/views.png "link") ||
-| asgi.py | hazard/asgi.py | PASS | [link](hazard/asgi.png "link") ||
-| settings.py | safely/settings.py | PASS | [link](safely/settings.png "link") ||
-| urls.py | safely/urls.py | PASS | [link](safely/urls.png "link") ||
-| wsgi.py | safely/wsgi.py | PASS | [link](safely/wsgi.png "link") ||
-
-
-
-| test_models.py | safely/test_models.py | PASS | [link](safely/test_models.png "link") ||
-| test_views.py | safely/test_views.py | PASS | [link](safely/test_views.png "link") ||
-| test_urls.py | safely/test_urls.py | PASS | [link](safely/test_urls.png "link") ||
+| admin.py | hazard/admin.py | PASS | [link](docs/validation/python/admin.png "link") ||
+| apps.py | hazard/apps.py | PASS | [link](docs/validation/python/apps.png "link") ||
+| forms.py | hazard/forms.py | PASS | [link](docs/validation/python/forms.png "link") ||
+| models.py | hazard/models.py | PASS | [link](docs/validation/python/models.png "link") ||
+| tests.py | hazard/tests.py | PASS | [link](docs/validation/python/tests.png "link") ||
+| urls.py | hazard/urls.py | PASS | [link](docs/validation/python/haz-urls.png "link") ||
+| views.py | hazard/views.py | PASS | [link](docs/validation/python/views.png "link") ||
+| asgi.py | hazard/asgi.py | PASS | [link](docs/validation/python/asgi.png "link") ||
+| settings.py | safely/settings.py | PASS | [link](docs/validation/python/settings.png "link") ||
+| urls.py | safely/urls.py | PASS | [link](docs/validation/python/urls.png "link") ||
+| wsgi.py | safely/wsgi.py | PASS | [link](docs/validation/python/wsgi.png "link") ||
 
 \
 &nbsp; 
