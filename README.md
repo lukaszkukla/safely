@@ -5,7 +5,7 @@
 
 \
 &nbsp;
-Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
+Live link can be found here - [Safely](https://app-safely.herokuapp.com/ "Safely")
 
 \
 &nbsp;

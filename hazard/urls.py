@@ -39,7 +39,7 @@ from .views import (
 
 urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(next_page='hazards'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='homepage'), name='logout'),
     path('register/', Register.as_view(), name='register'),
 
     path('', HomePage.as_view(), name='homepage'),
