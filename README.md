@@ -472,21 +472,24 @@ There are a few ideas that I would like to implement in the future:
 | 05 | Record hazard | [Issue #12](https://github.com/lukaszkukla/safely/issues/12 "Issue #12") | User can add new hazard
 | 06 | hazard categories | [Issue #13](https://github.com/lukaszkukla/safely/issues/13 "Issue #13") | User can select from list of hazard categories
 | 07 | hazard title | [Issue #14](https://github.com/lukaszkukla/safely/issues/14 "Issue #14") | User can add hazard title
-| 08 | hazard details | [Issue #15](https://github.com/lukaszkukla/safely/issues/15 "Issue #15") | User can add detailed descritpion of an hazard
-| 09 | hazard date | [Issue #16](https://github.com/lukaszkukla/safely/issues/16 "Issue #16") | User can select date hazard happened
+| 08 | hazard details | [Issue #15](https://github.com/lukaszkukla/safely/issues/15 "Issue #15") | User can add detailed descritpion of a hazard
+| 09 | hazard date | [Issue #16](https://github.com/lukaszkukla/safely/issues/16 "Issue #16") | Hazard date id recorded automatically when user add a new record
 | 10 | hazard risk level | [Issue #17](https://github.com/lukaszkukla/safely/issues/17 "Issue #17") | User can select risk level of an hazard
 | 11 | hazard image | [Issue #18](https://github.com/lukaszkukla/safely/issues/18 "Issue #18") | User can add image of an hazard
-| 12 | hazard status | [Issue #19](https://github.com/lukaszkukla/safely/issues/19 "Issue #19") | User can change status of an hazard from open to resolved
+| 12 | hazard status | [Issue #19](https://github.com/lukaszkukla/safely/issues/19 "Issue #19") | User can change status of a hazard
 | 13 | Contact details | [Issue #20](https://github.com/lukaszkukla/safely/issues/20 "Issue #20") | Contact form, active link for telephone number, email and google maps
 | 14 | View all hazards | [Issue #22](https://github.com/lukaszkukla/safely/issues/22 "Issue #22") | Summary view of open and closed hazards for the user
 | 15 | View individaul hazard details | [Issue #31](https://github.com/lukaszkukla/safely/issues/31 "Issue #31") | Detailed view of recorded hazard
-| 16 | Add category | [Issue #23](https://github.com/lukaszkukla/safely/issues/23 "Issue #23") | New categories can be added by administrator
-| 17 | Delete category | [Issue #24](https://github.com/lukaszkukla/safely/issues/24 "Issue #24") | Category can be deleted from the applicatoin by the administrator
+| 16 | View all categories | [Issue #26](https://github.com/lukaszkukla/safely/issues/26 "Issue #26") | Administrator can view list of all categories
+| 17 | Add category | [Issue #23](https://github.com/lukaszkukla/safely/issues/23 "Issue #23") | New categories can be added by administrator
 | 18 | Edit and update a category | [Issue #25](https://github.com/lukaszkukla/safely/issues/25 "Issue #25") | Category details can be edited and updated in the applicatoin by the administrator
-| 19 | View all categories | [Issue #26](https://github.com/lukaszkukla/safely/issues/26 "Issue #26") | Administrator can view list of all categories
+| 19 | Delete category | [Issue #24](https://github.com/lukaszkukla/safely/issues/24 "Issue #24") | Category can be deleted from the applicatoin by the administrator
+| 20 | View all risk types | [Issue #100](https://github.com/lukaszkukla/safely/issues/100 "Issue #100") | Administrator can view list of all risk types
+| 21 | Add, edit, update and delete risk type | [Issue #98](https://github.com/lukaszkukla/safely/issues/98 "Issue #98") | Category details can be edited and updated in the applicatoin by the administrator
+| 22 | View all status types | [Issue #101](https://github.com/lukaszkukla/safely/issues/101 "Issue #101") | Administrator can view list of all categories
+| 23 | Add, edit, update and delete status type | [Issue #99](https://github.com/lukaszkukla/safely/issues/99 "Issue #99") | Category details can be edited and updated in the applicatoin by the administrator
 | 20 | View account details | [Issue #32](https://github.com/lukaszkukla/safely/issues/32 "Issue #32") | User can view its own account details
-| 21 | Edit and update account details | [Issue #33](https://github.com/lukaszkukla/safely/issues/33 "Issue #33") | User edit and update its own account details
-| 22 | Delete user | [Issue #34](https://github.com/lukaszkukla/safely/issues/34 "Issue #34") | Administrator can delete a user upon its request
+| 21 | Edit and update account details | [Issue #33](https://github.com/lukaszkukla/safely/issues/33 "Issue #33") | User can edit and update its own account details
 
 \
 &nbsp;
@@ -513,7 +516,8 @@ Comming soon!
 
 | Issue Number |  Title | Comments 
 |--|--|--|
-| [Issue #](https://github.com/lukaszkukla/safely/issues/ "Issue #") | Title | Comments |
+| [Issue 11#](https://github.com/lukaszkukla/safely/issues/11 "Issue #11") | Title | Comments |
+
 
 \
 &nbsp; 
