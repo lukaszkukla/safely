@@ -296,27 +296,27 @@ The only requirement was to ensure that any images used in the app will correspo
 
 ### Hazard
 
-| Name | Key | Type | Other Details
+| Name | Key | Type | Other Details |
 | -- | -- | -- | --
-| category | FK (Hazard Categories) | | null=False |
-| title || CharField | max_length=200
-| image |  |  CloudinaryField | 'image', default='placeholder, null=True, blank=True
-| description || TextField |
-| updated_on || DateTimeField | auto_now=True
-| created_on || DateTimeField | auto_now_add=True
-| user | FK (User) |  | on_delete=models.CASCADE
-| level | FK (Risk Levels) |  | null=False
-| status || FK (StatusTypes) | null=False
+| category | FK (Category) | | null=True, blank=True, on_delete=models.SET_NULL |
+| title || CharField | max_length=80, null=True, unique=True, validators=[MinLengthValidator(4)] |
+| image |  | CloudinaryField | 'image', default='placeholder' |
+| description || TextField | null=True, blank=True |
+| updated_on || DateTimeField | auto_now=True |
+| created_on || DateTimeField | auto_now_add=True |
+| user | FK (User) |  | on_delete=models.CASCADE, null=True, blank=True |
+| level | FK (Risk) |  | null=True, blank=True, on_delete=models.SET_NULL |
+| status || FK (Status) | null=True, blank=True, on_delete=models.SET_NULL |
 
 \
 &nbsp;
 
 ### Category
 
-| Name | Key | Type | Other Details
-| -- | -- | -- | --
-| name || CharField | max_length=80, unique=True, null=False, blank=False, on_delete=models.SET_NULL
-| description || TextField |
+| Name | Key | Type | Other Details |
+| -- | -- | -- | -- |
+| name || CharField | max_length=80, null=True, unique=True, validators=[MinLengthValidator(3)] |
+| description || TextField | null=True, blank=True |
 
 
 \
@@ -324,9 +324,9 @@ The only requirement was to ensure that any images used in the app will correspo
 
 ### Risk
 
-| Name | Key | Type | Other Details
-| -- | -- | -- | --
-| level | | CharField | max_length=6, unique=True, null=False, blank=False, editable=False
+| Name | Key | Type | Other Details |
+| -- | -- | -- | -- |
+| level | | CharField | max_length=6, null=True, unique=True, validators=[MinLengthValidator(3)] |
 
 \
 &nbsp;
@@ -335,7 +335,7 @@ The only requirement was to ensure that any images used in the app will correspo
 
 | Name | Key | Type | Other Details
 | -- | -- | -- | --
-| name |  | CharField | max_length=8, unique=True, null=False, blank=False, editable=False
+| name |  | CharField | max_length=8, null=True, unique=True, validators=[MinLengthValidator(4)]
 
 
 \
