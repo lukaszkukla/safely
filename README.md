@@ -516,7 +516,29 @@ Comming soon!
 
 | Issue Number |  Title | Comments 
 |--|--|--|
-| [Issue 11#](https://github.com/lukaszkukla/safely/issues/11 "Issue #11") | Title | Comments |
+| [Issue 11#](https://github.com/lukaszkukla/safely/issues/11 "Issue #11") | Password reset | Password reset was not sending email |
+| [Issue 117#](https://github.com/lukaszkukla/safely/issues/117 "Issue #117") | Hazard view cards | Add gutters |
+| [Issue 102#](https://github.com/lukaszkukla/safely/issues/102 "Issue #102") | Fixed navbar | Navbar should scroll with the website |
+| [Issue 109#](https://github.com/lukaszkukla/safely/issues/109 "Issue #109") | Admin functions | Links to admin section are missing from navbar |
+| [Issue 113#](https://github.com/lukaszkukla/safely/issues/113 "Issue #113") | Navbar responiveness | Expand navbar on larger devices |
+| [Issue 103#](https://github.com/lukaszkukla/safely/issues/103 "Issue #103") | Homepage layout | Change layout to align better for bigger screens |
+| [Issue 104#](https://github.com/lukaszkukla/safely/issues/104 "Issue #104") | Contact form | Form clears on submission and does not indicate that form was submitted |
+| [Issue 116#](https://github.com/lukaszkukla/safely/issues/116 "Issue #116") | Footer links | Default HTML color on hoover must be changed |
+| [Issue 105#](https://github.com/lukaszkukla/safely/issues/105 "Issue #105") | Card image | Card dimensions expand with the image size |
+| [Issue 114#](https://github.com/lukaszkukla/safely/issues/114 "Issue #114") | Hazard list view | Card buttons must be change for large screens |
+| [Issue 110#](https://github.com/lukaszkukla/safely/issues/110 "Issue #110") | Admin menu | Customer wants to change name of dropdown list |
+| [Issue 106#](https://github.com/lukaszkukla/safely/issues/106 "Issue #106") | Hazard detailed view | View is too wide on large screens |
+| [Issue 111#](https://github.com/lukaszkukla/safely/issues/111 "Issue #111") | Hazard description | Add placeholder for missing description |
+| [Issue 121#](https://github.com/lukaszkukla/safely/issues/121 "Issue #121") | Privacy policy | This page is missing styling |
+| [Issue 120#](https://github.com/lukaszkukla/safely/issues/120 "Issue #120") | Action messages | Add messages to confirm user's actions |
+| [Issue 107#](https://github.com/lukaszkukla/safely/issues/107 "Issue #107") | Hazard list view | Customer wants status to be visible |
+| [Issue 108#](https://github.com/lukaszkukla/safely/issues/108 "Issue #108") | Button label | Customer wants every button to have label |
+| [Issue 122#](https://github.com/lukaszkukla/safely/issues/122 "Issue #122") | Profile dropdown | Includ dropdown in navbar for user profile and logout |
+| [Issue 112#](https://github.com/lukaszkukla/safely/issues/112 "Issue #112") | Category list view | Long description expand the card in list view |
+| [Issue 115#](https://github.com/lukaszkukla/safely/issues/115 "Issue #115") | Search and pagination | Django only allows one of them at the time, remove pagination |
+| [Issue 119#](https://github.com/lukaszkukla/safely/issues/119 "Issue #119") | Hazard detailed view labels | Must be bolder to stand out from the rest |
+| [Issue 123#](https://github.com/lukaszkukla/safely/issues/123 "Issue #123") | Contact form links | Must be active links |
+| [Issue 118#](https://github.com/lukaszkukla/safely/issues/118 "Issue #118") | Hazard detailed view | Status and risk must be aligned on the same level |
 
 
 \
