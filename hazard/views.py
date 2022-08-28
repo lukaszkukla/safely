@@ -34,8 +34,7 @@ from .forms import (
     PasswordChangingForm,
     LoginForm,
     UserRegistrationForm,
-    ProfileForm,
-    HazardDetailsForm
+    ProfileForm
 )
 
 
@@ -49,7 +48,7 @@ class HomePage(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home'
         return context
-        
+
 
 class PrivacyPolicy(TemplateView):
     """
@@ -663,6 +662,11 @@ class StatusDelete(LoginRequiredMixin, AdminAccessMixin,
 
 def error404View(request, exception=None):
     """ A view to return the 404 page """
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = '404 error'
+        return context
+
     return render(request, 'hazard/pages/404.html')
 
 

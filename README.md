@@ -517,7 +517,7 @@ Comming soon!
 | Issue Number |  Title | Comments 
 |--|--|--|
 | [Issue 11#](https://github.com/lukaszkukla/safely/issues/11 "Issue #11") | Password reset | Password reset was not sending email |
-| [Issue 117#](https://github.com/lukaszkukla/safely/issues/117 "Issue #117") | Hazard view cards | Add gutters |
+| [Issue 117#](https://github.com/lukaszkukla/safely/issues/117 "Issue #117") | Hazard view cards | Add space around cards |
 | [Issue 102#](https://github.com/lukaszkukla/safely/issues/102 "Issue #102") | Fixed navbar | Navbar should scroll with the website |
 | [Issue 109#](https://github.com/lukaszkukla/safely/issues/109 "Issue #109") | Admin functions | Links to admin section are missing from navbar |
 | [Issue 113#](https://github.com/lukaszkukla/safely/issues/113 "Issue #113") | Navbar responiveness | Expand navbar on larger devices |
@@ -547,7 +547,7 @@ Comming soon!
 ## Code Validation
 
 ### HTML
-All HTML files include django code that gives erros during the html validation process. All pages were tested but I ignored all warning and errors relating to django. Here is a sample test result after removing all django code [No Django Code](docs/validation/html/no-django.png "No Django Code") 
+All HTML files were tested using browser's "View page source" function due to djago being embeded in the code. Generated code was then pasted to HTML validator.
 
 | File Name | File Path | Result | W3C | Comments |
 |--|--|--|--|--|
@@ -630,17 +630,23 @@ All HTML files include django code that gives erros during the html validation p
 
 | Issue Number |  Title | Comments 
 |--|--|--|
-| [Issue #](https://github.com/lukaszkukla/safely/issues/ "Issue #") | Title | Comments |
+| [Issue #94](https://github.com/lukaszkukla/safely/issues/94 "Issue #94") | View hazard detail of other users | Admin can edit the hazard but error occurs when viewing  |
+| [Issue #90](https://github.com/lukaszkukla/safely/issues/90 "Issue #90") | CRUD categories, risks and statuses | Every user can view, edit and delete categories, risks and statuses through frontend panel.  |
+| [Issue #84](https://github.com/lukaszkukla/safely/issues/84 "Issue #84") | Logged user can access register page | User that is logged in can access registration page by entering path in address bar.  |
+| [Issue #87](https://github.com/lukaszkukla/safely/issues/87 "Issue #87") | Unauthenticated user can access profile and profile/edit | Unauthenticated user can access profile and profile/edit by through browser's address bar  |
+| [Issue #72](https://github.com/lukaszkukla/safely/issues/72 "Issue #72") | CSRF verification failed. Request aborted | CSRF totken missing from add hazard form  |
+| [Issue #83](https://github.com/lukaszkukla/safely/issues/83 "Issue #83") | Edit and update image | Image does not update on save. |
+| [Issue #71](https://github.com/lukaszkukla/safely/issues/71 "Issue #71") | Improperly configured hazard-create | ModelFormMixin throws an error |
 
 \
 &nbsp;
 
 ## Unfixed Bugs
+There is one error that I was not able to complete on time. It relates to pages being rendered through */hazard/templates/pages/passwords.html*
+I was not able to render all password change and reset forms and pages through this page. Therefore I hadt to uses *{% extends/base.html %}* in all pages relating to password. I did not want to spend too much time on this one leaving other bugs unattended. I parked it till the end but runout of time.
 
-Comming soon!... hopefully not though.
 
-
-* [Error #](docs/bugs/error.png "error") description
+* [Error #1 - with reference](docs/bugs/password-error-001.png "password error") I could not make default django templates to be rendered through password.html. When reference to base.html is removed from components styling is not applied [Error #1 - without reference](docs/bugs/password-error-002.png "password error") 
 
 \
 &nbsp;
