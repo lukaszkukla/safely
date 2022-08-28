@@ -19,7 +19,8 @@ Live link can be found here - [Safely](https://safely.herokuapp.com/ "Safely")
     * [User Persona](#user-persona "User Persona")
     * [User Goals](#user-goals "User Goals")
     * [User Stories](#user-stories "User Stories")
-    * [Requirements and Expectations](#requirements-and-expectations)   
+    * [Requirements and Expectations](#requirements-and-expectations)
+    * [Planning](#Planning)
     * [Wireframes](#wireframes "Wireframes")
     * [Design Choices](#design-choices "Design Choices")
         * Fonts
@@ -125,10 +126,6 @@ From the resulting interviews, the user goals have been defined:
 | 24 | administrator | delete category | remove obsolete choices
 | 25 | administrator | edit category | update them when required
 | 26 | administrator | view list of all categories | keep track of them
-| 27 | developer | add readme file | explain the purpose of the project, technologies used and other details
-| 28 | developer | add user stories | keep clear vision of what needs to be build
-| 29 | developer | add template for bug reporting | keep track of and resolve them
-| 30 | developer | add template for testing | keep track of the tests and results
 | 31 | user | view individual hazard details | read about it
 | 32 | user | see my account details | check if they are correct
 | 33 | user | edit and update my account details | ensure they are always correct
@@ -144,6 +141,58 @@ From the resulting interviews, the user goals have been defined:
 | Responsive design to accommodate modern screen sizes | Website must work on phones, tablets and laptops
 | Accessible contact | Contact details must be visible and easily accessible
 | CRUD functionality for products | Easily maintain database records
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+## Planning
+The items are graded in a 0 - 10 system in both importance and feasibility as per the grading system below.
+
+&nbsp;
+
+| | Score - 0 | Score - 5 | Score - 10 |
+|--|--|--| -- |
+| Importance | Unwise use of time to address | Efforts should be made to accommodate these | Efforts MUST be made to address these
+| Feasibility | Unwise use of time to address| Efforts should be made to accommodate these | Efforts MUST be made to address these
+
+&nbsp;
+
+The outcome is calculated by combining the scores from the *Importance* and *Feasibility* ratings. This then gives a final strategy rating of what items and where to focus on.
+
+| | Score - 0 | Score - 10 | Score - 20 |
+|--|--|--| -- |
+| Item Description | Not viable | Efforts should be made | Efforts MUST be made
+
+&nbsp;
+
+### Strategy Description
+
+| User story ID | Importance Score | Feasibility Score | Outcome |
+| --------------- | ----------| -----------| ---------- |
+| 10 | 10 | 10 | 20 |
+| 11 | 10 | 10 | 20 |
+| 12 | 10 | 10 | 20 |
+| 13 | 10 | 10 | 20 |
+| 14 | 10 | 10 | 20 |
+| 15 | 10 | 10 | 20 |
+| 16 | 10 | 10 | 20 |
+| 17 | 10 | 10 | 20 |
+| 18 | 5 | 10 | 15 |
+| 19 | 10 | 10 | 20 |
+| 20 | 10 | 10 | 20 |
+| 21 | 5 | 5 | 10 |
+| 22 | 5 | 10 | 15 |
+| 23 | 5 | 10 | 15 |
+| 24 | 5 | 10 | 15 |
+| 25 | 5 | 10 | 15 |
+| 26 | 5 | 10 | 15 |
+| 31 | 10 | 10 | 20 |
+| 32 | 10 | 10 | 20 |
+| 33 | 10 | 10 | 20 |
+| 34 | 5 | 5 | 10 |
 
 \
 &nbsp;
@@ -498,13 +547,7 @@ There are a few ideas that I would like to implement in the future:
 &nbsp;
 
 ## Automated Testing
-Comming soon!
-
-| App | File Name | Number of Tests | Results
-|--|--|--|--
-| tbc | test_models.py | 0 | [link](docs/tests/ "link")
-| tbc | test_urls.py | 0 | [link](docs/tests/ "link")
-| tbc | test_views.py | 0 | [link](docs/tests/ "link")
+This is the part I have been struggling with and will have to spend a bit more time to produce something that added value. 
 
 \
 &nbsp;
@@ -516,6 +559,7 @@ Comming soon!
 
 | Issue Number |  Title | Comments 
 |--|--|--|
+| [Issue 40#](https://github.com/lukaszkukla/safely/issues/40 "Issue #40") | Lightouse | Testing with Google Lighthouse |
 | [Issue 11#](https://github.com/lukaszkukla/safely/issues/11 "Issue #11") | Password reset | Password reset was not sending email |
 | [Issue 117#](https://github.com/lukaszkukla/safely/issues/117 "Issue #117") | Hazard view cards | Add space around cards |
 | [Issue 102#](https://github.com/lukaszkukla/safely/issues/102 "Issue #102") | Fixed navbar | Navbar should scroll with the website |
@@ -797,7 +841,7 @@ ALLOWED_HOSTS = ['YOUR_PROJECT_NAME.herokuapp.com', 'localhost']
 &nbsp;
 
 # Final Thoughts
-Coming soon!
+This is was so far the most challenging project I have done. Django is a really neat tool. I need more time to play with it to understand it better. Some in-built function are really great and really speed up the development time. Yet... 'with great tools come great learning curve' there were time that I was ready to give up but I kept going and I manage to bring this project to completion. It was the thoughest one but also most enjoyable one.
 
 \
 &nbsp;
